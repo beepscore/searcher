@@ -38,8 +38,8 @@ class SearcherArgReader:
         parser.add_argument('-expression', action="store", dest="expression",
                             help='expression to search for, as a regular expression.'
                             )
-        parser.add_argument('-search_directory', action="store", dest="search_directory", default="../searcher_data/search_directory",
-                            help='directory to search. Default "../searcher_data/search_directory"'
+        parser.add_argument('-root_dir', action="store", dest="root_dir", default="../searcher_data/root_dir",
+                            help='directory to search. Default "../searcher_data/root_dir"'
                             )
         parser.add_argument('-out_directory', action="store", dest="out_directory", default="../searcher_data/results",
                             help='name of output directory. Default "../searcher_data/results"'
