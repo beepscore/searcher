@@ -1,4 +1,4 @@
--expression
+-keyword
 app*
 -root_dir
 ./searcher_data/search_dir
