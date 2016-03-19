@@ -7,6 +7,9 @@
 # Results
 
 ## Unit tests
+To run tests, open terminal shell and use run_tests. For more info see script.
+
+    $ ./run_tests
 
 # Appendix- Requirements
 Use Python language v2.7.x

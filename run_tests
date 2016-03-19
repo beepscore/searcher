@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+# Use shell script to explicitly list each test instead of python -m unittest discover.
+# python -m unittest discover confused test_arg_reader.
+# test_arg_reader thought discover was an argument for it.
+python test_searcher_arg_reader.py
+
