@@ -44,18 +44,6 @@ class FileWriter:
         self.content = content
 
     @staticmethod
-    def filename_from_url(url):
-        """
-        Similar to Django slugify
-        http://stackoverflow.com/questions/295135/turn-a-string-into-a-valid-filename-in-python
-
-        :param url: url to convert
-        :return: a valid filename
-        """
-        filename = "".join(i for i in url if i not in "\/:*?<>|")
-        return filename
-
-    @staticmethod
     def create_file(dirname, filename, content):
         """
         Creates file at path and writes content
