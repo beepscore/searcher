@@ -9,9 +9,10 @@ https://github.com/beepscore/websearcher
 # Results
 
 ## Unit tests
-To run tests, open terminal shell and use run_tests. For more info see script.
+To run tests, open terminal shell.  
+cd to project directory and run tests using command below. For more info see script.
 
-    $ ./run_tests
+    $ ./bin/run_tests
 
 # Appendix- Requirements
 Use Python language v2.7.x
