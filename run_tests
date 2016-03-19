@@ -4,4 +4,5 @@
 # python -m unittest discover confused test_arg_reader.
 # test_arg_reader thought discover was an argument for it.
 python test_searcher_arg_reader.py
+python test_expression_searcher.py
 
