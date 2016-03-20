@@ -2,8 +2,6 @@
 
 import unittest
 
-# tried putting tests in a "test" directory at same level as searcher
-# relative import didn't work, might need __init.py__ file
 from searcher import expression_searcher
 
 
