@@ -7,9 +7,13 @@ websearcher Python 3
 https://github.com/beepscore/websearcher
 
 ## walk directories
+
 ### os.walk
 https://docs.python.org/2/library/os.html#os.walk
+Note Be aware that setting followlinks to True can lead to infinite recursion if a link points to a parent directory of itself.
+walk() does not keep track of the directories it visited already.  
 
+### Stack Overflow
 http://stackoverflow.com/questions/954504/how-to-get-files-in-a-directory-including-all-subdirectories
 
 ### python recursive directory walker
