@@ -23,6 +23,8 @@ class TestDirWalker(unittest.TestCase):
                 './searcher_data/search_dir/httpsen.wikipedia.orgwikiPython_%28programming_language%29',
                 './searcher_data/search_dir/httpswww.google.com#q=python',
                 './searcher_data/search_dir/httpwww.beepscore.comhubcape',
+                './searcher_data/search_dir/level_1/a.txt',
+                './searcher_data/search_dir/level_1/level_2/b.txt',
                 ])
 
         self.assertEqual(expected, Set(actual))
@@ -37,6 +39,8 @@ class TestDirWalker(unittest.TestCase):
                 './searcher_data/search_dir/httpswww.google.com#q=python',
                 './searcher_data/search_dir/httpwww.beepscore.comhubcape',
                 './searcher_data/search_dir/httppython.org',
+                './searcher_data/search_dir/level_1/a.txt',
+                './searcher_data/search_dir/level_1/level_2/b.txt',
                 ])
 
         self.assertEqual(expected_from_reordered_list, Set(actual))

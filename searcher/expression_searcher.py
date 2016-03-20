@@ -39,8 +39,14 @@ class ExpressionSearcher:
         if file_name == ".DS_Store":
             # avoid read error
             return None
+
         else:
             file_path = file_writer.FileWriter.absolute_file_path(search_dir, file_name)
+
+            if os.path.isdir(file_path):
+                # avoid read error
+                return None
+
             textfile = open(file_path, 'r')
             text = textfile.read()
             textfile.close()
