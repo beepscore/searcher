@@ -7,4 +7,5 @@
 # http://stackoverflow.com/questions/11536764/attempted-relative-import-in-non-package-even-with-init-py
 python -m tests.test_searcher_arg_reader
 python -m tests.test_expression_searcher
+python -m tests.test_dir_walker
 
