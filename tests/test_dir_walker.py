@@ -17,11 +17,12 @@ class TestDirWalker(unittest.TestCase):
     def test_files_in_dir_recursive(self):
         actual = dir_walker.DirWalker.files_in_dir_recursive("./searcher_data/search_dir")
 
-        expected = ['./searcher_data/search_dir/.DS_Store',
+        expected = [
                 './searcher_data/search_dir/httppython.org',
                 './searcher_data/search_dir/httpsen.wikipedia.orgwikiPython_%28programming_language%29',
                 './searcher_data/search_dir/httpswww.google.com#q=python',
-                './searcher_data/search_dir/httpwww.beepscore.comhubcape']
+                './searcher_data/search_dir/httpwww.beepscore.comhubcape',
+                ]
 
         self.assertEqual(expected, actual)
 

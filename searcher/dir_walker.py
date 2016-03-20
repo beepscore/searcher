@@ -15,9 +15,12 @@ class DirWalker:
     @staticmethod
     def files_in_dir_recursive(dir):
         """ return list of files in dir and subdirectories """
+        ignored_filenames = ['.DS_Store']
         file_paths = []
         for dirpath, dirnames, filenames in os.walk(dir):
             for filename in filenames:
+                if filename in ignored_filenames:
+                    continue
                 full_name = os.path.join(dirpath, filename)
                 file_paths.append(full_name)
         return file_paths
