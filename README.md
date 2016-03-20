@@ -6,6 +6,16 @@
 websearcher Python 3
 https://github.com/beepscore/websearcher
 
+## walk directories
+### os.walk
+https://docs.python.org/2/library/os.html#os.walk
+
+http://stackoverflow.com/questions/954504/how-to-get-files-in-a-directory-including-all-subdirectories
+
+### python recursive directory walker
+Shows walking a directory, execute a method on each file
+https://ssscripting.wordpress.com/2009/03/03/python-recursive-directory-walker/
+
 # Results
 
 ## Unit tests
