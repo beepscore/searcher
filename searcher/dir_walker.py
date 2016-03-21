@@ -26,13 +26,13 @@ class DirWalker:
         return patterns
 
     @staticmethod
-    def is_filename_matched_in_patterns(filename, patterns):
-        """ param patterns contains regular expressions compiled to patterns
-        searches filename for any occurence of each pattern
+    def is_string_matched_in_regular_expression_objects(string, regex_objects):
+        """ param regex_objects contains regular patterns compiled to objects
+        searches string for any occurence of each regex_object
         """
 
-        for pattern in patterns:
-            if pattern.search(filename):
+        for regex_object in regex_objects:
+            if regex_object.search(string):
                 return True
         return False
 
@@ -45,7 +45,7 @@ class DirWalker:
         file_paths = []
         for dirpath, dirnames, filenames in os.walk(dir):
             for filename in filenames:
-                if DirWalker.is_filename_matched_in_patterns(filename,
+                if DirWalker.is_string_matched_in_regular_expression_objects(filename,
                         ignored_filename_patterns):
                     continue
 
@@ -59,7 +59,7 @@ class DirWalker:
         dir = os.path.abspath(dir)
         for file in [file for file in os.listdir(dir)]:
 
-            if DirWalker.is_filename_matched_in_patterns(file, ignored_filename_patterns):
+            if DirWalker.is_string_matched_in_regular_expression_objects(file, ignored_filename_patterns):
                 continue
 
             full_name = os.path.join(dir,file)
