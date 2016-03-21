@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 
 import unittest
-from sets import Set
 from searcher import expression_helper
 
 
