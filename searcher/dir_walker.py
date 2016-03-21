@@ -2,7 +2,7 @@
 
 import os
 import os.path
-import re
+from searcher import expression_helper
 
 
 class DirWalker:
@@ -14,29 +14,6 @@ class DirWalker:
     """
 
     @staticmethod
-    def regex_objects_from_patterns(patterns):
-        """ returns regex_objects compiled from regular expression patterns"""
-
-        regex_objects = []
-
-        for pattern in patterns:
-            regex_object = re.compile(pattern)
-            regex_objects.append(regex_object)
-
-        return regex_objects
-
-    @staticmethod
-    def is_string_matched_in_regular_expression_objects(string, regex_objects):
-        """ param regex_objects contains regular expression objects compiled from patterns
-        searches string for any occurence of each regex_object
-        """
-
-        for regex_object in regex_objects:
-            if regex_object.search(string):
-                return True
-        return False
-
-    @staticmethod
     def files_in_dir_recursive(dir, ignored_regex_objects):
         """ param ignored_regex_objects contains regular expression objects compiled from patterns
         return list of files in dir and subdirectories
@@ -45,7 +22,7 @@ class DirWalker:
         file_paths = []
         for dirpath, dirnames, filenames in os.walk(dir):
             for filename in filenames:
-                if DirWalker.is_string_matched_in_regular_expression_objects(filename,
+                if expression_helper.ExpressionHelper.is_string_matched_in_regular_expression_objects(filename,
                         ignored_regex_objects):
                     continue
 
@@ -59,7 +36,7 @@ class DirWalker:
         dir = os.path.abspath(dir)
         for file in [file for file in os.listdir(dir)]:
 
-            if DirWalker.is_string_matched_in_regular_expression_objects(file, ignored_regex_objects):
+            if expression_helper.ExpressionHelper.is_string_matched_in_regular_expression_objects(file, ignored_regex_objects):
                 continue
 
             full_name = os.path.join(dir,file)
