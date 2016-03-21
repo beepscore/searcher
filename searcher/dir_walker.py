@@ -14,16 +14,16 @@ class DirWalker:
     """
 
     @staticmethod
-    def patterns_from_expressions(expressions):
-        """ returns patterns compiled from regular expression strings"""
+    def regex_objects_from_patterns(patterns):
+        """ returns regex_objects compiled from regular expression patterns"""
 
-        patterns = []
+        regex_objects = []
 
-        for expression in expressions:
-            pattern = re.compile(expression)
-            patterns.append(pattern)
+        for pattern in patterns:
+            regex_object = re.compile(pattern)
+            regex_objects.append(regex_object)
 
-        return patterns
+        return regex_objects
 
     @staticmethod
     def is_string_matched_in_regular_expression_objects(string, regex_objects):

@@ -22,7 +22,7 @@ class TestDirWalker(unittest.TestCase):
         """
 
         ignored_filename_expressions = ['\A\.$']
-        ignored_filename_patterns = dir_walker.DirWalker.patterns_from_expressions(ignored_filename_expressions)
+        ignored_filename_patterns = dir_walker.DirWalker.regex_objects_from_patterns(ignored_filename_expressions)
 
         self.assertTrue(dir_walker.DirWalker.is_string_matched_in_regular_expression_objects('.', ignored_filename_patterns))
 
@@ -39,7 +39,7 @@ class TestDirWalker(unittest.TestCase):
         """
 
         ignored_filename_expressions = ['\A\.\.$']
-        ignored_filename_patterns = dir_walker.DirWalker.patterns_from_expressions(ignored_filename_expressions)
+        ignored_filename_patterns = dir_walker.DirWalker.regex_objects_from_patterns(ignored_filename_expressions)
 
         self.assertTrue(dir_walker.DirWalker.is_string_matched_in_regular_expression_objects('..', ignored_filename_patterns))
 
@@ -55,7 +55,7 @@ class TestDirWalker(unittest.TestCase):
         """
 
         ignored_filename_expressions = ['\A\.DS_Store$']
-        ignored_filename_patterns = dir_walker.DirWalker.patterns_from_expressions(ignored_filename_expressions)
+        ignored_filename_patterns = dir_walker.DirWalker.regex_objects_from_patterns(ignored_filename_expressions)
 
         self.assertTrue(dir_walker.DirWalker.is_string_matched_in_regular_expression_objects('.DS_Store', ignored_filename_patterns))
 
@@ -66,7 +66,7 @@ class TestDirWalker(unittest.TestCase):
         """ match 'ython' within string. Case sensitive """
 
         ignored_filename_expressions = ['ython']
-        ignored_filename_patterns = dir_walker.DirWalker.patterns_from_expressions(ignored_filename_expressions)
+        ignored_filename_patterns = dir_walker.DirWalker.regex_objects_from_patterns(ignored_filename_expressions)
 
         self.assertTrue(dir_walker.DirWalker.is_string_matched_in_regular_expression_objects("A big python is here.", ignored_filename_patterns))
 
@@ -75,7 +75,7 @@ class TestDirWalker(unittest.TestCase):
     def test_files_in_dir_recursive(self):
 
         ignored_filename_expressions = ['\A\.$', '\A\.\.$', '\A\.DS_Store$']
-        ignored_filename_patterns = dir_walker.DirWalker.patterns_from_expressions(ignored_filename_expressions)
+        ignored_filename_patterns = dir_walker.DirWalker.regex_objects_from_patterns(ignored_filename_expressions)
 
         actual = dir_walker.DirWalker.files_in_dir_recursive("./searcher_data/search_dir",
                 ignored_filename_patterns)
@@ -95,7 +95,7 @@ class TestDirWalker(unittest.TestCase):
     def test_files_in_dir_recursive_ignore_ython(self):
 
         ignored_filename_expressions = ['\A\.$', '\A\.\.$', '\A\.DS_Store$', 'ython']
-        ignored_filename_patterns = dir_walker.DirWalker.patterns_from_expressions(ignored_filename_expressions)
+        ignored_filename_patterns = dir_walker.DirWalker.regex_objects_from_patterns(ignored_filename_expressions)
 
         actual = dir_walker.DirWalker.files_in_dir_recursive("./searcher_data/search_dir",
                 ignored_filename_patterns)
@@ -113,7 +113,7 @@ class TestDirWalker(unittest.TestCase):
         """ test we are using Set correctly. """
 
         ignored_filename_expressions = ['\A\.$', '\A\.\.$', '\A\.DS_Store$']
-        ignored_filename_patterns = dir_walker.DirWalker.patterns_from_expressions(ignored_filename_expressions)
+        ignored_filename_patterns = dir_walker.DirWalker.regex_objects_from_patterns(ignored_filename_expressions)
 
         actual = dir_walker.DirWalker.files_in_dir_recursive("./searcher_data/search_dir",
                 ignored_filename_patterns)
