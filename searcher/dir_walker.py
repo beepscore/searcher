@@ -2,6 +2,7 @@
 
 import os
 import os.path
+import re
 
 
 class DirWalker:
@@ -13,24 +14,60 @@ class DirWalker:
     """
 
     @staticmethod
-    def files_in_dir_recursive(dir):
-        """ return list of files in dir and subdirectories """
-        ignored_filenames = ['.DS_Store']
+    def patterns_from_expressions(expressions):
+        """ returns patterns compiled from regular expression strings"""
+
+        patterns = []
+
+        for expression in expressions:
+            pattern = re.compile(expression)
+            patterns.append(pattern)
+
+        return patterns
+
+    @staticmethod
+    def is_filename_matched_in_patterns(filename, patterns):
+        """ param patterns contains regular expressions compiled to patterns
+        searches filename for any occurence of each pattern
+        """
+
+        for pattern in patterns:
+            if pattern.search(filename):
+                return True
+        return False
+
+    @staticmethod
+    def files_in_dir_recursive(dir, ignored_filename_patterns):
+        """ param ignored_filename_patterns contains regular expressions compiled to patterns
+        return list of files in dir and subdirectories
+        """
+
         file_paths = []
         for dirpath, dirnames, filenames in os.walk(dir):
             for filename in filenames:
-                if filename in ignored_filenames:
+                if DirWalker.is_filename_matched_in_patterns(filename,
+                        ignored_filename_patterns):
                     continue
+
                 full_name = os.path.join(dirpath, filename)
                 file_paths.append(full_name)
         return file_paths
 
+    def walk_files_in_dir_recursive(dir, ignored_filename_patterns, map_method):
+        """ walks a directory, and executes a method on each file """
 
-#    def walk_files_in_dir(dir, method):
-#        """ walks a directory, and executes a method on each file """
-#        dir = os.path.abspath(dir)
-#        for file in [file for file in os.listdir(dir) if not file in [".",".."]]:
-#            nfile = os.path.join(dir,file)
-#                method(nfile)
-#                if os.path.isdir(nfile):
-#                    self.walk(nfile,method)
+        dir = os.path.abspath(dir)
+        for file in [file for file in os.listdir(dir)]:
+
+            if DirWalker.is_filename_matched_in_patterns(file, ignored_filename_patterns):
+                continue
+
+            full_name = os.path.join(dir,file)
+
+            # call map_method on file
+            map_method(full_name)
+
+            # recursively walk subdirectories
+            if os.path.isdir(full_name):
+                self.walk_files_in_dir_recursive(full_name, ignored_filename_patterns, map_method)
+

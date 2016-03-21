@@ -14,8 +14,71 @@ class TestDirWalker(unittest.TestCase):
         walker = dir_walker.DirWalker()
         self.assertIsNotNone(walker)
 
+    def test_is_filename_matched_in_patterns_dot(self):
+        """ match '.' representing current directory
+        \A matches only at start of string
+        $ matches at end of string
+        https://docs.python.org/2/library/re.html
+        """
+
+        ignored_filename_expressions = ['\A\.$']
+        ignored_filename_patterns = dir_walker.DirWalker.patterns_from_expressions(ignored_filename_expressions)
+
+        self.assertTrue(dir_walker.DirWalker.is_filename_matched_in_patterns('.', ignored_filename_patterns))
+
+        self.assertFalse(dir_walker.DirWalker.is_filename_matched_in_patterns('..', ignored_filename_patterns))
+        self.assertFalse(dir_walker.DirWalker.is_filename_matched_in_patterns('a.', ignored_filename_patterns))
+        self.assertFalse(dir_walker.DirWalker.is_filename_matched_in_patterns('.c', ignored_filename_patterns))
+        self.assertFalse(dir_walker.DirWalker.is_filename_matched_in_patterns('a.c', ignored_filename_patterns))
+
+    def test_is_filename_matched_in_patterns_dotdot(self):
+        """ match '..' representing directory above current directory
+        \A matches only at start of string
+        $ matches at end of string
+        https://docs.python.org/2/library/re.html
+        """
+
+        ignored_filename_expressions = ['\A\.\.$']
+        ignored_filename_patterns = dir_walker.DirWalker.patterns_from_expressions(ignored_filename_expressions)
+
+        self.assertTrue(dir_walker.DirWalker.is_filename_matched_in_patterns('..', ignored_filename_patterns))
+
+        self.assertFalse(dir_walker.DirWalker.is_filename_matched_in_patterns('a..', ignored_filename_patterns))
+        self.assertFalse(dir_walker.DirWalker.is_filename_matched_in_patterns('..c', ignored_filename_patterns))
+        self.assertFalse(dir_walker.DirWalker.is_filename_matched_in_patterns('a..c', ignored_filename_patterns))
+
+    def test_is_filename_matched_in_patterns_dotDS_Store(self):
+        """ match '.DS_Store' OSX file system file
+        \A matches only at start of string
+        $ matches at end of string
+        https://docs.python.org/2/library/re.html
+        """
+
+        ignored_filename_expressions = ['\A\.DS_Store$']
+        ignored_filename_patterns = dir_walker.DirWalker.patterns_from_expressions(ignored_filename_expressions)
+
+        self.assertTrue(dir_walker.DirWalker.is_filename_matched_in_patterns('.DS_Store', ignored_filename_patterns))
+
+        self.assertFalse(dir_walker.DirWalker.is_filename_matched_in_patterns('a.DS_Store', ignored_filename_patterns))
+        self.assertFalse(dir_walker.DirWalker.is_filename_matched_in_patterns('.DS_Storeb', ignored_filename_patterns))
+
+    def test_is_filename_matched_in_patterns_inner(self):
+        """ match 'ython' within string. Case sensitive """
+
+        ignored_filename_expressions = ['ython']
+        ignored_filename_patterns = dir_walker.DirWalker.patterns_from_expressions(ignored_filename_expressions)
+
+        self.assertTrue(dir_walker.DirWalker.is_filename_matched_in_patterns("A big python is here.", ignored_filename_patterns))
+
+        self.assertFalse(dir_walker.DirWalker.is_filename_matched_in_patterns("A big pythoxyz", ignored_filename_patterns))
+
     def test_files_in_dir_recursive(self):
-        actual = dir_walker.DirWalker.files_in_dir_recursive("./searcher_data/search_dir")
+
+        ignored_filename_expressions = ['\A\.$', '\A\.\.$', '\A\.DS_Store$']
+        ignored_filename_patterns = dir_walker.DirWalker.patterns_from_expressions(ignored_filename_expressions)
+
+        actual = dir_walker.DirWalker.files_in_dir_recursive("./searcher_data/search_dir",
+                ignored_filename_patterns)
 
         # Don't care about element order, so compare results using set instead of list
         expected = Set([
@@ -29,9 +92,31 @@ class TestDirWalker(unittest.TestCase):
 
         self.assertEqual(expected, Set(actual))
 
+    def test_files_in_dir_recursive_ignore_ython(self):
+
+        ignored_filename_expressions = ['\A\.$', '\A\.\.$', '\A\.DS_Store$', 'ython']
+        ignored_filename_patterns = dir_walker.DirWalker.patterns_from_expressions(ignored_filename_expressions)
+
+        actual = dir_walker.DirWalker.files_in_dir_recursive("./searcher_data/search_dir",
+                ignored_filename_patterns)
+
+        # Don't care about element order, so compare results using set instead of list
+        expected = Set([
+                './searcher_data/search_dir/httpwww.beepscore.comhubcape',
+                './searcher_data/search_dir/level_1/a.txt',
+                './searcher_data/search_dir/level_1/level_2/b.txt',
+                ])
+
+        self.assertEqual(expected, Set(actual))
+
     def test_files_in_dir_recursive_set_from_reordered_list(self):
         """ test we are using Set correctly. """
-        actual = dir_walker.DirWalker.files_in_dir_recursive("./searcher_data/search_dir")
+
+        ignored_filename_expressions = ['\A\.$', '\A\.\.$', '\A\.DS_Store$']
+        ignored_filename_patterns = dir_walker.DirWalker.patterns_from_expressions(ignored_filename_expressions)
+
+        actual = dir_walker.DirWalker.files_in_dir_recursive("./searcher_data/search_dir",
+                ignored_filename_patterns)
 
         # Don't care about element order, so compare results using set instead of list
         expected_from_reordered_list = Set([
