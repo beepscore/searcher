@@ -27,7 +27,7 @@ class DirWalker:
 
     @staticmethod
     def is_string_matched_in_regular_expression_objects(string, regex_objects):
-        """ param regex_objects contains regular patterns compiled to objects
+        """ param regex_objects contains regular expression objects compiled from patterns
         searches string for any occurence of each regex_object
         """
 
@@ -37,8 +37,8 @@ class DirWalker:
         return False
 
     @staticmethod
-    def files_in_dir_recursive(dir, ignored_filename_patterns):
-        """ param ignored_filename_patterns contains regular expressions compiled to patterns
+    def files_in_dir_recursive(dir, ignored_regex_objects):
+        """ param ignored_regex_objects contains regular expression objects compiled from patterns
         return list of files in dir and subdirectories
         """
 
@@ -46,20 +46,20 @@ class DirWalker:
         for dirpath, dirnames, filenames in os.walk(dir):
             for filename in filenames:
                 if DirWalker.is_string_matched_in_regular_expression_objects(filename,
-                        ignored_filename_patterns):
+                        ignored_regex_objects):
                     continue
 
                 full_name = os.path.join(dirpath, filename)
                 file_paths.append(full_name)
         return file_paths
 
-    def walk_files_in_dir_recursive(dir, ignored_filename_patterns, map_method):
+    def walk_files_in_dir_recursive(dir, ignored_regex_objects, map_method):
         """ walks a directory, and executes a method on each file """
 
         dir = os.path.abspath(dir)
         for file in [file for file in os.listdir(dir)]:
 
-            if DirWalker.is_string_matched_in_regular_expression_objects(file, ignored_filename_patterns):
+            if DirWalker.is_string_matched_in_regular_expression_objects(file, ignored_regex_objects):
                 continue
 
             full_name = os.path.join(dir,file)
@@ -69,5 +69,5 @@ class DirWalker:
 
             # recursively walk subdirectories
             if os.path.isdir(full_name):
-                self.walk_files_in_dir_recursive(full_name, ignored_filename_patterns, map_method)
+                self.walk_files_in_dir_recursive(full_name, ignored_regex_objects, map_method)
 
