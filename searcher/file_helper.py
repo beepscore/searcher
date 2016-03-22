@@ -3,7 +3,7 @@
 import os
 
 
-class FileWriter:
+class FileHelper:
     """ Utility methods for absolute paths """
 
     @staticmethod
@@ -17,7 +17,7 @@ class FileWriter:
 
     @staticmethod
     def absolute_file_path(dirname, filename):
-        absolute_dir_path = FileWriter.absolute_dir_path(dirname)
+        absolute_dir_path = FileHelper.absolute_dir_path(dirname)
         absolute_file_path = os.path.join(absolute_dir_path, filename)
         return absolute_file_path
 

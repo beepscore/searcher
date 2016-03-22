@@ -2,7 +2,7 @@
 
 #from searcher import searcher_arg_reader
 import searcher_arg_reader
-import file_writer
+import file_helper
 import re
 import os
 
@@ -26,7 +26,7 @@ class ExpressionSearcher:
             return None
 
         else:
-            file_path = file_writer.FileWriter.absolute_file_path(search_dir, file_name)
+            file_path = file_helper.FileHelper.absolute_file_path(search_dir, file_name)
 
             if os.path.isdir(file_path):
                 # avoid read error
