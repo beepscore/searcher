@@ -31,6 +31,7 @@ class TestDirWalker(unittest.TestCase):
                 './searcher_data/search_dir/httpwww.beepscore.comhubcape',
                 './searcher_data/search_dir/level_1/a.txt',
                 './searcher_data/search_dir/level_1/level_2/b.txt',
+                './searcher_data/search_dir/level_1/level_2/c.txt',
                 ])
 
         self.assertEqual(expected, Set(actual))
@@ -48,6 +49,7 @@ class TestDirWalker(unittest.TestCase):
                 './searcher_data/search_dir/httpwww.beepscore.comhubcape',
                 './searcher_data/search_dir/level_1/a.txt',
                 './searcher_data/search_dir/level_1/level_2/b.txt',
+                './searcher_data/search_dir/level_1/level_2/c.txt',
                 ])
 
         self.assertEqual(expected, Set(actual))
@@ -68,6 +70,7 @@ class TestDirWalker(unittest.TestCase):
                 './searcher_data/search_dir/httpwww.beepscore.comhubcape',
                 './searcher_data/search_dir/httppython.org',
                 './searcher_data/search_dir/level_1/a.txt',
+                './searcher_data/search_dir/level_1/level_2/c.txt',
                 './searcher_data/search_dir/level_1/level_2/b.txt',
                 ])
 
@@ -79,12 +82,10 @@ class TestDirWalker(unittest.TestCase):
         ignored_filename_patterns = ['\A\.$', '\A\.\.$', '\A\.DS_Store$']
         ignored_regex_objects = expression_helper.ExpressionHelper.regex_objects_from_patterns(ignored_filename_patterns)
 
-        # reference some_method without parenthesis
-        map_method = dir_walker.DirWalker.some_method
+        expression = "ython"
 
         dir_walker.DirWalker.walk_files_in_dir_recursive(search_dir,
-                ignored_regex_objects,
-                map_method)
+                ignored_regex_objects, expression)
 
 if __name__ == "__main__":
     unittest.main()
