@@ -2,7 +2,3 @@
 app*
 -root_dir
 ./searcher_data/search_dir
--out_directory
-./searcher_data/results
--out_file
-searcher_results.txt

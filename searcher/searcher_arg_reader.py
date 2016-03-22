@@ -41,12 +41,6 @@ class SearcherArgReader:
         parser.add_argument('-root_dir', action="store", dest="root_dir", default="../searcher_data/root_dir",
                             help='directory to search. Default "../searcher_data/root_dir"'
                             )
-        parser.add_argument('-out_directory', action="store", dest="out_directory", default="../searcher_data/results",
-                            help='name of output directory. Default "../searcher_data/results"'
-                            )
-        parser.add_argument('-out_file', action="store", dest="out_file", default="searcher_results.txt",
-                            help='name of output file. Default "searcher_results.txt"'
-                            )
 
         if commandline is not None:
             args = parser.parse_args(commandline)

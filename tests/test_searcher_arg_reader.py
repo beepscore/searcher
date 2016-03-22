@@ -19,28 +19,20 @@ class TestSearcherArgReader(unittest.TestCase):
         args = reader.args(None)
         self.assertEqual(None, args.keyword, '')
         self.assertEqual("../searcher_data/root_dir", args.root_dir, '')
-        self.assertEqual("../searcher_data/results", args.out_directory, '')
-        self.assertEqual("searcher_results.txt", args.out_file, '')
 
     def test_args_from_argument(self):
         reader = searcher_arg_reader.SearcherArgReader()
 
         keyword = "foo"
         root_dir = "some_root_dir"
-        out_directory = "../some_directory"
-        out_file = "some_results.txt"
 
         test_commandline = ["-keyword", keyword,
-                            "-root_dir", root_dir,
-                            "-out_directory", out_directory,
-                            "-out_file", out_file
+                            "-root_dir", root_dir
                             ]
         args = reader.args(test_commandline)
 
         self.assertEqual(keyword, args.keyword, '')
         self.assertEqual(root_dir, args.root_dir, '')
-        self.assertEqual(out_directory, args.out_directory, '')
-        self.assertEqual(out_file, args.out_file, '')
 
     def test_args_from_argument_file(self):
         reader = searcher_arg_reader.SearcherArgReader()
@@ -49,8 +41,6 @@ class TestSearcherArgReader(unittest.TestCase):
 
         self.assertEqual("app*", args.keyword)
         self.assertEqual("./searcher_data/search_dir", args.root_dir)
-        self.assertEqual("./searcher_data/results", args.out_directory)
-        self.assertEqual("searcher_results.txt", args.out_file)
 
 if __name__ == "__main__":
     unittest.main()
