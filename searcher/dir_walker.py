@@ -15,9 +15,39 @@ class DirWalker:
     """
 
     @staticmethod
+    def directories_in_dir_recursive(search_dir, ignored_regex_objects):
+        """
+        Searches search_dir and subdirectories for directories
+
+        param search_dir is the directory to search
+        param ignored_regex_objects contains regular expression objects compiled from patterns
+        return list of un-ignored directories in search_dir and subdirectories
+        """
+
+        dir_paths = []
+        dir_paths.append(search_dir)
+
+        for dirpath, dirnames, filenames in os.walk(search_dir):
+
+                for dirname in dirnames:
+
+                    if expression_helper.ExpressionHelper.is_string_matched_in_regular_expression_objects(dirname,
+                                                                                                          ignored_regex_objects):
+                        # ignore this directory
+                        continue
+
+                    full_name = os.path.join(dirpath, dirname)
+                    dir_paths.append(full_name)
+
+        return dir_paths
+
+    @staticmethod
     def files_in_dir_recursive(search_dir, ignored_regex_objects):
-        """ param ignored_regex_objects contains regular expression objects compiled from patterns
-        return list of files in search_dir and subdirectories
+        """
+        Searches search_dir and subdirectories for files
+
+        param ignored_regex_objects contains regular expression objects compiled from patterns
+        return list of un-ignored files in search_dir and subdirectories
         """
 
         file_paths = []

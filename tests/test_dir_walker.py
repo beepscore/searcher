@@ -15,6 +15,22 @@ class TestDirWalker(unittest.TestCase):
         walker = dir_walker.DirWalker()
         self.assertIsNotNone(walker)
 
+    def test_directories_in_dir_recursive(self):
+
+        ignored_dirname_patterns = []
+        ignored_regex_objects = expression_helper.ExpressionHelper.regex_objects_from_patterns(ignored_dirname_patterns)
+
+        actual = dir_walker.DirWalker.directories_in_dir_recursive("./searcher_data/search_dir",
+                                                             ignored_regex_objects)
+
+        # Don't care about element order, so compare results using set instead of list
+        expected = Set([
+            './searcher_data/search_dir',
+            './searcher_data/search_dir/level_1',
+            './searcher_data/search_dir/level_1/level_2',
+        ])
+        self.assertEqual(expected, Set(actual))
+
     def test_files_in_dir_recursive(self):
 
         ignored_filename_patterns = ['\A\.$', '\A\.\.$', '\A\.DS_Store$']
