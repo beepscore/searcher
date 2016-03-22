@@ -25,32 +25,8 @@ class FileWriter:
         absolute_file_path = os.path.join(absolute_dir_path, filename)
         return absolute_file_path
 
-    @staticmethod
-    def create_directory(dirname):
-        """
-        Creates directory at dirname if it doesn't exist.
-        """
-        abs_dir_path = FileWriter.absolute_dir_path(dirname)
-        # http://stackoverflow.com/questions/273192/check-if-a-directory-exists-and-create-it-if-necessary
-        try:
-            os.makedirs(abs_dir_path)
-        except OSError:
-            if not os.path.isdir(abs_dir_path):
-                raise
-
     def __init__(self, dirname, filename, content):
         self.filename = filename
         self.dirname = dirname
         self.content = content
 
-    @staticmethod
-    def create_file(dirname, filename, content):
-        """
-        Creates file at path and writes content
-        """
-        abs_file_path = FileWriter.absolute_file_path(dirname, filename)
-        FileWriter.create_directory(dirname)
-        # https://docs.python.org/3.3/tutorial/inputoutput.html
-        f = open(abs_file_path, 'w')
-        f.write(content)
-        f.close()
