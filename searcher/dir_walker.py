@@ -36,15 +36,15 @@ class DirWalker:
 
     @staticmethod
     def walk_files_in_dir_recursive(search_dir, ignored_regex_objects, map_method):
-        """ walks a directory, and executes a method on each file """
+        """ walks search_dir, and executes map_method on each file """
 
-        search_dir = os.path.abspath(search_dir)
-        for file in [file for file in os.listdir(search_dir)]:
+        search_dir_abspath = os.path.abspath(search_dir)
+        for file in [file for file in os.listdir(search_dir_abspath)]:
 
             if expression_helper.ExpressionHelper.is_string_matched_in_regular_expression_objects(file, ignored_regex_objects):
                 continue
 
-            full_name = os.path.join(search_dir,file)
+            full_name = os.path.join(search_dir_abspath,file)
 
             # call map_method on file
             result = map_method(full_name)
