@@ -8,5 +8,6 @@
 python -m tests.test_searcher_arg_reader
 python -m tests.test_expression_searcher
 python -m tests.test_expression_helper
+python -m tests.test_file_helper
 python -m tests.test_dir_walker
 
