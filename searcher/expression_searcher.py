@@ -15,13 +15,6 @@ class ExpressionSearcher:
     """
 
     @staticmethod
-    def search_directory_write_results(expression, search_dir, out_directory, out_file):
-        files_containing_expression = ExpressionSearcher.search_directory(expression, search_dir)
-        # convert list to string with line separator
-        files_string = (os.linesep).join(files_containing_expression)
-        file_writer.FileWriter.create_file(out_directory, out_file, files_string)
-
-    @staticmethod
     def search_directory(expression, search_dir):
         """
         In directory search every file for expression

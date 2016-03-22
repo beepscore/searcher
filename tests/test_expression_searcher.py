@@ -58,11 +58,5 @@ class TestExpressionSearcher(unittest.TestCase):
             'httpswww.google.com#q=python',
             'httpwww.beepscore.comhubcape'], actual)
 
-    def test_search_directory_write_results_data(self):
-        expression_searcher.ExpressionSearcher.search_directory_write_results("dat*",
-                "./searcher_data/search_dir",
-                "./searcher_data/results",
-                "searcher_results.txt")
-
 if __name__ == "__main__":
     unittest.main()
