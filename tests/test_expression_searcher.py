@@ -39,24 +39,5 @@ class TestExpressionSearcher(unittest.TestCase):
                 "httpwww.beepscore.comhubcape")
         self.assertEqual(None, actual)
 
-    def test_search_directory_Apps(self):
-        actual = expression_searcher.ExpressionSearcher.search_directory("Apps",
-                "./searcher_data/search_dir")
-        self.assertEqual(["httpwww.beepscore.comhubcape"], actual)
-
-    def test_search_directory_Python(self):
-        actual = expression_searcher.ExpressionSearcher.search_directory("Python",
-                "./searcher_data/search_dir")
-        self.assertEqual(['httppython.org',
-            'httpsen.wikipedia.orgwikiPython_%28programming_language%29'], actual)
-
-    def test_search_directory_data(self):
-        actual = expression_searcher.ExpressionSearcher.search_directory("dat*",
-                "./searcher_data/search_dir")
-        self.assertEqual(['httppython.org',
-            'httpsen.wikipedia.orgwikiPython_%28programming_language%29',
-            'httpswww.google.com#q=python',
-            'httpwww.beepscore.comhubcape'], actual)
-
 if __name__ == "__main__":
     unittest.main()

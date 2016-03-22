@@ -15,19 +15,6 @@ class ExpressionSearcher:
     """
 
     @staticmethod
-    def search_directory(expression, search_dir):
-        """
-        In directory search every file for expression
-        return file names containing expression
-        """
-        files_containing_expression = []
-        for file_name in os.listdir(search_dir):
-            file_name_containing_expression = ExpressionSearcher.search_file(expression, search_dir, file_name)
-            if file_name_containing_expression is not None:
-                files_containing_expression.append(file_name_containing_expression)
-        return files_containing_expression
-
-    @staticmethod
     def search_file(expression, search_dir, file_name):
         """
         In directory search file for expression
