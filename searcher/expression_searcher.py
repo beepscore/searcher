@@ -36,6 +36,11 @@ class ExpressionSearcher:
 
     @staticmethod
     def search_file(expression, search_dir, file_name):
+        """
+        In directory search file for expression
+
+        return file name if file contains expression
+        """
         if file_name == ".DS_Store":
             # avoid read error
             return None
