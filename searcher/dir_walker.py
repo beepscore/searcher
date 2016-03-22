@@ -95,35 +95,6 @@ class DirWalker:
         return file_paths
 
     @staticmethod
-    def walk_files_in_dir_recursive(search_dir, ignored_regex_objects, expression):
-        """ walks search_dir, for each file check if it contains expression
-
-            return dictionary with key directory name and value number of files that contain expression
-        """
-
-        # TODO: Fix method to reuse dictionary
-        search_dir_abspath = os.path.abspath(search_dir)
-        results = {}
-        number_of_files_containing_expression = 0
-
-        for file in [file for file in os.listdir(search_dir_abspath)]:
-
-            if expression_helper.ExpressionHelper.is_string_matched_in_regular_expression_objects(file, ignored_regex_objects):
-                continue
-
-            full_name = os.path.join(search_dir_abspath,file)
-
-            if (expression_searcher.ExpressionSearcher.search_file(expression, search_dir_abspath, file) is not None):
-                number_of_files_containing_expression += 1
-
-            # recursively walk subdirectories
-            if os.path.isdir(full_name):
-                DirWalker.walk_files_in_dir_recursive(full_name, ignored_regex_objects, expression)
-
-        results[search_dir_abspath] = number_of_files_containing_expression
-        return results
-
-    @staticmethod
     def directories_number_of_files_containing_keyword(root_dir, ignored_regex_objects, keyword):
         """
         Searches root_dir and subdirectories for files containing keyword

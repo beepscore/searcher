@@ -121,18 +121,6 @@ class TestDirWalker(unittest.TestCase):
 
         self.assertEqual(expected_from_reordered_list, Set(actual))
 
-    def test_walk_files_in_dir_recursive(self):
-        search_dir = './searcher_data/search_dir'
-
-        ignored_filename_patterns = ['\A\.$', '\A\.\.$', '\A\.DS_Store$']
-        ignored_regex_objects = expression_helper.ExpressionHelper.regex_objects_from_patterns(ignored_filename_patterns)
-
-        expression = "ython"
-
-        dir_walker.DirWalker.walk_files_in_dir_recursive(search_dir,
-                ignored_regex_objects, expression)
-
-
     def test_directories_number_of_files_containing_keyword(self):
         root_dir = './searcher_data/search_dir'
 
