@@ -60,64 +60,53 @@ class TestDirWalker(unittest.TestCase):
         ])
         self.assertEqual(expected, Set(actual))
 
-    def test_files_in_dir_recursive(self):
+    def test_files_in_dir(self):
 
         ignored_filename_patterns = ['\A\.$', '\A\.\.$', '\A\.DS_Store$']
         ignored_regex_objects = expression_helper.ExpressionHelper.regex_objects_from_patterns(ignored_filename_patterns)
 
-        actual = dir_walker.DirWalker.files_in_dir_recursive("./searcher_data/search_dir",
-                ignored_regex_objects)
+        actual = dir_walker.DirWalker.files_in_dir("./searcher_data/search_dir",
+                                                   ignored_regex_objects)
 
         # Don't care about element order, so compare results using set instead of list
         expected = Set([
-                './searcher_data/search_dir/httppython.org',
-                './searcher_data/search_dir/httpsen.wikipedia.orgwikiPython_%28programming_language%29',
-                './searcher_data/search_dir/httpswww.google.com#q=python',
-                './searcher_data/search_dir/httpwww.beepscore.comhubcape',
-                './searcher_data/search_dir/level_1/a.txt',
-                './searcher_data/search_dir/level_1/level_2/b.txt',
-                './searcher_data/search_dir/level_1/level_2/c.txt',
-                ])
+            'httppython.org',
+            'httpsen.wikipedia.orgwikiPython_%28programming_language%29',
+            'httpswww.google.com#q=python',
+            'httpwww.beepscore.comhubcape',
+        ])
 
         self.assertEqual(expected, Set(actual))
 
-    def test_files_in_dir_recursive_ignore_ython(self):
+    def test_files_in_dir_ignore_ython(self):
 
         ignored_filename_patterns = ['\A\.$', '\A\.\.$', '\A\.DS_Store$', 'ython']
         ignored_regex_objects = expression_helper.ExpressionHelper.regex_objects_from_patterns(ignored_filename_patterns)
 
-        actual = dir_walker.DirWalker.files_in_dir_recursive("./searcher_data/search_dir",
-                ignored_regex_objects)
+        actual = dir_walker.DirWalker.files_in_dir("./searcher_data/search_dir",
+                                                   ignored_regex_objects)
 
         # Don't care about element order, so compare results using set instead of list
-        expected = Set([
-                './searcher_data/search_dir/httpwww.beepscore.comhubcape',
-                './searcher_data/search_dir/level_1/a.txt',
-                './searcher_data/search_dir/level_1/level_2/b.txt',
-                './searcher_data/search_dir/level_1/level_2/c.txt',
-                ])
+        expected = Set(['httpwww.beepscore.comhubcape'])
 
         self.assertEqual(expected, Set(actual))
 
-    def test_files_in_dir_recursive_set_from_reordered_list(self):
+    def test_files_in_dir_set_from_reordered_list(self):
         """ test we are using Set correctly. """
 
         ignored_filename_patterns = ['\A\.$', '\A\.\.$', '\A\.DS_Store$']
         ignored_regex_objects = expression_helper.ExpressionHelper.regex_objects_from_patterns(ignored_filename_patterns)
 
-        actual = dir_walker.DirWalker.files_in_dir_recursive("./searcher_data/search_dir",
-                ignored_regex_objects)
+        actual = dir_walker.DirWalker.files_in_dir("./searcher_data/search_dir",
+                                                   ignored_regex_objects)
 
         # Don't care about element order, so compare results using set instead of list
         expected_from_reordered_list = Set([
-                './searcher_data/search_dir/httpsen.wikipedia.orgwikiPython_%28programming_language%29',
-                './searcher_data/search_dir/httpswww.google.com#q=python',
-                './searcher_data/search_dir/httpwww.beepscore.comhubcape',
-                './searcher_data/search_dir/httppython.org',
-                './searcher_data/search_dir/level_1/a.txt',
-                './searcher_data/search_dir/level_1/level_2/c.txt',
-                './searcher_data/search_dir/level_1/level_2/b.txt',
-                ])
+            'httpsen.wikipedia.orgwikiPython_%28programming_language%29',
+            'httpswww.google.com#q=python',
+            'httpwww.beepscore.comhubcape',
+            'httppython.org',
+        ])
 
         self.assertEqual(expected_from_reordered_list, Set(actual))
 

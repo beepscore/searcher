@@ -47,32 +47,12 @@ class DirWalker:
         return dir_paths
 
     @staticmethod
-    def files_in_dir_recursive(search_dir, ignored_regex_objects):
-        """
-        Searches search_dir and subdirectories for files
-
-        param ignored_regex_objects contains regular expression objects compiled from patterns
-        return list of un-ignored files in search_dir and subdirectories
-        """
-
-        file_paths = []
-        for dirpath, dirnames, filenames in os.walk(search_dir):
-            for filename in filenames:
-                if expression_helper.ExpressionHelper.is_string_matched_in_regular_expression_objects(filename,
-                        ignored_regex_objects):
-                    continue
-
-                full_name = os.path.join(dirpath, filename)
-                file_paths.append(full_name)
-        return file_paths
-
-    @staticmethod
     def files_in_dir(search_dir, ignored_regex_objects):
         """
         Searches search_dir for files
 
         param ignored_regex_objects contains regular expression objects compiled from patterns
-        return list of un-ignored files in search_dir
+        return list of un-ignored files in search_dir, relative to search_dir
         """
 
         file_paths = []
@@ -90,7 +70,7 @@ class DirWalker:
                 # ignore this file
                 continue
 
-            file_paths.append(full_name)
+            file_paths.append(filename)
 
         return file_paths
 
@@ -114,7 +94,7 @@ class DirWalker:
 
             for filename in filenames:
 
-                if (expression_searcher.ExpressionSearcher.search_file(keyword, '', filename) is not None):
+                if (expression_searcher.ExpressionSearcher.search_file(keyword, directory, filename) is not None):
                     number_of_files_containing_expression += 1
 
             results[directory] = number_of_files_containing_expression
