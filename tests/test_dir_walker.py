@@ -73,5 +73,17 @@ class TestDirWalker(unittest.TestCase):
 
         self.assertEqual(expected_from_reordered_list, Set(actual))
 
+    def test_walk_files_in_dir_recursive(self):
+        ignored_filename_patterns = ['\A\.$', '\A\.\.$', '\A\.DS_Store$']
+        ignored_regex_objects = expression_helper.ExpressionHelper.regex_objects_from_patterns(ignored_filename_patterns)
+
+        #map_method = some_method()
+        #map_method = dir_walker.DirWalker.some_method(string)
+        map_method = dir_walker.DirWalker.some_method
+        search_dir = './searcher_data/search_dir'
+        dir_walker.DirWalker.walk_files_in_dir_recursive(search_dir,
+                ignored_regex_objects,
+                map_method)
+
 if __name__ == "__main__":
     unittest.main()

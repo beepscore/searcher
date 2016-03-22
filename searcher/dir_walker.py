@@ -14,13 +14,13 @@ class DirWalker:
     """
 
     @staticmethod
-    def files_in_dir_recursive(dir, ignored_regex_objects):
+    def files_in_dir_recursive(search_dir, ignored_regex_objects):
         """ param ignored_regex_objects contains regular expression objects compiled from patterns
-        return list of files in dir and subdirectories
+        return list of files in search_dir and subdirectories
         """
 
         file_paths = []
-        for dirpath, dirnames, filenames in os.walk(dir):
+        for dirpath, dirnames, filenames in os.walk(search_dir):
             for filename in filenames:
                 if expression_helper.ExpressionHelper.is_string_matched_in_regular_expression_objects(filename,
                         ignored_regex_objects):
@@ -30,21 +30,27 @@ class DirWalker:
                 file_paths.append(full_name)
         return file_paths
 
-    def walk_files_in_dir_recursive(dir, ignored_regex_objects, map_method):
+    @staticmethod
+    def some_method(string):
+        return len(string)
+
+    @staticmethod
+    def walk_files_in_dir_recursive(search_dir, ignored_regex_objects, map_method):
         """ walks a directory, and executes a method on each file """
 
-        dir = os.path.abspath(dir)
-        for file in [file for file in os.listdir(dir)]:
+        search_dir = os.path.abspath(search_dir)
+        for file in [file for file in os.listdir(search_dir)]:
 
             if expression_helper.ExpressionHelper.is_string_matched_in_regular_expression_objects(file, ignored_regex_objects):
                 continue
 
-            full_name = os.path.join(dir,file)
+            full_name = os.path.join(search_dir,file)
 
             # call map_method on file
-            map_method(full_name)
+            result = map_method(full_name)
+            print(full_name, result)
 
             # recursively walk subdirectories
             if os.path.isdir(full_name):
-                self.walk_files_in_dir_recursive(full_name, ignored_regex_objects, map_method)
+                DirWalker.walk_files_in_dir_recursive(full_name, ignored_regex_objects, map_method)
 
