@@ -113,7 +113,7 @@ class TestDirWalker(unittest.TestCase):
                                                    ignored_regex_objects)
 
         # Don't care about element order, so compare results using set instead of list
-        expected = Set(['b.txt', 'c.txt'])
+        expected = Set(['b.txt', 'c.txt', 'd.txt'])
 
         self.assertEqual(expected, Set(actual))
 
@@ -148,7 +148,7 @@ class TestDirWalker(unittest.TestCase):
 
         expected = {'./searcher_data/search_dir': 2,
                     './searcher_data/search_dir/level_1': 1,
-                    './searcher_data/search_dir/level_1/level_2': 1}
+                    './searcher_data/search_dir/level_1/level_2': 2}
 
         self.assertEqual(expected, actual)
 
