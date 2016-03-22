@@ -4,11 +4,7 @@ import os
 
 
 class FileWriter:
-    """
-    Writes file to path.
-    Path includes directory name and file name.
-    Creates directory if it doesn't exist.
-    """
+    """ Utility methods for absolute paths """
 
     @staticmethod
     def absolute_dir_path(dirname):
@@ -24,9 +20,4 @@ class FileWriter:
         absolute_dir_path = FileWriter.absolute_dir_path(dirname)
         absolute_file_path = os.path.join(absolute_dir_path, filename)
         return absolute_file_path
-
-    def __init__(self, dirname, filename, content):
-        self.filename = filename
-        self.dirname = dirname
-        self.content = content
 
