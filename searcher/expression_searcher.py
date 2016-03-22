@@ -1,8 +1,7 @@
 #!/usr/bin/env python
 
-#from searcher import searcher_arg_reader
-import searcher_arg_reader
-import file_helper
+from searcher import searcher_arg_reader
+from searcher import file_helper
 import re
 import os
 
