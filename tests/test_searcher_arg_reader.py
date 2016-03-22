@@ -2,10 +2,6 @@
 
 import unittest
 
-# tried putting tests in a "test" directory at same level as searcher
-# relative import didn't work
-# from ..searcher import arg_reader
-# put tests above searcher directory
 from searcher import searcher_arg_reader
 
 
