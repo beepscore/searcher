@@ -91,6 +91,32 @@ class TestDirWalker(unittest.TestCase):
 
         self.assertEqual(expected, Set(actual))
 
+    def test_files_in_dir_level_1(self):
+
+        ignored_filename_patterns = ['\A\.$', '\A\.\.$', '\A\.DS_Store$']
+        ignored_regex_objects = expression_helper.ExpressionHelper.regex_objects_from_patterns(ignored_filename_patterns)
+
+        actual = dir_walker.DirWalker.files_in_dir("./searcher_data/search_dir/level_1",
+                                                   ignored_regex_objects)
+
+        # Don't care about element order, so compare results using set instead of list
+        expected = Set(['a.txt'])
+
+        self.assertEqual(expected, Set(actual))
+
+    def test_files_in_dir_level_2(self):
+
+        ignored_filename_patterns = ['\A\.$', '\A\.\.$', '\A\.DS_Store$']
+        ignored_regex_objects = expression_helper.ExpressionHelper.regex_objects_from_patterns(ignored_filename_patterns)
+
+        actual = dir_walker.DirWalker.files_in_dir("./searcher_data/search_dir/level_1/level_2",
+                                                   ignored_regex_objects)
+
+        # Don't care about element order, so compare results using set instead of list
+        expected = Set(['b.txt', 'c.txt'])
+
+        self.assertEqual(expected, Set(actual))
+
     def test_files_in_dir_set_from_reordered_list(self):
         """ test we are using Set correctly. """
 
