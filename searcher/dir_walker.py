@@ -35,6 +35,11 @@ class DirWalker:
                         # ignore subdirectories of ignored directory
                         continue
 
+                    if os.path.islink(dirname):
+                        # ignore symlink
+                        # http://stackoverflow.com/questions/15718006/check-if-directory-is-symlink
+                        continue
+
                     if expression_helper.ExpressionHelper.is_string_matched_in_regular_expression_objects(dirname,
                                                                                                           ignored_regex_objects):
                         # ignore this directory
@@ -62,6 +67,11 @@ class DirWalker:
             full_name = os.path.join(search_dir_abspath, filename)
             if os.path.isdir(full_name):
                 # ignore directory
+                continue
+
+            if os.path.islink(full_name):
+                # ignore symlink
+                # http://stackoverflow.com/questions/15718006/check-if-directory-is-symlink
                 continue
 
             if expression_helper.ExpressionHelper.is_string_matched_in_regular_expression_objects(filename,
