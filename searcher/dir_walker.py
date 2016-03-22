@@ -31,6 +31,11 @@ class DirWalker:
 
                 for dirname in dirnames:
 
+                    if expression_helper.ExpressionHelper.is_string_matched_in_regular_expression_objects(dirpath,
+                                                                                                          ignored_regex_objects):
+                        # ignore subdirectories of ignored directory
+                        continue
+
                     if expression_helper.ExpressionHelper.is_string_matched_in_regular_expression_objects(dirname,
                                                                                                           ignored_regex_objects):
                         # ignore this directory

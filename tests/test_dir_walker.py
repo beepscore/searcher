@@ -40,10 +40,8 @@ class TestDirWalker(unittest.TestCase):
                                                                    ignored_regex_objects)
 
         # Don't care about element order, so compare results using set instead of list
-        # TODO: Consider change method to ignore subdirectories of ignored directory level_1
         expected = Set([
             './searcher_data/search_dir',
-            './searcher_data/search_dir/level_1/level_2',
         ])
         self.assertEqual(expected, Set(actual))
 
