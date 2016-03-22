@@ -24,8 +24,7 @@ class DirWalker:
         return list of un-ignored directories in search_dir and subdirectories
         """
 
-        dir_paths = []
-        dir_paths.append(search_dir)
+        dir_paths = [search_dir]
 
         for dirpath, dirnames, filenames in os.walk(search_dir):
 
