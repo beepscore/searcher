@@ -100,7 +100,7 @@ class TestDirWalker(unittest.TestCase):
                                                    ignored_regex_objects)
 
         # Don't care about element order, so compare results using set instead of list
-        expected = Set(['a.txt'])
+        expected = Set(['a.txt', 'c.txt alias'])
 
         self.assertEqual(expected, Set(actual))
 
@@ -147,7 +147,7 @@ class TestDirWalker(unittest.TestCase):
         actual = dir_walker.DirWalker.directories_number_of_files_containing_keyword(root_dir, ignored_regex_objects, keyword)
 
         expected = {'./searcher_data/search_dir': 2,
-                    './searcher_data/search_dir/level_1': 0,
+                    './searcher_data/search_dir/level_1': 1,
                     './searcher_data/search_dir/level_1/level_2': 1}
 
         self.assertEqual(expected, actual)
