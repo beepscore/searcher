@@ -67,6 +67,34 @@ class DirWalker:
         return file_paths
 
     @staticmethod
+    def files_in_dir(search_dir, ignored_regex_objects):
+        """
+        Searches search_dir for files
+
+        param ignored_regex_objects contains regular expression objects compiled from patterns
+        return list of un-ignored files in search_dir
+        """
+
+        file_paths = []
+        dir_list = os.listdir(search_dir)
+        for filename in dir_list:
+
+            search_dir_abspath = os.path.abspath(search_dir)
+            full_name = os.path.join(search_dir_abspath, filename)
+            if os.path.isdir(full_name):
+                # ignore directory
+                continue
+
+            if expression_helper.ExpressionHelper.is_string_matched_in_regular_expression_objects(filename,
+                                                                                                  ignored_regex_objects):
+                # ignore this file
+                continue
+
+            file_paths.append(full_name)
+
+        return file_paths
+
+    @staticmethod
     def walk_files_in_dir_recursive(search_dir, ignored_regex_objects, expression):
         """ walks search_dir, for each file check if it contains expression
 
@@ -93,6 +121,31 @@ class DirWalker:
                 DirWalker.walk_files_in_dir_recursive(full_name, ignored_regex_objects, expression)
 
         results[search_dir_abspath] = number_of_files_containing_expression
-        print results
         return results
 
+    @staticmethod
+    def directories_number_of_files_containing_keyword(root_dir, ignored_regex_objects, keyword):
+        """
+        Searches root_dir and subdirectories for files containing keyword
+
+        param ignored_regex_objects contains regular expression objects compiled from patterns
+        return dictionary with key directory name and value number of files that contain expression
+        """
+
+        directories = DirWalker.directories_in_dir_recursive(root_dir, ignored_regex_objects)
+        results = {}
+
+        for directory in directories:
+
+            number_of_files_containing_expression = 0
+
+            filenames = DirWalker.files_in_dir(directory, ignored_regex_objects)
+
+            for filename in filenames:
+
+                if (expression_searcher.ExpressionSearcher.search_file(keyword, '', filename) is not None):
+                    number_of_files_containing_expression += 1
+
+            results[directory] = number_of_files_containing_expression
+
+        return results
