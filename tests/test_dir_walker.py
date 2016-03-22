@@ -15,7 +15,7 @@ class TestDirWalker(unittest.TestCase):
         walker = dir_walker.DirWalker()
         self.assertIsNotNone(walker)
 
-    def test_directories_in_dir_recursive(self):
+    def test_directories_in_dir_recursive_dont_ignore(self):
 
         ignored_dirname_patterns = []
         ignored_regex_objects = expression_helper.ExpressionHelper.regex_objects_from_patterns(ignored_dirname_patterns)
@@ -28,6 +28,37 @@ class TestDirWalker(unittest.TestCase):
             './searcher_data/search_dir',
             './searcher_data/search_dir/level_1',
             './searcher_data/search_dir/level_1/level_2',
+        ])
+        self.assertEqual(expected, Set(actual))
+
+    def test_directories_in_dir_recursive_ignore1(self):
+
+        ignored_dirname_patterns = ['level_1']
+        ignored_regex_objects = expression_helper.ExpressionHelper.regex_objects_from_patterns(ignored_dirname_patterns)
+
+        actual = dir_walker.DirWalker.directories_in_dir_recursive("./searcher_data/search_dir",
+                                                                   ignored_regex_objects)
+
+        # Don't care about element order, so compare results using set instead of list
+        # TODO: Consider change method to ignore subdirectories of ignored directory level_1
+        expected = Set([
+            './searcher_data/search_dir',
+            './searcher_data/search_dir/level_1/level_2',
+        ])
+        self.assertEqual(expected, Set(actual))
+
+    def test_directories_in_dir_recursive_ignore2(self):
+
+        ignored_dirname_patterns = ['level_2']
+        ignored_regex_objects = expression_helper.ExpressionHelper.regex_objects_from_patterns(ignored_dirname_patterns)
+
+        actual = dir_walker.DirWalker.directories_in_dir_recursive("./searcher_data/search_dir",
+                                                                   ignored_regex_objects)
+
+        # Don't care about element order, so compare results using set instead of list
+        expected = Set([
+            './searcher_data/search_dir',
+            './searcher_data/search_dir/level_1',
         ])
         self.assertEqual(expected, Set(actual))
 
