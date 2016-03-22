@@ -28,6 +28,7 @@ class TestDirWalker(unittest.TestCase):
             './searcher_data/search_dir',
             './searcher_data/search_dir/level_1',
             './searcher_data/search_dir/level_1/level_2',
+            './searcher_data/search_dir/level_1/level_2/level_3',
         ])
         self.assertEqual(expected, Set(actual))
 
@@ -148,7 +149,8 @@ class TestDirWalker(unittest.TestCase):
 
         expected = {'./searcher_data/search_dir': 2,
                     './searcher_data/search_dir/level_1': 1,
-                    './searcher_data/search_dir/level_1/level_2': 2}
+                    './searcher_data/search_dir/level_1/level_2': 2,
+                    './searcher_data/search_dir/level_1/level_2/level_3': 1}
 
         self.assertEqual(expected, actual)
 
