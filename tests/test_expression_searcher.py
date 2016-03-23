@@ -14,7 +14,8 @@ class TestExpressionSearcher(unittest.TestCase):
         searcher = expression_searcher.ExpressionSearcher("@./searcher_data/inputs/searcher_args.txt")
         self.assertIsNotNone(searcher)
         self.assertIsNotNone(searcher.arg_reader)
-        self.assertEqual("app*", searcher.expression, '')
+        self.assertEqual("app*", searcher.expression)
+        self.assertEqual("./searcher_data/search_dir", searcher.search_dir)
 
     def test_search_file_returns_none(self):
         actual = expression_searcher.ExpressionSearcher.search_file("not there",

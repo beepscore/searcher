@@ -50,3 +50,4 @@ class ExpressionSearcher:
         self.arg_reader = searcher_arg_reader.SearcherArgReader()
         self.args = self.arg_reader.args([argfile])
         self.expression = self.args.keyword
+        self.search_dir = self.args.root_dir
