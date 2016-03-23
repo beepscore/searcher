@@ -1,5 +1,9 @@
 #!/usr/bin/env python
 
+# http://stackoverflow.com/questions/279237/import-a-module-from-a-relative-path
+import sys, os
+sys.path.append(os.path.abspath(os.path.join('..', 'searcher')))
+
 from searcher import expression_helper
 from searcher import expression_searcher
 

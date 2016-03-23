@@ -23,9 +23,10 @@ https://docs.python.org/2/library/os.html#os.walk
 
 ## To use from command line
 Edit args file searcher_data/inputs/searcher_args.txt with desired values.  
+cd to project root directory "searcher"
 
-    cd project root directory "searcher"
-    ./bin/search_expression
+    cd searcher
+    python ./searcher/search_expression.py
 
 Result prints to terminal e.g.  
 
