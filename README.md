@@ -31,14 +31,23 @@ cd to project root directory "searcher"
     python ./searcher/search_expression.py -keyword 'ython' -root_dir './searcher_data/search_dir'
 
 ### supply arguments in a file
-Edit args file searcher_data/inputs/searcher_args.txt with desired values.
+Create args file with desired values, e.g. searcher_args_this.txt.
+On command line specify one argument @ prefix + args file name
+
+    python ./searcher/search_expression.py '@./searcher_data/inputs/searcher_args_this.txt'
+
+### use default arguments
 
     python ./searcher/search_expression.py
 
 Result prints to terminal e.g.  
 
-    {'./searcher_data/search_dir': 4, './searcher_data/search_dir/level_1/level_2': 0,
-    './searcher_data/search_dir/level_1/level_2/level_3': 1, './searcher_data/search_dir/level_1': 1}
+    Searching root_dir ./searcher_data/search_dir for keyword foo
+    Results
+    {   './searcher_data/search_dir': 4,
+        './searcher_data/search_dir/level_1': 0,
+        './searcher_data/search_dir/level_1/level_2': 0,
+        './searcher_data/search_dir/level_1/level_2/level_3': 0}
 
 ## Unit tests
 To run tests, open terminal shell.  
