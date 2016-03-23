@@ -38,8 +38,8 @@ class SearcherArgReader:
         parser.add_argument('-keyword', action="store", dest="keyword",
                             help='keyword to search for, as a regular expression.'
                             )
-        parser.add_argument('-root_dir', action="store", dest="root_dir", default="../searcher_data/root_dir",
-                            help='directory to search. Default "../searcher_data/root_dir"'
+        parser.add_argument('-root_dir', action="store", dest="root_dir", default="./searcher_data/search_dir",
+                            help='directory to search. Default "./searcher_data/search_dir"'
                             )
 
         if commandline is not None:

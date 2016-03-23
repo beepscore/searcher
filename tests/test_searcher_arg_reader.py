@@ -14,7 +14,7 @@ class TestSearcherArgReader(unittest.TestCase):
         reader = searcher_arg_reader.SearcherArgReader()
         args = reader.args(None)
         self.assertEqual(None, args.keyword, '')
-        self.assertEqual("../searcher_data/root_dir", args.root_dir, '')
+        self.assertEqual("./searcher_data/search_dir", args.root_dir, '')
 
     def test_args_from_argument(self):
         reader = searcher_arg_reader.SearcherArgReader()
