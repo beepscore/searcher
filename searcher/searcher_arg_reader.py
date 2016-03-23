@@ -24,7 +24,6 @@ class SearcherArgReader:
         """
 
         parser = argparse.ArgumentParser(description="""    For help, use argument -h
-                                         $ ./arg_reader.py -h
                                          To specify an argument, prefix with -
                                          $ ./arg_reader.py -keyword a_regular_expression -path a_path
                                          To read arguments from a file, prefix file name with @
@@ -35,8 +34,8 @@ class SearcherArgReader:
                                          formatter_class=RawTextHelpFormatter,
                                          )
 
-        parser.add_argument('-keyword', action="store", dest="keyword",
-                            help='keyword to search for, as a regular expression.'
+        parser.add_argument('-keyword', action="store", dest="keyword", default="foo",
+                            help='keyword regular expression to search for. Default "foo"'
                             )
         parser.add_argument('-root_dir', action="store", dest="root_dir", default="./searcher_data/search_dir",
                             help='directory to search. Default "./searcher_data/search_dir"'

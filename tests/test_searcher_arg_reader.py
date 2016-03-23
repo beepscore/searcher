@@ -13,13 +13,13 @@ class TestSearcherArgReader(unittest.TestCase):
     def test_args_default(self):
         reader = searcher_arg_reader.SearcherArgReader()
         args = reader.args(None)
-        self.assertEqual(None, args.keyword, '')
+        self.assertEqual('foo', args.keyword, '')
         self.assertEqual("./searcher_data/search_dir", args.root_dir, '')
 
     def test_args_from_argument(self):
         reader = searcher_arg_reader.SearcherArgReader()
 
-        keyword = "foo"
+        keyword = "bar"
         root_dir = "some_root_dir"
 
         test_commandline = ["-keyword", keyword,
