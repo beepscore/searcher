@@ -27,6 +27,7 @@ cd to project root directory "searcher"
     cd searcher
 
 ### supply arguments on command line
+Result prints to terminal.
 
     python ./searcher/search_expression.py -keyword 'ython' -root_dir './searcher_data/search_dir'
 
@@ -47,8 +48,6 @@ On command line specify one argument @ prefix + args file name
 ### use default arguments
 
     python ./searcher/search_expression.py
-
-Result prints to terminal e.g.  
 
     Searching root_dir ./searcher_data/search_dir for keyword foo
     Results
