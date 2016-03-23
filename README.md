@@ -1,26 +1,36 @@
 # searcher
 
 # Purpose
+Search directory for files that contain a search term regular expression "keyword".  
 
 # References
-websearcher Python 3
+
+## websearcher Python 3
 https://github.com/beepscore/websearcher
+
+## search_terms ruby
+https://github.com/beepscore/search_terms
 
 ## walk directories
 
 ### os.walk
-https://docs.python.org/2/library/os.html#os.walk
-Note Be aware that setting followlinks to True can lead to infinite recursion if a link points to a parent directory of itself.
+Note Be aware that setting followlinks to True can lead to infinite recursion  
+if a link points to a parent directory of itself.  
 walk() does not keep track of the directories it visited already.  
-
-### Stack Overflow
-http://stackoverflow.com/questions/954504/how-to-get-files-in-a-directory-including-all-subdirectories
-
-### python recursive directory walker
-Shows walking a directory, execute a method on each file
-https://ssscripting.wordpress.com/2009/03/03/python-recursive-directory-walker/
+https://docs.python.org/2/library/os.html#os.walk
 
 # Results
+
+## To use from command line
+Edit args file searcher_data/inputs/searcher_args.txt with desired values.  
+
+    cd project root directory "searcher"
+    ./bin/search_expression
+
+Result prints to terminal e.g.  
+
+    {'./searcher_data/search_dir': 4, './searcher_data/search_dir/level_1/level_2': 0,
+    './searcher_data/search_dir/level_1/level_2/level_3': 1, './searcher_data/search_dir/level_1': 1}
 
 ## Unit tests
 To run tests, open terminal shell.  
@@ -34,24 +44,24 @@ Use Python language v2.7.x
 Implement a stand-alone script that does the following:
 
 ## Input:
-taking an argument “root_dir” as a root directory to start traversing
-taking an argument “keyword” as a regular expression for example ( “^[a-zA-Z]+_TESTResult.*” )
+taking an argument “root_dir” as a root directory to start traversing  
+taking an argument “keyword” as a regular expression for example ( “^[a-zA-Z]+_TESTResult.*” )  
 to detect that a file contains a string
 
 ## Functionality:
-The script should recursively walk the “root_dir”
-and detect all the files under that dir contains “keywords” and count the number of files for that sub dir.
-All results should be saved in a key:value array
-with key being subdir string, and value being counts of file contains the key line
+The script should recursively walk the “root_dir”  
+and detect all the files under that dir contains “keywords” and count the number of files for that sub dir.  
+All results should be saved in a key:value array  
+with key being subdir string, and value being counts of file contains the key line  
 
 ## Output:
-A output array of all the data, for example {’a/b’: 6, ’a/b/c’: 7, ‘/a/b/c/d’:0}
-Stretch goal:- An output graph with a plot with X as subdir name string, Y as count values.
+A output array of all the data, for example {’a/b’: 6, ’a/b/c’: 7, ‘/a/b/c/d’:0}  
+Stretch goal:- An output graph with a plot with X as subdir name string, Y as count values.  
 
 ## Tests:
-Please design a set of tests for the above routine you just wrote,
-how many ways can break the routine above and how many ways can you test the routine.
-Send these tests in a text file.
+Please design a set of tests for the above routine you just wrote,  
+how many ways can break the routine above and how many ways can you test the routine.  
+Send these tests in a text file.  
 
 The code will be evaluated based on the following criteria:
 - Coding style - module name, class name, functions, clarity, data structure, algorithms etc.
