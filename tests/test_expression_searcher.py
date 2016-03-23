@@ -12,11 +12,8 @@ class TestExpressionSearcher(unittest.TestCase):
         pass
 
     def test_init(self):
-        searcher = expression_searcher.ExpressionSearcher("@./searcher_data/inputs/searcher_args.txt")
+        searcher = expression_searcher.ExpressionSearcher()
         self.assertIsNotNone(searcher)
-        self.assertIsNotNone(searcher.arg_reader)
-        self.assertEqual("app*", searcher.expression)
-        self.assertEqual("./searcher_data/search_dir", searcher.search_dir)
 
     # test_search_file
 

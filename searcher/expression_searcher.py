@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 
-from searcher import searcher_arg_reader
 from searcher import file_helper
 import re
 import os
@@ -67,16 +66,3 @@ class ExpressionSearcher:
 
         return results
 
-    def __init__(self, argfile):
-        """
-        Initialize the class.
-
-        :param argfile: file with arguments. Don't version control argfile. Put it outside project directory.
-        :return: None
-        """
-        self.arg_reader = searcher_arg_reader.SearcherArgReader()
-
-        # Call arg_reader.args() with an argument list so it doesn't read from command line.
-        self.args = self.arg_reader.args([argfile])
-        self.expression = self.args.keyword
-        self.search_dir = self.args.root_dir
