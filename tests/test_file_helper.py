@@ -29,6 +29,7 @@ class TestFileHelper(unittest.TestCase):
             './searcher_data/search_dir/level_1',
             './searcher_data/search_dir/level_1/level_2',
             './searcher_data/search_dir/level_1/level_2/level_3',
+            './searcher_data/search_dir/level_1/level_2/level_3/level_4'
         ])
         self.assertEqual(expected, Set(actual))
 

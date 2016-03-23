@@ -31,10 +31,18 @@ cd to project root directory "searcher"
     python ./searcher/search_expression.py -keyword 'ython' -root_dir './searcher_data/search_dir'
 
 ### supply arguments in a file
-Create args file with desired values, e.g. searcher_args_this.txt.
+Create args file with desired values, e.g. searcher_args_test_result.txt.
 On command line specify one argument @ prefix + args file name
 
-    python ./searcher/search_expression.py '@./searcher_data/inputs/searcher_args_this.txt'
+    python ./searcher/search_expression.py @./searcher_data/inputs/searcher_args_test_result.txt
+
+    Searching root_dir ./searcher_data/search_dir/ for keyword ^[a-zA-Z]+_TESTResult.*
+    Results
+    {   './searcher_data/search_dir/': 0,
+        './searcher_data/search_dir/level_1': 0,
+        './searcher_data/search_dir/level_1/level_2': 0,
+        './searcher_data/search_dir/level_1/level_2/level_3': 0,
+        './searcher_data/search_dir/level_1/level_2/level_3/level_4': 1}
 
 ### use default arguments
 
