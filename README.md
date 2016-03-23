@@ -22,10 +22,17 @@ https://docs.python.org/2/library/os.html#os.walk
 # Results
 
 ## To use from command line
-Edit args file searcher_data/inputs/searcher_args.txt with desired values.  
 cd to project root directory "searcher"
 
     cd searcher
+
+### supply arguments on command line
+
+    python ./searcher/search_expression.py -keyword 'ython' -root_dir './searcher_data/search_dir'
+
+### supply arguments in a file
+Edit args file searcher_data/inputs/searcher_args.txt with desired values.
+
     python ./searcher/search_expression.py
 
 Result prints to terminal e.g.  
