@@ -62,5 +62,22 @@ class TestExpressionSearcher(unittest.TestCase):
 
         self.assertEqual(expected, actual)
 
+    def test_directories_number_of_files_containing_keyword_this(self):
+        root_dir = './searcher_data/search_dir'
+
+        ignored_filename_patterns = ['\A\.$', '\A\.\.$', '\A\.DS_Store$']
+        ignored_regex_objects = expression_helper.ExpressionHelper.regex_objects_from_patterns(ignored_filename_patterns)
+
+        keyword = "\AThis"
+
+        actual = expression_searcher.ExpressionSearcher.directories_number_of_files_containing_keyword(root_dir, ignored_regex_objects, keyword)
+
+        expected = {'./searcher_data/search_dir': 0,
+                    './searcher_data/search_dir/level_1': 1,
+                    './searcher_data/search_dir/level_1/level_2': 2,
+                    './searcher_data/search_dir/level_1/level_2/level_3': 0}
+
+        self.assertEqual(expected, actual)
+
 if __name__ == "__main__":
     unittest.main()
