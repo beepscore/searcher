@@ -68,10 +68,12 @@ class TestExpressionSearcher(unittest.TestCase):
         ignored_filename_patterns = ['\A\.$', '\A\.\.$', '\A\.DS_Store$']
         ignored_regex_objects = expression_helper.ExpressionHelper.regex_objects_from_patterns(ignored_filename_patterns)
 
+        # \A == start of a line
         keyword = "\AThis"
 
         actual = expression_searcher.ExpressionSearcher.directories_number_of_files_containing_keyword(root_dir, ignored_regex_objects, keyword)
 
+        # searcher searches the alias text, not the text of the file it links to
         expected = {'./searcher_data/search_dir': 0,
                     './searcher_data/search_dir/level_1': 1,
                     './searcher_data/search_dir/level_1/level_2': 2,
