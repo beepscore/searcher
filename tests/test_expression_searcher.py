@@ -2,6 +2,7 @@
 
 import unittest
 
+from searcher import expression_helper
 from searcher import expression_searcher
 
 
@@ -16,6 +17,8 @@ class TestExpressionSearcher(unittest.TestCase):
         self.assertIsNotNone(searcher.arg_reader)
         self.assertEqual("app*", searcher.expression)
         self.assertEqual("./searcher_data/search_dir", searcher.search_dir)
+
+    # test_search_file
 
     def test_search_file_returns_none(self):
         actual = expression_searcher.ExpressionSearcher.search_file("not there",
@@ -39,6 +42,25 @@ class TestExpressionSearcher(unittest.TestCase):
                 "./searcher_data/search_dir",
                 "httpwww.beepscore.comhubcape")
         self.assertEqual(None, actual)
+
+    # test_directories_number_of_files_containing_keyword
+
+    def test_directories_number_of_files_containing_keyword(self):
+        root_dir = './searcher_data/search_dir'
+
+        ignored_filename_patterns = ['\A\.$', '\A\.\.$', '\A\.DS_Store$']
+        ignored_regex_objects = expression_helper.ExpressionHelper.regex_objects_from_patterns(ignored_filename_patterns)
+
+        keyword = "ython"
+
+        actual = expression_searcher.ExpressionSearcher.directories_number_of_files_containing_keyword(root_dir, ignored_regex_objects, keyword)
+
+        expected = {'./searcher_data/search_dir': 2,
+                    './searcher_data/search_dir/level_1': 1,
+                    './searcher_data/search_dir/level_1/level_2': 2,
+                    './searcher_data/search_dir/level_1/level_2/level_3': 1}
+
+        self.assertEqual(expected, actual)
 
 if __name__ == "__main__":
     unittest.main()
