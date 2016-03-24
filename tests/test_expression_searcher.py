@@ -45,7 +45,7 @@ class TestExpressionSearcher(unittest.TestCase):
     def test_directories_number_of_files_containing_keyword(self):
         root_dir = './searcher_data/search_dir'
 
-        ignored_filename_patterns = ['\A\.$', '\A\.\.$', '\A\.DS_Store$']
+        ignored_filename_patterns = ['\A\.$', '\A\.\.$', '\A\.DS_Store$', '\A\.git$', '\A\.svn$', '\A.*\.exe$']
         ignored_regex_objects = expression_helper.ExpressionHelper.regex_objects_from_patterns(ignored_filename_patterns)
 
         keyword = "ython"
@@ -63,7 +63,7 @@ class TestExpressionSearcher(unittest.TestCase):
     def test_directories_number_of_files_containing_keyword_this(self):
         root_dir = './searcher_data/search_dir'
 
-        ignored_filename_patterns = ['\A\.$', '\A\.\.$', '\A\.DS_Store$']
+        ignored_filename_patterns = ['\A\.$', '\A\.\.$', '\A\.DS_Store$', '\A\.git$', '\A\.svn$', '\A.*\.exe$']
         ignored_regex_objects = expression_helper.ExpressionHelper.regex_objects_from_patterns(ignored_filename_patterns)
 
         # \A == start of a line
