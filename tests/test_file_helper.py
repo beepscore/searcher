@@ -66,6 +66,7 @@ class TestFileHelper(unittest.TestCase):
             './searcher_data/search_dir/level_1/level_2/level_3/level_4'
         ])
         self.assertEqual(expected, Set(actual))
+
     def test_directories_in_dir_recursive_ignore2(self):
 
         ignored_dirname_patterns = ['level_2']
