@@ -30,7 +30,7 @@ class TestExpressionHelper(unittest.TestCase):
         self.assertFalse(expression_helper.ExpressionHelper.is_string_matched_in_regular_expression_objects('.c', ignored_regex_objects))
         self.assertFalse(expression_helper.ExpressionHelper.is_string_matched_in_regular_expression_objects('a.c', ignored_regex_objects))
 
-    def test_is_filename_matched_in_patterns_dotdot(self):
+    def test_is_string_matched_in_regular_expression_objects_dotdot(self):
         """ match '..' representing directory above current directory
         \A matches only at start of string
         $ matches at end of string
@@ -46,7 +46,7 @@ class TestExpressionHelper(unittest.TestCase):
         self.assertFalse(expression_helper.ExpressionHelper.is_string_matched_in_regular_expression_objects('..c', ignored_regex_objects))
         self.assertFalse(expression_helper.ExpressionHelper.is_string_matched_in_regular_expression_objects('a..c', ignored_regex_objects))
 
-    def test_is_filename_matched_in_patterns_dotDS_Store(self):
+    def test_is_string_matched_in_regular_expression_objects_dotDS_Store(self):
         """ match '.DS_Store' OSX file system file
         \A matches only at start of string
         $ matches at end of string
@@ -61,7 +61,7 @@ class TestExpressionHelper(unittest.TestCase):
         self.assertFalse(expression_helper.ExpressionHelper.is_string_matched_in_regular_expression_objects('a.DS_Store', ignored_regex_objects))
         self.assertFalse(expression_helper.ExpressionHelper.is_string_matched_in_regular_expression_objects('.DS_Storeb', ignored_regex_objects))
 
-    def test_is_filename_matched_in_patterns_inner(self):
+    def test_is_string_matched_in_regular_expression_objects_inner(self):
         """ match 'ython' within string. Case sensitive """
 
         ignored_filename_patterns = ['ython']
