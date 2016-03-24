@@ -14,8 +14,7 @@ https://github.com/beepscore/search_terms
 ## walk directories
 
 ### os.walk
-Note Be aware that setting followlinks to True can lead to infinite recursion  
-if a link points to a parent directory of itself.  
+Note Be aware that setting followlinks to True can lead to infinite recursion if a link points to a parent directory of itself.  
 walk() does not keep track of the directories it visited already.  
 https://docs.python.org/2/library/os.html#os.walk
 
@@ -32,7 +31,7 @@ Result prints to terminal.
     python ./searcher/search_expression.py -keyword 'ython' -root_dir './searcher_data/search_dir'
 
 ### supply arguments in a file
-Create args file with desired values, e.g. searcher_args_test_result.txt.
+Create args file with desired values, e.g. searcher_args_test_result.txt.  
 On command line specify one argument @ prefix + args file name
 
     python ./searcher/search_expression.py @./searcher_data/inputs/searcher_args_test_result.txt
