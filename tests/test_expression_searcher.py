@@ -42,7 +42,7 @@ class TestExpressionSearcher(unittest.TestCase):
 
     # test_directories_number_of_files_containing_keyword
 
-    def test_directories_number_of_files_containing_keyword(self):
+    def test_directories_number_of_files_containing_keyword_ython(self):
         root_dir = './searcher_data/search_dir'
 
         ignored_filename_patterns = ['\A\.$', '\A\.\.$', '\A\.DS_Store$', '\A\.git$', '\A\.svn$', '\A.*\.exe$']
@@ -77,6 +77,24 @@ class TestExpressionSearcher(unittest.TestCase):
                     './searcher_data/search_dir/level_1/level_2': 2,
                     './searcher_data/search_dir/level_1/level_2/level_3': 0,
                     './searcher_data/search_dir/level_1/level_2/level_3/level_4': 0}
+
+        self.assertEqual(expected, actual)
+
+    def test_directories_number_of_files_containing_keyword_foo(self):
+        root_dir = './searcher_data/search_dir'
+
+        ignored_filename_patterns = ['\A\.$', '\A\.\.$', '\A\.DS_Store$', '\A\.git$', '\A\.svn$', '\A.*\.exe$']
+        ignored_regex_objects = expression_helper.ExpressionHelper.regex_objects_from_patterns(ignored_filename_patterns)
+
+        keyword = "foo"
+
+        actual = expression_searcher.ExpressionSearcher.directories_number_of_files_containing_keyword(root_dir, ignored_regex_objects, keyword)
+
+        expected = {'./searcher_data/search_dir': 4,
+                './searcher_data/search_dir/level_1': 0,
+                './searcher_data/search_dir/level_1/level_2': 0,
+                './searcher_data/search_dir/level_1/level_2/level_3': 0,
+                './searcher_data/search_dir/level_1/level_2/level_3/level_4': 0}
 
         self.assertEqual(expected, actual)
 
