@@ -13,6 +13,10 @@ class TestExpressionHelper(unittest.TestCase):
         helper = expression_helper.ExpressionHelper()
         self.assertIsNotNone(helper)
 
+    def test_ignored_filename_patterns(self):
+        expected = ['\A\.$', '\A\.\.$', '\A\.DS_Store$', '\.git', '\.svn', '\.exe$']
+        self.assertEqual(expected, expression_helper.ExpressionHelper.ignored_filename_patterns)
+
     def test_is_string_matched_in_regular_expression_objects_dot(self):
         """ match '.' representing current directory
         \A matches only at start of string

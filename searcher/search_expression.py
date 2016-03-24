@@ -28,8 +28,7 @@ if __name__ == '__main__':
     search_dir = args.root_dir
     print "Searching root_dir " + search_dir + " for keyword " + expression
 
-    ignored_filename_patterns = ['\A\.$', '\A\.\.$', '\A\.DS_Store$', '\.git', '\.svn', '\.exe$']
-    ignored_regex_objects = expression_helper.ExpressionHelper.regex_objects_from_patterns(ignored_filename_patterns)
+    ignored_regex_objects = expression_helper.ExpressionHelper.regex_objects_from_patterns(expression_helper.ExpressionHelper.ignored_filename_patterns)
 
     results = expression_searcher.ExpressionSearcher.directories_number_of_files_containing_keyword(search_dir,
                                                                                                     ignored_regex_objects, expression)

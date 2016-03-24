@@ -6,6 +6,8 @@ import re
 class ExpressionHelper:
     """ Has methods for using regular expressions """
 
+    ignored_filename_patterns = ['\A\.$', '\A\.\.$', '\A\.DS_Store$', '\.git', '\.svn', '\.exe$']
+
     @staticmethod
     def regex_objects_from_patterns(patterns):
         """ returns regex_objects compiled from regular expression patterns"""
