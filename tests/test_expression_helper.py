@@ -71,13 +71,15 @@ class TestExpressionHelper(unittest.TestCase):
 
         self.assertFalse(expression_helper.ExpressionHelper.is_string_matched_in_regular_expression_objects("A big pythoxyz", ignored_regex_objects))
 
-    def test_is_string_matched_in_regular_expression_objects_git(self):
+    def test_is_string_matched_in_regular_expression_objects_dot_git(self):
         ignored_filename_patterns = ['\.git']
         ignored_regex_objects = expression_helper.ExpressionHelper.regex_objects_from_patterns(ignored_filename_patterns)
 
         self.assertTrue(expression_helper.ExpressionHelper.is_string_matched_in_regular_expression_objects(".git", ignored_regex_objects))
-
         self.assertTrue(expression_helper.ExpressionHelper.is_string_matched_in_regular_expression_objects("a/.git/objects", ignored_regex_objects))
+
+        self.assertFalse(expression_helper.ExpressionHelper.is_string_matched_in_regular_expression_objects("git", ignored_regex_objects))
+        self.assertFalse(expression_helper.ExpressionHelper.is_string_matched_in_regular_expression_objects("a/git/objects", ignored_regex_objects))
 
 if __name__ == "__main__":
     unittest.main()
