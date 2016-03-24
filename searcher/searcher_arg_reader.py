@@ -25,11 +25,11 @@ class SearcherArgReader:
 
         parser = argparse.ArgumentParser(description="""    For help, use argument -h
                                          To specify an argument, prefix with -
-                                         $ ./arg_reader.py -keyword a_regular_expression -path a_path
+                                         $ ./searcher/search_expression.py -keyword a_regular_expression -root_dir directory_name
                                          To read arguments from a file, prefix file name with @
-                                         $ ./arg_reader.py @args.txt
+                                         $ ./searcher/search_expression.py @./searcher_data/inputs/searcher_args_test_result.txt
                                          To specify arguments from command line and from a file
-                                         $ ./arg_reader.py @args.txt -keyword foo""",
+                                         $ ./searcher/search_expression.py @./searcher_data/inputs/searcher_args_this.txt -keyword foo""",
                                          fromfile_prefix_chars='@',
                                          formatter_class=RawTextHelpFormatter,
                                          )
