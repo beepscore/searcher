@@ -27,6 +27,8 @@ class TestFileHelper(unittest.TestCase):
         expected = Set([
             './searcher_data/search_dir',
             './searcher_data/search_dir/level_1',
+            './searcher_data/search_dir/level_1/.git_fake',
+            './searcher_data/search_dir/level_1/.git_fake/objects_fake',
             './searcher_data/search_dir/level_1/level_2',
             './searcher_data/search_dir/level_1/level_2/level_3',
             './searcher_data/search_dir/level_1/level_2/level_3/level_4'
@@ -47,6 +49,23 @@ class TestFileHelper(unittest.TestCase):
         ])
         self.assertEqual(expected, Set(actual))
 
+    def test_directories_in_dir_recursive_ignore_git(self):
+
+        ignored_dirname_patterns = ['\.git']
+        ignored_regex_objects = expression_helper.ExpressionHelper.regex_objects_from_patterns(ignored_dirname_patterns)
+
+        actual = file_helper.FileHelper.directories_in_dir_recursive("./searcher_data/search_dir",
+                                                                     ignored_regex_objects)
+
+        # Don't care about element order, so compare results using set instead of list
+        expected = Set([
+            './searcher_data/search_dir',
+            './searcher_data/search_dir/level_1',
+            './searcher_data/search_dir/level_1/level_2',
+            './searcher_data/search_dir/level_1/level_2/level_3',
+            './searcher_data/search_dir/level_1/level_2/level_3/level_4'
+        ])
+        self.assertEqual(expected, Set(actual))
     def test_directories_in_dir_recursive_ignore2(self):
 
         ignored_dirname_patterns = ['level_2']
@@ -59,6 +78,8 @@ class TestFileHelper(unittest.TestCase):
         expected = Set([
             './searcher_data/search_dir',
             './searcher_data/search_dir/level_1',
+            './searcher_data/search_dir/level_1/.git_fake',
+            './searcher_data/search_dir/level_1/.git_fake/objects_fake',
         ])
         self.assertEqual(expected, Set(actual))
 
@@ -74,6 +95,8 @@ class TestFileHelper(unittest.TestCase):
         expected = Set([
             './searcher_data/search_dir',
             './searcher_data/search_dir/level_1',
+            './searcher_data/search_dir/level_1/.git_fake',
+            './searcher_data/search_dir/level_1/.git_fake/objects_fake',
             './searcher_data/search_dir/level_1/level_2',
         ])
         self.assertEqual(expected, Set(actual))
