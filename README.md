@@ -18,6 +18,9 @@ Note Be aware that setting followlinks to True can lead to infinite recursion if
 walk() does not keep track of the directories it visited already.  
 https://docs.python.org/2/library/os.html#os.walk
 
+## Mark Smith - Writing Awesome Command-Line Programs in Python
+https://www.youtube.com/watch?v=CJ7-SroGtZ8
+
 # Results
 
 ## To use from command line
