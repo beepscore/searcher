@@ -53,7 +53,8 @@ On command line specify one argument @ prefix + args file name
     {   './searcher_data/search_dir': 4,
         './searcher_data/search_dir/level_1': 0,
         './searcher_data/search_dir/level_1/level_2': 0,
-        './searcher_data/search_dir/level_1/level_2/level_3': 0}
+        './searcher_data/search_dir/level_1/level_2/level_3': 0,
+        './searcher_data/search_dir/level_1/level_2/level_3/level_4': 0}
 
 ## Unit tests
 To run tests, open terminal shell.  
