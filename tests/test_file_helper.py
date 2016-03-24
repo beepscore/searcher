@@ -51,6 +51,9 @@ class TestFileHelper(unittest.TestCase):
 
     def test_directories_in_dir_recursive_ignore_git(self):
 
+        # Note: git version control normally ignores its own database .git
+        # So for testing, committed a file search_dir/level_1/.git_fake/objects_fake/object_fake
+
         ignored_dirname_patterns = ['\.git']
         ignored_regex_objects = expression_helper.ExpressionHelper.regex_objects_from_patterns(ignored_dirname_patterns)
 
