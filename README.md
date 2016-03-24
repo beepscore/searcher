@@ -58,7 +58,20 @@ On command line specify one argument @ prefix + args file name
 
 ## Unit tests
 To run tests, open terminal shell.  
-cd to project directory and run tests using command below. For more info see script.
+cd to project directory. Run tests via python command or bash script.
+
+### python command
+This command lists and tests all modules except searcher_arg_reader.
+
+    python -m unittest tests.test_expression_searcher tests.test_expression_helper tests.test_file_helper
+
+#### searcher_arg_reader_tests
+Attempting to run searcher_arg_reader_tests has problem with arguments for unittest and for argparse.  
+e.g. python -m unittest discover says "unrecognized arguments: discover" and wants the argparse arguments.
+
+### Bash script
+Runs all test modules.  
+Works on OS X. On Windows may work with Cygwin, I don't know.
 
     $ ./bin/run_tests
 
