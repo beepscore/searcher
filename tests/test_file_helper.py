@@ -111,7 +111,7 @@ class TestFileHelper(unittest.TestCase):
 
     def test_files_in_dir_level_1(self):
 
-        ignored_filename_patterns = ['\A\.$', '\A\.\.$', '\A\.DS_Store$', '\A\.git$', '\A\.svn$', '\A.*\.exe$']
+        ignored_filename_patterns = ['\A\.$', '\A\.\.$', '\A\.DS_Store$', '\.git', '\.svn', '\.exe$']
         ignored_regex_objects = expression_helper.ExpressionHelper.regex_objects_from_patterns(ignored_filename_patterns)
 
         actual = file_helper.FileHelper.files_in_dir("./searcher_data/search_dir/level_1",
