@@ -90,6 +90,7 @@ class TestExpressionSearcher(unittest.TestCase):
 
         actual = expression_searcher.ExpressionSearcher.directories_number_of_files_containing_keyword(root_dir, ignored_regex_objects, keyword)
 
+        # foo matches 'footer' in several html files
         expected = {'./searcher_data/search_dir': 4,
                 './searcher_data/search_dir/level_1': 0,
                 './searcher_data/search_dir/level_1/level_2': 0,
