@@ -69,7 +69,7 @@ This command lists and tests all modules except searcher_arg_reader.
     python -m unittest tests.test_expression_searcher tests.test_expression_helper tests.test_file_helper
 
 #### searcher_arg_reader_tests
-Attempting to run searcher_arg_reader_tests has problem with arguments for unittest and for argparse.  
+Attempting to run test_searcher_arg_reader has problem with arguments for unittest and for argparse.  
 e.g. python -m unittest discover says "unrecognized arguments: discover" and wants the argparse arguments.  
 TODO: Consider alternative solutions.  
 http://stackoverflow.com/questions/35270177/passing-arguments-for-argparse-with-unittest-discover
