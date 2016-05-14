@@ -26,12 +26,12 @@ if __name__ == '__main__':
 
     expression = args.keyword
     search_dir = args.root_dir
-    print "Searching root_dir " + search_dir + " for keyword " + expression
+    print("Searching root_dir " + search_dir + " for keyword " + expression)
 
     ignored_regex_objects = expression_helper.ExpressionHelper.regex_objects_from_patterns(expression_helper.ExpressionHelper.ignored_filename_patterns)
 
     results = expression_searcher.ExpressionSearcher.directories_number_of_files_containing_keyword(search_dir,
                                                                                                     ignored_regex_objects, expression)
-    print "Results"
+    print("Results")
     prettyprinter = pprint.PrettyPrinter(indent=4)
     prettyprinter.pprint(results)
