@@ -54,7 +54,7 @@ class ExpressionSearcher:
         for directory in directories:
 
             # print to show useer a simple progress indicator
-            print "Searching " + directory
+            print("Searching " + directory)
             number_of_files_containing_expression = 0
 
             filenames = file_helper.FileHelper.files_in_dir(directory, ignored_regex_objects)
@@ -69,7 +69,7 @@ class ExpressionSearcher:
             file_singular_or_plural = 'files'
             if number_of_files_containing_expression == 1:
                 file_singular_or_plural = 'file'
-            print "    found " + str(number_of_files_containing_expression) + " " + file_singular_or_plural
+            print("    found " + str(number_of_files_containing_expression) + " " + file_singular_or_plural)
 
         return results
 
