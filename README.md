@@ -79,3 +79,49 @@ Runs all test modules.
 Works on OS X. On Windows may work with Cygwin, I don't know.
 
     $ ./bin/run_tests
+
+## Appendix virtual environment venv
+
+The project uses a virtual environment.
+
+https://docs.python.org/3/library/venv.html
+
+This can hold a python version and pip installed packages such as "requests".
+
+https://github.com/kennethreitz/requests
+
+### Install virtual environment in directory named "venv"
+
+    $ cd <project root directory>
+    $ pyvenv venv
+
+### Before activating virtual environment
+
+On my machine, active python is 2.7.11
+
+    ➜  searcher git:(master) ✗ which python
+    /usr/local/bin/python
+    ➜  searcher git:(master) python --version
+    Python 2.7.11
+
+On my machine, to use python3 must specify python3
+
+    ➜  searcher git:(master) which python3
+    /usr/local/bin/python3
+
+### Activate virtual environment
+
+    ➜  searcher git:(master) source venv/bin/activate
+
+### Now active python is in venv and is version 3.5.1
+
+Notice command prompt shows venv is active
+
+    (venv) ➜  searcher git:(master) which python
+    /Users/stevebaker/Documents/projects/pythonProjects/searcher/venv/bin/python
+    (venv) ➜  searcher git:(master) python --version
+    Python 3.5.1
+
+### Deactivate virtual environment
+In shell run deactivate
+    (venv) ➜  searcher git:(master) ✗ deactivate
