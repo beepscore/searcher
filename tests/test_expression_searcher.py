@@ -115,7 +115,7 @@ class TestExpressionSearcher(unittest.TestCase):
         self.assertEqual(expected, actual)
 
     def test_lines_in_file_containing_expression(self):
-        expected = "httpwww.beepscore.comhubcape 1 match" + linesep + "httpwww.beepscore.comhubcape 34    <li><a href=\"#\">Apps</a>" + linesep
+        expected = "httpwww.beepscore.comhubcape 1 match" + linesep + "httpwww.beepscore.comhubcape 34     <li><a href=\"#\">Apps</a>" + linesep
         actual = expression_searcher.ExpressionSearcher.lines_in_file_containing_expression("Apps",
                                                                                             "./searcher_data/search_dir", "httpwww.beepscore.comhubcape")
         print("test_lines_in_file_containing_expression")
@@ -143,17 +143,17 @@ class TestExpressionSearcher(unittest.TestCase):
                     + linesep
                     + 'a.txt 1 match'
                     + linesep
-                    + 'a.txt 1This file has at least one "a".'
+                    + 'a.txt 1 This file has at least one "a".'
                     + linesep
                     + 'c.txt alias 0 matches'
                     + linesep
                     + 'b.txt 1 match'
                     + linesep
-                    + 'b.txt 1This file has at least one big "b".'
+                    + 'b.txt 1 This file has at least one big "b".'
                     + linesep
                     + 'c.txt 1 match'
                     + linesep
-                    + 'c.txt 1This file has Python Jython pythonic.'
+                    + 'c.txt 1 This file has Python Jython pythonic.'
                     + linesep
                     + 'd.txt 0 matches'
                     + linesep
@@ -195,7 +195,7 @@ class TestExpressionSearcher(unittest.TestCase):
                     + linesep
                     + 'test_result01.txt 1 match'
                     + linesep
-                    + 'test_result01.txt 1a_TESTResult.txt'
+                    + 'test_result01.txt 1 a_TESTResult.txt'
                     + linesep
                     )
 

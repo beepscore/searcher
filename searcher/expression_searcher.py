@@ -105,7 +105,7 @@ class ExpressionSearcher:
             for line in textfile:
                 matches = re.findall(expression, line)
                 for match in matches:
-                    lines.append(file_name + ' ' + str(line_number) + line)
+                    lines.append(file_name + ' ' + str(line_number) + ' ' + line)
                     num_matches += 1
                 line_number += 1
             textfile.close()
