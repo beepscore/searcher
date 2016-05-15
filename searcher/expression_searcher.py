@@ -125,7 +125,6 @@ class ExpressionSearcher:
         param ignored_regex_objects contains regular expression objects compiled from patterns
 
         return string with file name, line number, line for lines that contain expression
-        return None for files that don't contain expression
         """
 
         directories = file_helper.FileHelper.directories_in_dir_recursive(root_dir, ignored_regex_objects)
