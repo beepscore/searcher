@@ -50,7 +50,7 @@ class TestExpressionSearcher(unittest.TestCase):
 
         keyword = "ython"
 
-        actual = expression_searcher.ExpressionSearcher.directories_number_of_files_containing_keyword(root_dir, ignored_regex_objects, keyword)
+        actual = expression_searcher.ExpressionSearcher.directories_number_of_files_containing_expression(root_dir, ignored_regex_objects, keyword)
 
         expected = {'./searcher_data/search_dir': 2,
                     './searcher_data/search_dir/level_1': 1,
@@ -68,7 +68,7 @@ class TestExpressionSearcher(unittest.TestCase):
         # \A == start of a line
         keyword = "\AThis"
 
-        actual = expression_searcher.ExpressionSearcher.directories_number_of_files_containing_keyword(root_dir, ignored_regex_objects, keyword)
+        actual = expression_searcher.ExpressionSearcher.directories_number_of_files_containing_expression(root_dir, ignored_regex_objects, keyword)
 
         # searcher searches the alias text, not the text of the file it links to
         expected = {'./searcher_data/search_dir': 0,
@@ -86,7 +86,7 @@ class TestExpressionSearcher(unittest.TestCase):
 
         keyword = "foo"
 
-        actual = expression_searcher.ExpressionSearcher.directories_number_of_files_containing_keyword(root_dir, ignored_regex_objects, keyword)
+        actual = expression_searcher.ExpressionSearcher.directories_number_of_files_containing_expression(root_dir, ignored_regex_objects, keyword)
 
         # foo matches 'footer' in several html files
         expected = {'./searcher_data/search_dir': 4,
@@ -104,7 +104,7 @@ class TestExpressionSearcher(unittest.TestCase):
 
         keyword = "^[a-zA-Z]+_TESTResult.*"
 
-        actual = expression_searcher.ExpressionSearcher.directories_number_of_files_containing_keyword(root_dir, ignored_regex_objects, keyword)
+        actual = expression_searcher.ExpressionSearcher.directories_number_of_files_containing_expression(root_dir, ignored_regex_objects, keyword)
 
         expected = {'./searcher_data/search_dir': 0,
                 './searcher_data/search_dir/level_1': 0,

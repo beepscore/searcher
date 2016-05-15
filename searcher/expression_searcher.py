@@ -43,7 +43,7 @@ class ExpressionSearcher:
                 return file_name
 
     @staticmethod
-    def directories_number_of_files_containing_keyword(root_dir, ignored_regex_objects, keyword):
+    def directories_number_of_files_containing_expression(root_dir, ignored_regex_objects, keyword):
         """
         Searches root_dir and subdirectories for files containing keyword
 

@@ -30,8 +30,8 @@ if __name__ == '__main__':
 
     ignored_regex_objects = expression_helper.ExpressionHelper.regex_objects_from_patterns(expression_helper.ExpressionHelper.ignored_filename_patterns)
 
-    results = expression_searcher.ExpressionSearcher.directories_number_of_files_containing_keyword(search_dir,
-                                                                                                    ignored_regex_objects, expression)
+    results = expression_searcher.ExpressionSearcher.directories_number_of_files_containing_expression(search_dir,
+                                                                                                       ignored_regex_objects, expression)
     print("Results")
     prettyprinter = pprint.PrettyPrinter(indent=4)
     prettyprinter.pprint(results)
