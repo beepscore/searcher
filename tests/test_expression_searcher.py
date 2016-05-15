@@ -41,14 +41,6 @@ class TestExpressionSearcher(unittest.TestCase):
                 "httpwww.beepscore.comhubcape")
         self.assertEqual(None, actual)
 
-    def test_lines_in_file_containing_expression(self):
-        expected = "httpwww.beepscore.comhubcape 1 match" + linesep + "httpwww.beepscore.comhubcape 34    <li><a href=\"#\">Apps</a>" + linesep
-        actual = expression_searcher.ExpressionSearcher.lines_in_file_containing_expression("Apps",
-                                                                                            "./searcher_data/search_dir", "httpwww.beepscore.comhubcape")
-        print("test_lines_in_file_containing_expression")
-        print(actual)
-        self.assertEqual(expected, actual)
-
     # test_directories_number_of_files_containing_keyword
 
     def test_directories_number_of_files_containing_keyword_ython(self):
@@ -120,6 +112,14 @@ class TestExpressionSearcher(unittest.TestCase):
                 './searcher_data/search_dir/level_1/level_2/level_3': 0,
                 './searcher_data/search_dir/level_1/level_2/level_3/level_4': 1}
 
+        self.assertEqual(expected, actual)
+
+    def test_lines_in_file_containing_expression(self):
+        expected = "httpwww.beepscore.comhubcape 1 match" + linesep + "httpwww.beepscore.comhubcape 34    <li><a href=\"#\">Apps</a>" + linesep
+        actual = expression_searcher.ExpressionSearcher.lines_in_file_containing_expression("Apps",
+                                                                                            "./searcher_data/search_dir", "httpwww.beepscore.comhubcape")
+        print("test_lines_in_file_containing_expression")
+        print(actual)
         self.assertEqual(expected, actual)
 
     def test_lines_in_files_containing_expression(self):

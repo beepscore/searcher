@@ -43,6 +43,40 @@ class ExpressionSearcher:
                 return file_name
 
     @staticmethod
+    def directories_number_of_files_containing_keyword(root_dir, ignored_regex_objects, keyword):
+        """
+        Searches root_dir and subdirectories for files containing keyword
+
+        param ignored_regex_objects contains regular expression objects compiled from patterns
+        return dictionary with key directory name and value number of files that contain expression
+        """
+
+        directories = file_helper.FileHelper.directories_in_dir_recursive(root_dir, ignored_regex_objects)
+        results = {}
+
+        for directory in directories:
+
+            # print to show user a simple progress indicator
+            print("Searching " + directory)
+            number_of_files_containing_expression = 0
+
+            filenames = file_helper.FileHelper.files_in_dir(directory, ignored_regex_objects)
+
+            for filename in filenames:
+
+                if ExpressionSearcher.search_file(keyword, directory, filename) is not None:
+                    number_of_files_containing_expression += 1
+
+            results[directory] = number_of_files_containing_expression
+
+            file_singular_or_plural = 'files'
+            if number_of_files_containing_expression == 1:
+                file_singular_or_plural = 'file'
+            print("    found " + str(number_of_files_containing_expression) + " " + file_singular_or_plural)
+
+        return results
+
+    @staticmethod
     def lines_in_file_containing_expression(expression, search_dir, file_name):
         """
         In directory search file for expression
@@ -82,40 +116,6 @@ class ExpressionSearcher:
 
             file_total = file_name + ' ' + str(num_matches) + ' ' + matches_singular_or_plural
             return file_total + os.linesep + ''.join(lines)
-
-    @staticmethod
-    def directories_number_of_files_containing_keyword(root_dir, ignored_regex_objects, keyword):
-        """
-        Searches root_dir and subdirectories for files containing keyword
-
-        param ignored_regex_objects contains regular expression objects compiled from patterns
-        return dictionary with key directory name and value number of files that contain expression
-        """
-
-        directories = file_helper.FileHelper.directories_in_dir_recursive(root_dir, ignored_regex_objects)
-        results = {}
-
-        for directory in directories:
-
-            # print to show user a simple progress indicator
-            print("Searching " + directory)
-            number_of_files_containing_expression = 0
-
-            filenames = file_helper.FileHelper.files_in_dir(directory, ignored_regex_objects)
-
-            for filename in filenames:
-
-                if ExpressionSearcher.search_file(keyword, directory, filename) is not None:
-                    number_of_files_containing_expression += 1
-
-            results[directory] = number_of_files_containing_expression
-
-            file_singular_or_plural = 'files'
-            if number_of_files_containing_expression == 1:
-                file_singular_or_plural = 'file'
-            print("    found " + str(number_of_files_containing_expression) + " " + file_singular_or_plural)
-
-        return results
 
     @staticmethod
     def lines_in_files_containing_expression(expression, root_dir, ignored_regex_objects):
