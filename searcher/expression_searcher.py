@@ -61,7 +61,7 @@ class ExpressionSearcher:
 
             for filename in filenames:
 
-                if (ExpressionSearcher.search_file(keyword, directory, filename) is not None):
+                if ExpressionSearcher.search_file(keyword, directory, filename) is not None:
                     number_of_files_containing_expression += 1
 
             results[directory] = number_of_files_containing_expression
