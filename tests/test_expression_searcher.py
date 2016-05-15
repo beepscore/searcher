@@ -41,16 +41,16 @@ class TestExpressionSearcher(unittest.TestCase):
                 "httpwww.beepscore.comhubcape")
         self.assertEqual(None, actual)
 
-    # test_directories_number_of_files_containing_keyword
+    # test_directories_number_of_files_containing_expression
 
-    def test_directories_number_of_files_containing_keyword_ython(self):
+    def test_directories_number_of_files_containing_expression_ython(self):
         root_dir = './searcher_data/search_dir'
 
         ignored_regex_objects = expression_helper.ExpressionHelper.regex_objects_from_patterns(expression_helper.ExpressionHelper.ignored_filename_patterns)
 
-        keyword = "ython"
+        expression = "ython"
 
-        actual = expression_searcher.ExpressionSearcher.directories_number_of_files_containing_expression(root_dir, ignored_regex_objects, keyword)
+        actual = expression_searcher.ExpressionSearcher.directories_number_of_files_containing_expression(root_dir, ignored_regex_objects, expression)
 
         expected = {'./searcher_data/search_dir': 2,
                     './searcher_data/search_dir/level_1': 1,
@@ -60,15 +60,15 @@ class TestExpressionSearcher(unittest.TestCase):
 
         self.assertEqual(expected, actual)
 
-    def test_directories_number_of_files_containing_keyword_this(self):
+    def test_directories_number_of_files_containing_expression_this(self):
         root_dir = './searcher_data/search_dir'
 
         ignored_regex_objects = expression_helper.ExpressionHelper.regex_objects_from_patterns(expression_helper.ExpressionHelper.ignored_filename_patterns)
 
         # \A == start of a line
-        keyword = "\AThis"
+        expression = "\AThis"
 
-        actual = expression_searcher.ExpressionSearcher.directories_number_of_files_containing_expression(root_dir, ignored_regex_objects, keyword)
+        actual = expression_searcher.ExpressionSearcher.directories_number_of_files_containing_expression(root_dir, ignored_regex_objects, expression)
 
         # searcher searches the alias text, not the text of the file it links to
         expected = {'./searcher_data/search_dir': 0,
@@ -79,14 +79,14 @@ class TestExpressionSearcher(unittest.TestCase):
 
         self.assertEqual(expected, actual)
 
-    def test_directories_number_of_files_containing_keyword_foo(self):
+    def test_directories_number_of_files_containing_expression_foo(self):
         root_dir = './searcher_data/search_dir'
 
         ignored_regex_objects = expression_helper.ExpressionHelper.regex_objects_from_patterns(expression_helper.ExpressionHelper.ignored_filename_patterns)
 
-        keyword = "foo"
+        expression = "foo"
 
-        actual = expression_searcher.ExpressionSearcher.directories_number_of_files_containing_expression(root_dir, ignored_regex_objects, keyword)
+        actual = expression_searcher.ExpressionSearcher.directories_number_of_files_containing_expression(root_dir, ignored_regex_objects, expression)
 
         # foo matches 'footer' in several html files
         expected = {'./searcher_data/search_dir': 4,
@@ -97,14 +97,14 @@ class TestExpressionSearcher(unittest.TestCase):
 
         self.assertEqual(expected, actual)
 
-    def test_directories_number_of_files_containing_keyword_test_result(self):
+    def test_directories_number_of_files_containing_expression_test_result(self):
         root_dir = './searcher_data/search_dir'
 
         ignored_regex_objects = expression_helper.ExpressionHelper.regex_objects_from_patterns(expression_helper.ExpressionHelper.ignored_filename_patterns)
 
-        keyword = "^[a-zA-Z]+_TESTResult.*"
+        expression = "^[a-zA-Z]+_TESTResult.*"
 
-        actual = expression_searcher.ExpressionSearcher.directories_number_of_files_containing_expression(root_dir, ignored_regex_objects, keyword)
+        actual = expression_searcher.ExpressionSearcher.directories_number_of_files_containing_expression(root_dir, ignored_regex_objects, expression)
 
         expected = {'./searcher_data/search_dir': 0,
                 './searcher_data/search_dir/level_1': 0,
