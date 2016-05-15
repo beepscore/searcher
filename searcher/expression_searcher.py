@@ -43,6 +43,42 @@ class ExpressionSearcher:
                 return file_name
 
     @staticmethod
+    def lines_in_file_containing_expression(expression, search_dir, file_name):
+        """
+        In directory search file for expression
+
+        return file name, line number, line for lines that contain expression
+        return None for files that don't contain expression
+        """
+        if file_name == ".DS_Store":
+            # avoid read error
+            return None
+
+        else:
+            file_path = file_helper.FileHelper.absolute_file_path(search_dir, file_name)
+
+            if os.path.isdir(file_path):
+                # avoid read error
+                return None
+
+            # throws UnicodeDecodeError: 'utf-8' codec can't decode byte
+            # textfile = open(file_path, 'r', encoding='utf-8')
+            textfile = open(file_path, 'r', encoding='ISO-8859-1')
+
+            lines = []
+            num_matches = 0
+            line_number = 1
+            for line in textfile:
+                matches = re.findall(expression, line)
+                for match in matches:
+                    lines.append(file_name + ' ' + str(line_number) + line)
+                    num_matches += 1
+                line_number += 1
+            textfile.close()
+            file_total = file_name + ' ' + str(num_matches) + ' matches'
+            return file_total + os.linesep + ''.join(lines)
+
+    @staticmethod
     def directories_number_of_files_containing_keyword(root_dir, ignored_regex_objects, keyword):
         """
         Searches root_dir and subdirectories for files containing keyword

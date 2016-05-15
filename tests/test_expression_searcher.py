@@ -4,6 +4,7 @@ import unittest
 
 from searcher import expression_helper
 from searcher import expression_searcher
+from os import linesep
 
 
 class TestExpressionSearcher(unittest.TestCase):
@@ -39,6 +40,14 @@ class TestExpressionSearcher(unittest.TestCase):
                 "./searcher_data/search_dir",
                 "httpwww.beepscore.comhubcape")
         self.assertEqual(None, actual)
+
+    def test_lines_in_file_containing_expression(self):
+        expected = "httpwww.beepscore.comhubcape 1 matches" + linesep + "httpwww.beepscore.comhubcape 34    <li><a href=\"#\">Apps</a>" + linesep
+        actual = expression_searcher.ExpressionSearcher.lines_in_file_containing_expression("Apps",
+                                                                                            "./searcher_data/search_dir", "httpwww.beepscore.comhubcape")
+        print("test_lines_in_file_containing_expression")
+        print(actual)
+        self.assertEqual(expected, actual)
 
     # test_directories_number_of_files_containing_keyword
 
