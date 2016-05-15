@@ -47,7 +47,7 @@ class ExpressionSearcher:
         """
         In directory search file for expression
 
-        return file name, line number, line for lines that contain expression
+        return string with file name, line number, line for lines that contain expression
         return None for files that don't contain expression
         """
         if file_name == ".DS_Store":
@@ -75,7 +75,12 @@ class ExpressionSearcher:
                     num_matches += 1
                 line_number += 1
             textfile.close()
-            file_total = file_name + ' ' + str(num_matches) + ' matches'
+
+            matches_singular_or_plural = 'matches'
+            if num_matches == 1:
+                matches_singular_or_plural = 'match'
+
+            file_total = file_name + ' ' + str(num_matches) + ' ' + matches_singular_or_plural
             return file_total + os.linesep + ''.join(lines)
 
     @staticmethod
@@ -111,4 +116,32 @@ class ExpressionSearcher:
             print("    found " + str(number_of_files_containing_expression) + " " + file_singular_or_plural)
 
         return results
+
+    @staticmethod
+    def lines_in_files_containing_expression(expression, root_dir, ignored_regex_objects):
+        """
+        Searches root_dir and subdirectories for files containing expression
+
+        param ignored_regex_objects contains regular expression objects compiled from patterns
+
+        return string with file name, line number, line for lines that contain expression
+        return None for files that don't contain expression
+        """
+
+        directories = file_helper.FileHelper.directories_in_dir_recursive(root_dir, ignored_regex_objects)
+        lines = []
+
+        for directory in directories:
+
+            # print to show user a simple progress indicator
+            print("Searching " + directory)
+
+            filenames = file_helper.FileHelper.files_in_dir(directory, ignored_regex_objects)
+
+            for filename in filenames:
+                lines_in_file = ExpressionSearcher.lines_in_file_containing_expression(expression, directory, filename)
+                if lines_in_file is not None:
+                    lines.append(lines_in_file)
+
+        return ''.join(lines)
 
