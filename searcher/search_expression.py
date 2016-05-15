@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 # http://stackoverflow.com/questions/279237/import-a-module-from-a-relative-path
 import sys, os

@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 # References:
 # https://docs.python.org/2/library/argparse.html
