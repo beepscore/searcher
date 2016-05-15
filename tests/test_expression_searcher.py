@@ -122,6 +122,49 @@ class TestExpressionSearcher(unittest.TestCase):
         print(actual)
         self.assertEqual(expected, actual)
 
+    def test_lines_in_files_containing_expression_this(self):
+        root_dir = './searcher_data/search_dir'
+
+        ignored_regex_objects = expression_helper.ExpressionHelper.regex_objects_from_patterns(expression_helper.ExpressionHelper.ignored_filename_patterns)
+
+        # \A == start of a line
+        expression = "\AThis"
+
+        actual = expression_searcher.ExpressionSearcher.lines_in_files_containing_expression(expression, root_dir, ignored_regex_objects)
+        print('test_lines_in_files_containing_expression_this')
+        print(actual)
+
+        expected = ('httppython.org 0 matches' + linesep
+                    + 'httpsen.wikipedia.orgwikiPython_%28programming_language%29 0 matches'
+                    + linesep
+                    + 'httpswww.google.com#q=python 0 matches'
+                    + linesep
+                    + 'httpwww.beepscore.comhubcape 0 matches'
+                    + linesep
+                    + 'a.txt 1 match'
+                    + linesep
+                    + 'a.txt 1This file has at least one "a".'
+                    + linesep
+                    + 'c.txt alias 0 matches'
+                    + linesep
+                    + 'b.txt 1 match'
+                    + linesep
+                    + 'b.txt 1This file has at least one big "b".'
+                    + linesep
+                    + 'c.txt 1 match'
+                    + linesep
+                    + 'c.txt 1This file has Python Jython pythonic.'
+                    + linesep
+                    + 'd.txt 0 matches'
+                    + linesep
+                    + 'd.txt alias 0 matches'
+                    + linesep
+                    + 'test_result01.txt 0 matches'
+                    + linesep
+                    )
+
+        self.assertEqual(expected, actual)
+
     def test_lines_in_files_containing_expression_test_result(self):
         root_dir = './searcher_data/search_dir'
 
@@ -130,36 +173,32 @@ class TestExpressionSearcher(unittest.TestCase):
         expression = "^[a-zA-Z]+_TESTResult.*"
 
         actual = expression_searcher.ExpressionSearcher.lines_in_files_containing_expression(expression, root_dir, ignored_regex_objects)
-        print('test_lines_in_files_containing_expression_test_result')
-        print(actual)
 
         expected = ('httppython.org 0 matches' + linesep
-        + 'httpsen.wikipedia.orgwikiPython_%28programming_language%29 0 matches'
-        + linesep
-        + 'httpswww.google.com#q=python 0 matches'
-        + linesep
-        + 'httpwww.beepscore.comhubcape 0 matches'
-        + linesep
-        + 'a.txt 0 matches'
-        + linesep
-        + 'c.txt alias 0 matches'
-        + linesep
-        + 'b.txt 0 matches'
-        + linesep
-        + 'c.txt 0 matches'
-        + linesep
-        + 'd.txt 0 matches'
-        + linesep
-        + 'd.txt alias 0 matches'
-        + linesep
-        + 'test_result01.txt 1 match'
-        + linesep
-        + 'test_result01.txt 1a_TESTResult.txt'
-        + linesep
-        )
-
+                    + 'httpsen.wikipedia.orgwikiPython_%28programming_language%29 0 matches'
+                    + linesep
+                    + 'httpswww.google.com#q=python 0 matches'
+                    + linesep
+                    + 'httpwww.beepscore.comhubcape 0 matches'
+                    + linesep
+                    + 'a.txt 0 matches'
+                    + linesep
+                    + 'c.txt alias 0 matches'
+                    + linesep
+                    + 'b.txt 0 matches'
+                    + linesep
+                    + 'c.txt 0 matches'
+                    + linesep
+                    + 'd.txt 0 matches'
+                    + linesep
+                    + 'd.txt alias 0 matches'
+                    + linesep
+                    + 'test_result01.txt 1 match'
+                    + linesep
+                    + 'test_result01.txt 1a_TESTResult.txt'
+                    + linesep
+                    )
 
         self.assertEqual(expected, actual)
-
 if __name__ == "__main__":
     unittest.main()
