@@ -30,7 +30,9 @@ class ExpressionSearcher:
                 # avoid read error
                 return None
 
-            textfile = open(file_path, 'r')
+            # throws UnicodeDecodeError: 'utf-8' codec can't decode byte
+            # textfile = open(file_path, 'r', encoding='utf-8')
+            textfile = open(file_path, 'r', encoding='ISO-8859-1')
             text = textfile.read()
             textfile.close()
             matches = re.findall(expression, text)
