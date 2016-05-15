@@ -56,7 +56,7 @@ class ExpressionSearcher:
 
         for directory in directories:
 
-            # print to show useer a simple progress indicator
+            # print to show user a simple progress indicator
             print("Searching " + directory)
             number_of_files_containing_expression = 0
 
