@@ -24,9 +24,9 @@ if __name__ == '__main__':
     # Call arg_reader.args() without an argument list so it reads from command line.
     args = arg_reader.args()
 
-    expression = args.keyword
+    expression = args.expression
     search_dir = args.root_dir
-    print("Searching root_dir " + search_dir + " for keyword " + expression)
+    print("Searching root_dir " + search_dir + " for expression " + expression)
 
     ignored_regex_objects = expression_helper.ExpressionHelper.regex_objects_from_patterns(expression_helper.ExpressionHelper.ignored_filename_patterns)
 

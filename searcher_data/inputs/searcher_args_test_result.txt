@@ -1,4 +1,4 @@
--keyword
+-expression
 ^[a-zA-Z]+_TESTResult.*
 -root_dir
 ./searcher_data/search_dir/

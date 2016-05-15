@@ -13,21 +13,21 @@ class TestSearcherArgReader(unittest.TestCase):
     def test_args_default(self):
         reader = searcher_arg_reader.SearcherArgReader()
         args = reader.args(None)
-        self.assertEqual('foo', args.keyword, '')
+        self.assertEqual('foo', args.expression, '')
         self.assertEqual("./searcher_data/search_dir", args.root_dir, '')
 
     def test_args_from_argument(self):
         reader = searcher_arg_reader.SearcherArgReader()
 
-        keyword = "bar"
+        expression = "bar"
         root_dir = "some_root_dir"
 
-        test_commandline = ["-keyword", keyword,
+        test_commandline = ["-expression", expression,
                             "-root_dir", root_dir
                             ]
         args = reader.args(test_commandline)
 
-        self.assertEqual(keyword, args.keyword, '')
+        self.assertEqual(expression, args.expression, '')
         self.assertEqual(root_dir, args.root_dir, '')
 
     def test_args_from_argument_file(self):
@@ -35,7 +35,7 @@ class TestSearcherArgReader(unittest.TestCase):
         # use fromfile_prefix_chars @ to read args from file
         args = reader.args(["@./searcher_data/inputs/searcher_args.txt"])
 
-        self.assertEqual("app*", args.keyword)
+        self.assertEqual("app*", args.expression)
         self.assertEqual("./searcher_data/search_dir", args.root_dir)
 
 if __name__ == "__main__":
