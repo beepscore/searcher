@@ -1,7 +1,7 @@
 # searcher
 
 # Purpose
-Search directory for files that contain a search term regular expression "keyword".  
+Search directory for files that contain a search term regular expression "expression".
 
 # References
 
@@ -31,7 +31,7 @@ cd to project root directory "searcher"
 ### supply arguments on command line
 Result prints to terminal.
 
-    python ./searcher/search_expression.py -keyword 'ython' -root_dir './searcher_data/search_dir'
+    python ./searcher/search_expression.py -expression 'ython' -root_dir './searcher_data/search_dir'
 
 ### supply arguments in a file
 Create args file with desired values, e.g. searcher_args_test_result.txt.  
@@ -39,7 +39,7 @@ On command line specify one argument @ prefix + args file name
 
     python ./searcher/search_expression.py @./searcher_data/inputs/searcher_args_test_result.txt
 
-    Searching root_dir ./searcher_data/search_dir/ for keyword ^[a-zA-Z]+_TESTResult.*
+    Searching root_dir ./searcher_data/search_dir/ for expression ^[a-zA-Z]+_TESTResult.*
     Results
     {   './searcher_data/search_dir/': 0,
         './searcher_data/search_dir/level_1': 0,
@@ -51,7 +51,7 @@ On command line specify one argument @ prefix + args file name
 
     python ./searcher/search_expression.py
 
-    Searching root_dir ./searcher_data/search_dir for keyword foo
+    Searching root_dir ./searcher_data/search_dir for expression foo
     Results
     {   './searcher_data/search_dir': 4,
         './searcher_data/search_dir/level_1': 0,
