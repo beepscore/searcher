@@ -43,9 +43,9 @@ class ExpressionSearcher:
                 return file_name
 
     @staticmethod
-    def directories_number_of_files_containing_expression(root_dir, ignored_regex_objects, keyword):
+    def directories_number_of_files_containing_expression(root_dir, ignored_regex_objects, expression):
         """
-        Searches root_dir and subdirectories for files containing keyword
+        Searches root_dir and subdirectories for files containing expression
 
         param ignored_regex_objects contains regular expression objects compiled from patterns
         return dictionary with key directory name and value number of files that contain expression
@@ -64,7 +64,7 @@ class ExpressionSearcher:
 
             for filename in filenames:
 
-                if ExpressionSearcher.search_file(keyword, directory, filename) is not None:
+                if ExpressionSearcher.search_file(expression, directory, filename) is not None:
                     number_of_files_containing_expression += 1
 
             results[directory] = number_of_files_containing_expression
