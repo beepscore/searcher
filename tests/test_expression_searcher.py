@@ -118,8 +118,6 @@ class TestExpressionSearcher(unittest.TestCase):
         expected = "httpwww.beepscore.comhubcape 1 match" + linesep + "httpwww.beepscore.comhubcape 34     <li><a href=\"#\">Apps</a>" + linesep
         actual = expression_searcher.ExpressionSearcher.lines_in_file_containing_expression("Apps",
                                                                                             "./searcher_data/search_dir", "httpwww.beepscore.comhubcape")
-        print("test_lines_in_file_containing_expression")
-        print(actual)
         self.assertEqual(expected, actual)
 
     def test_lines_in_files_containing_expression_this(self):
@@ -131,8 +129,6 @@ class TestExpressionSearcher(unittest.TestCase):
         expression = "\AThis"
 
         actual = expression_searcher.ExpressionSearcher.lines_in_files_containing_expression(expression, root_dir, ignored_regex_objects)
-        print('test_lines_in_files_containing_expression_this')
-        print(actual)
 
         expected = ('httppython.org 0 matches' + linesep
                     + 'httpsen.wikipedia.orgwikiPython_%28programming_language%29 0 matches'
