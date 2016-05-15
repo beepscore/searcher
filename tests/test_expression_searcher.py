@@ -122,7 +122,7 @@ class TestExpressionSearcher(unittest.TestCase):
         print(actual)
         self.assertEqual(expected, actual)
 
-    def test_lines_in_files_containing_expression(self):
+    def test_lines_in_files_containing_expression_test_result(self):
         root_dir = './searcher_data/search_dir'
 
         ignored_regex_objects = expression_helper.ExpressionHelper.regex_objects_from_patterns(expression_helper.ExpressionHelper.ignored_filename_patterns)
@@ -130,7 +130,7 @@ class TestExpressionSearcher(unittest.TestCase):
         expression = "^[a-zA-Z]+_TESTResult.*"
 
         actual = expression_searcher.ExpressionSearcher.lines_in_files_containing_expression(expression, root_dir, ignored_regex_objects)
-        print('test_lines_in_files_containing_expression')
+        print('test_lines_in_files_containing_expression_test_result')
         print(actual)
 
         expected = ('httppython.org 0 matches' + linesep
