@@ -36,7 +36,8 @@ class ExpressionSearcher:
             text = textfile.read()
             textfile.close()
             matches = re.findall(expression, text)
-            if matches == []:
+            # http://stackoverflow.com/questions/53513/best-way-to-check-if-a-list-is-empty
+            if len(matches) == 0:
                 return None
             else:
                 return file_name
