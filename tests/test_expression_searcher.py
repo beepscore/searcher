@@ -12,33 +12,29 @@ class TestExpressionSearcher(unittest.TestCase):
     def setUp(self):
         pass
 
-    def test_init(self):
-        searcher = expression_searcher.ExpressionSearcher()
-        self.assertIsNotNone(searcher)
-
     # test_search_file
 
     def test_search_file_returns_none(self):
-        actual = expression_searcher.ExpressionSearcher.search_file("not there",
-                "./searcher_data/search_dir",
-                "httpwww.beepscore.comhubcape")
+        actual = expression_searcher.search_file("not there",
+                                                 "./searcher_data/search_dir",
+                                                 "httpwww.beepscore.comhubcape")
         self.assertEqual(None, actual)
 
     def test_search_file_returns_file_name(self):
-        actual = expression_searcher.ExpressionSearcher.search_file("Apps",
-                "./searcher_data/search_dir",
-                "httpwww.beepscore.comhubcape")
+        actual = expression_searcher.search_file("Apps",
+                                                 "./searcher_data/search_dir",
+                                                 "httpwww.beepscore.comhubcape")
         self.assertEqual("httpwww.beepscore.comhubcape", actual)
 
     def test_search_file_is_case_sensitive(self):
-        actual = expression_searcher.ExpressionSearcher.search_file("Apps",
-                "./searcher_data/search_dir",
-                "httpwww.beepscore.comhubcape")
+        actual = expression_searcher.search_file("Apps",
+                                                 "./searcher_data/search_dir",
+                                                 "httpwww.beepscore.comhubcape")
         self.assertEqual("httpwww.beepscore.comhubcape", actual)
 
-        actual = expression_searcher.ExpressionSearcher.search_file("apps",
-                "./searcher_data/search_dir",
-                "httpwww.beepscore.comhubcape")
+        actual = expression_searcher.search_file("apps",
+                                                 "./searcher_data/search_dir",
+                                                 "httpwww.beepscore.comhubcape")
         self.assertEqual(None, actual)
 
     # test_directories_number_of_files_containing_expression
@@ -50,7 +46,7 @@ class TestExpressionSearcher(unittest.TestCase):
 
         expression = "ython"
 
-        actual = expression_searcher.ExpressionSearcher.directories_number_of_files_containing_expression(root_dir, ignored_regex_objects, expression)
+        actual = expression_searcher.directories_number_of_files_containing_expression(root_dir, ignored_regex_objects, expression)
 
         expected = {'./searcher_data/search_dir': 2,
                     './searcher_data/search_dir/level_1': 1,
@@ -68,7 +64,7 @@ class TestExpressionSearcher(unittest.TestCase):
         # \A == start of a line
         expression = "\AThis"
 
-        actual = expression_searcher.ExpressionSearcher.directories_number_of_files_containing_expression(root_dir, ignored_regex_objects, expression)
+        actual = expression_searcher.directories_number_of_files_containing_expression(root_dir, ignored_regex_objects, expression)
 
         # searcher searches the alias text, not the text of the file it links to
         expected = {'./searcher_data/search_dir': 0,
@@ -86,14 +82,14 @@ class TestExpressionSearcher(unittest.TestCase):
 
         expression = "foo"
 
-        actual = expression_searcher.ExpressionSearcher.directories_number_of_files_containing_expression(root_dir, ignored_regex_objects, expression)
+        actual = expression_searcher.directories_number_of_files_containing_expression(root_dir, ignored_regex_objects, expression)
 
         # foo matches 'footer' in several html files
         expected = {'./searcher_data/search_dir': 4,
-                './searcher_data/search_dir/level_1': 0,
-                './searcher_data/search_dir/level_1/level_2': 0,
-                './searcher_data/search_dir/level_1/level_2/level_3': 0,
-                './searcher_data/search_dir/level_1/level_2/level_3/level_4': 0}
+                    './searcher_data/search_dir/level_1': 0,
+                    './searcher_data/search_dir/level_1/level_2': 0,
+                    './searcher_data/search_dir/level_1/level_2/level_3': 0,
+                    './searcher_data/search_dir/level_1/level_2/level_3/level_4': 0}
 
         self.assertEqual(expected, actual)
 
@@ -104,20 +100,20 @@ class TestExpressionSearcher(unittest.TestCase):
 
         expression = "^[a-zA-Z]+_TESTResult.*"
 
-        actual = expression_searcher.ExpressionSearcher.directories_number_of_files_containing_expression(root_dir, ignored_regex_objects, expression)
+        actual = expression_searcher.directories_number_of_files_containing_expression(root_dir, ignored_regex_objects, expression)
 
         expected = {'./searcher_data/search_dir': 0,
-                './searcher_data/search_dir/level_1': 0,
-                './searcher_data/search_dir/level_1/level_2': 0,
-                './searcher_data/search_dir/level_1/level_2/level_3': 0,
-                './searcher_data/search_dir/level_1/level_2/level_3/level_4': 1}
+                    './searcher_data/search_dir/level_1': 0,
+                    './searcher_data/search_dir/level_1/level_2': 0,
+                    './searcher_data/search_dir/level_1/level_2/level_3': 0,
+                    './searcher_data/search_dir/level_1/level_2/level_3/level_4': 1}
 
         self.assertEqual(expected, actual)
 
     def test_lines_in_file_containing_expression(self):
         expected = "httpwww.beepscore.comhubcape 1 match" + linesep + "httpwww.beepscore.comhubcape 34     <li><a href=\"#\">Apps</a>" + linesep
-        actual = expression_searcher.ExpressionSearcher.lines_in_file_containing_expression("Apps",
-                                                                                            "./searcher_data/search_dir", "httpwww.beepscore.comhubcape")
+        actual = expression_searcher.lines_in_file_containing_expression("Apps",
+                                                                         "./searcher_data/search_dir", "httpwww.beepscore.comhubcape")
         self.assertEqual(expected, actual)
 
     def test_lines_in_files_containing_expression_this(self):
@@ -128,7 +124,7 @@ class TestExpressionSearcher(unittest.TestCase):
         # \A == start of a line
         expression = "\AThis"
 
-        actual = expression_searcher.ExpressionSearcher.lines_in_files_containing_expression(expression, root_dir, ignored_regex_objects)
+        actual = expression_searcher.lines_in_files_containing_expression(expression, root_dir, ignored_regex_objects)
 
         expected = ('httppython.org 0 matches' + linesep
                     + 'httpsen.wikipedia.orgwikiPython_%28programming_language%29 0 matches'
@@ -168,7 +164,7 @@ class TestExpressionSearcher(unittest.TestCase):
 
         expression = "^[a-zA-Z]+_TESTResult.*"
 
-        actual = expression_searcher.ExpressionSearcher.lines_in_files_containing_expression(expression, root_dir, ignored_regex_objects)
+        actual = expression_searcher.lines_in_files_containing_expression(expression, root_dir, ignored_regex_objects)
 
         expected = ('httppython.org 0 matches' + linesep
                     + 'httpsen.wikipedia.orgwikiPython_%28programming_language%29 0 matches'
