@@ -16,7 +16,7 @@ class TestFileHelper(unittest.TestCase):
         ignored_regex_objects = expression_helper.ExpressionHelper.regex_objects_from_patterns(ignored_dirname_patterns)
 
         actual = file_helper.directories_in_dir_recursive("./searcher_data/search_dir",
-                                                                   ignored_regex_objects)
+                                                          ignored_regex_objects)
 
         # Don't care about element order, so compare results using set instead of list
         expected = {'./searcher_data/search_dir',
@@ -35,7 +35,7 @@ class TestFileHelper(unittest.TestCase):
         ignored_regex_objects = expression_helper.ExpressionHelper.regex_objects_from_patterns(ignored_dirname_patterns)
 
         actual = file_helper.directories_in_dir_recursive("./searcher_data/search_dir",
-                                                                   ignored_regex_objects)
+                                                          ignored_regex_objects)
 
         # Don't care about element order, so compare results using set instead of list
         expected = {'./searcher_data/search_dir'}
@@ -50,7 +50,7 @@ class TestFileHelper(unittest.TestCase):
         ignored_regex_objects = expression_helper.ExpressionHelper.regex_objects_from_patterns(ignored_dirname_patterns)
 
         actual = file_helper.directories_in_dir_recursive("./searcher_data/search_dir",
-                                                                     ignored_regex_objects)
+                                                          ignored_regex_objects)
 
         # Don't care about element order, so compare results using set instead of list
         expected = {'./searcher_data/search_dir',
@@ -67,7 +67,7 @@ class TestFileHelper(unittest.TestCase):
         ignored_regex_objects = expression_helper.ExpressionHelper.regex_objects_from_patterns(ignored_dirname_patterns)
 
         actual = file_helper.directories_in_dir_recursive("./searcher_data/search_dir",
-                                                                   ignored_regex_objects)
+                                                          ignored_regex_objects)
 
         # Don't care about element order, so compare results using set instead of list
         expected = {'./searcher_data/search_dir',
@@ -83,7 +83,7 @@ class TestFileHelper(unittest.TestCase):
         ignored_regex_objects = expression_helper.ExpressionHelper.regex_objects_from_patterns(ignored_dirname_patterns)
 
         actual = file_helper.directories_in_dir_recursive("./searcher_data/search_dir",
-                                                                   ignored_regex_objects)
+                                                          ignored_regex_objects)
 
         # Don't care about element order, so compare results using set instead of list
         expected = {'./searcher_data/search_dir',
@@ -100,7 +100,7 @@ class TestFileHelper(unittest.TestCase):
         ignored_regex_objects = expression_helper.ExpressionHelper.regex_objects_from_patterns(ignored_filename_patterns)
 
         actual = file_helper.files_in_dir("./searcher_data/search_dir",
-                                                   ignored_regex_objects)
+                                          ignored_regex_objects)
 
         # Don't care about element order, so compare results using set instead of list
         expected = {'httppython.org',
@@ -117,7 +117,7 @@ class TestFileHelper(unittest.TestCase):
         ignored_regex_objects = expression_helper.ExpressionHelper.regex_objects_from_patterns(ignored_filename_patterns)
 
         actual = file_helper.files_in_dir("./searcher_data/search_dir",
-                                                   ignored_regex_objects)
+                                          ignored_regex_objects)
 
         # Don't care about element order, so compare results using set instead of list
         expected = {'httpwww.beepscore.comhubcape'}
@@ -129,7 +129,7 @@ class TestFileHelper(unittest.TestCase):
         ignored_regex_objects = expression_helper.ExpressionHelper.regex_objects_from_patterns(expression_helper.ExpressionHelper.ignored_filename_patterns)
 
         actual = file_helper.files_in_dir("./searcher_data/search_dir/level_1",
-                                                   ignored_regex_objects)
+                                          ignored_regex_objects)
 
         # Don't care about element order, so compare results using set instead of list
         expected = {'a.txt', 'c.txt alias'}
@@ -142,7 +142,7 @@ class TestFileHelper(unittest.TestCase):
         ignored_regex_objects = expression_helper.ExpressionHelper.regex_objects_from_patterns(ignored_filename_patterns)
 
         actual = file_helper.files_in_dir("./searcher_data/search_dir/level_1/level_2",
-                                                   ignored_regex_objects)
+                                          ignored_regex_objects)
 
         # Don't care about element order, so compare results using set instead of list
         expected = {'b.txt', 'c.txt', 'd.txt'}
@@ -155,7 +155,7 @@ class TestFileHelper(unittest.TestCase):
         ignored_regex_objects = expression_helper.ExpressionHelper.regex_objects_from_patterns(ignored_filename_patterns)
 
         actual = file_helper.files_in_dir("./searcher_data/search_dir/level_1/level_2/level_3",
-                                                   ignored_regex_objects)
+                                          ignored_regex_objects)
 
         # Don't care about element order, so compare results using set instead of list
         expected = {'d.txt alias'}
@@ -169,7 +169,7 @@ class TestFileHelper(unittest.TestCase):
         ignored_regex_objects = expression_helper.ExpressionHelper.regex_objects_from_patterns(ignored_filename_patterns)
 
         actual = file_helper.files_in_dir("./searcher_data/search_dir",
-                                                   ignored_regex_objects)
+                                          ignored_regex_objects)
 
         # Don't care about element order, so compare results using set instead of list
         expected_from_reordered_list = {'httpsen.wikipedia.orgwikiPython_%28programming_language%29',
