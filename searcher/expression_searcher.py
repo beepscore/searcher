@@ -24,7 +24,7 @@ class ExpressionSearcher:
             return None
 
         else:
-            file_path = file_helper.FileHelper.absolute_file_path(search_dir, file_name)
+            file_path = file_helper.absolute_file_path(search_dir, file_name)
 
             if os.path.isdir(file_path):
                 # avoid read error
@@ -51,7 +51,7 @@ class ExpressionSearcher:
         return dictionary with key directory name and value number of files that contain expression
         """
 
-        directories = file_helper.FileHelper.directories_in_dir_recursive(root_dir, ignored_regex_objects)
+        directories = file_helper.directories_in_dir_recursive(root_dir, ignored_regex_objects)
         results = {}
 
         for directory in directories:
@@ -60,7 +60,7 @@ class ExpressionSearcher:
             print("Searching " + directory)
             number_of_files_containing_expression = 0
 
-            filenames = file_helper.FileHelper.files_in_dir(directory, ignored_regex_objects)
+            filenames = file_helper.files_in_dir(directory, ignored_regex_objects)
 
             for filename in filenames:
 
@@ -89,7 +89,7 @@ class ExpressionSearcher:
             return None
 
         else:
-            file_path = file_helper.FileHelper.absolute_file_path(search_dir, file_name)
+            file_path = file_helper.absolute_file_path(search_dir, file_name)
 
             if os.path.isdir(file_path):
                 # avoid read error
@@ -127,7 +127,7 @@ class ExpressionSearcher:
         return string with file name, line number, line for lines that contain expression
         """
 
-        directories = file_helper.FileHelper.directories_in_dir_recursive(root_dir, ignored_regex_objects)
+        directories = file_helper.directories_in_dir_recursive(root_dir, ignored_regex_objects)
         lines = []
 
         for directory in directories:
@@ -135,7 +135,7 @@ class ExpressionSearcher:
             # print to show user a simple progress indicator
             print("Searching " + directory)
 
-            filenames = file_helper.FileHelper.files_in_dir(directory, ignored_regex_objects)
+            filenames = file_helper.files_in_dir(directory, ignored_regex_objects)
 
             for filename in filenames:
                 lines_in_file = ExpressionSearcher.lines_in_file_containing_expression(expression, directory, filename)
