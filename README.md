@@ -78,7 +78,7 @@ http://stackoverflow.com/questions/35270177/passing-arguments-for-argparse-with-
 Runs all test modules.  
 Works on OS X. On Windows may work with Cygwin, I don't know.
 
-    $ ./bin/run_tests
+    $ bin/run_tests
 
 ## Appendix virtual environment venv
 
