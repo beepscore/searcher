@@ -19,15 +19,14 @@ class TestFileHelper(unittest.TestCase):
                                                                    ignored_regex_objects)
 
         # Don't care about element order, so compare results using set instead of list
-        expected = set([
-            './searcher_data/search_dir',
-            './searcher_data/search_dir/level_1',
-            './searcher_data/search_dir/level_1/.git_fake',
-            './searcher_data/search_dir/level_1/.git_fake/objects_fake',
-            './searcher_data/search_dir/level_1/level_2',
-            './searcher_data/search_dir/level_1/level_2/level_3',
-            './searcher_data/search_dir/level_1/level_2/level_3/level_4'
-        ])
+        expected = {'./searcher_data/search_dir',
+                    './searcher_data/search_dir/level_1',
+                    './searcher_data/search_dir/level_1/.git_fake',
+                    './searcher_data/search_dir/level_1/.git_fake/objects_fake',
+                    './searcher_data/search_dir/level_1/level_2',
+                    './searcher_data/search_dir/level_1/level_2/level_3',
+                    './searcher_data/search_dir/level_1/level_2/level_3/level_4'
+                    }
         self.assertEqual(expected, set(actual))
 
     def test_directories_in_dir_recursive_ignore1(self):
@@ -39,9 +38,7 @@ class TestFileHelper(unittest.TestCase):
                                                                    ignored_regex_objects)
 
         # Don't care about element order, so compare results using set instead of list
-        expected = set([
-            './searcher_data/search_dir',
-        ])
+        expected = {'./searcher_data/search_dir'}
         self.assertEqual(expected, set(actual))
 
     def test_directories_in_dir_recursive_ignore_git(self):
@@ -56,13 +53,12 @@ class TestFileHelper(unittest.TestCase):
                                                                      ignored_regex_objects)
 
         # Don't care about element order, so compare results using set instead of list
-        expected = set([
-            './searcher_data/search_dir',
-            './searcher_data/search_dir/level_1',
-            './searcher_data/search_dir/level_1/level_2',
-            './searcher_data/search_dir/level_1/level_2/level_3',
-            './searcher_data/search_dir/level_1/level_2/level_3/level_4'
-        ])
+        expected = {'./searcher_data/search_dir',
+                    './searcher_data/search_dir/level_1',
+                    './searcher_data/search_dir/level_1/level_2',
+                    './searcher_data/search_dir/level_1/level_2/level_3',
+                    './searcher_data/search_dir/level_1/level_2/level_3/level_4'
+                    }
         self.assertEqual(expected, set(actual))
 
     def test_directories_in_dir_recursive_ignore2(self):
@@ -74,12 +70,11 @@ class TestFileHelper(unittest.TestCase):
                                                                    ignored_regex_objects)
 
         # Don't care about element order, so compare results using set instead of list
-        expected = set([
-            './searcher_data/search_dir',
-            './searcher_data/search_dir/level_1',
-            './searcher_data/search_dir/level_1/.git_fake',
-            './searcher_data/search_dir/level_1/.git_fake/objects_fake',
-        ])
+        expected = {'./searcher_data/search_dir',
+                    './searcher_data/search_dir/level_1',
+                    './searcher_data/search_dir/level_1/.git_fake',
+                    './searcher_data/search_dir/level_1/.git_fake/objects_fake',
+                    }
         self.assertEqual(expected, set(actual))
 
     def test_directories_in_dir_recursive_ignore3(self):
@@ -91,13 +86,12 @@ class TestFileHelper(unittest.TestCase):
                                                                    ignored_regex_objects)
 
         # Don't care about element order, so compare results using set instead of list
-        expected = set([
-            './searcher_data/search_dir',
-            './searcher_data/search_dir/level_1',
-            './searcher_data/search_dir/level_1/.git_fake',
-            './searcher_data/search_dir/level_1/.git_fake/objects_fake',
-            './searcher_data/search_dir/level_1/level_2',
-        ])
+        expected = {'./searcher_data/search_dir',
+                    './searcher_data/search_dir/level_1',
+                    './searcher_data/search_dir/level_1/.git_fake',
+                    './searcher_data/search_dir/level_1/.git_fake/objects_fake',
+                    './searcher_data/search_dir/level_1/level_2',
+                    }
         self.assertEqual(expected, set(actual))
 
     def test_files_in_dir(self):
@@ -109,12 +103,11 @@ class TestFileHelper(unittest.TestCase):
                                                    ignored_regex_objects)
 
         # Don't care about element order, so compare results using set instead of list
-        expected = set([
-            'httppython.org',
-            'httpsen.wikipedia.orgwikiPython_%28programming_language%29',
-            'httpswww.google.com#q=python',
-            'httpwww.beepscore.comhubcape',
-        ])
+        expected = {'httppython.org',
+                    'httpsen.wikipedia.orgwikiPython_%28programming_language%29',
+                    'httpswww.google.com#q=python',
+                    'httpwww.beepscore.comhubcape',
+                    }
 
         self.assertEqual(expected, set(actual))
 
@@ -127,7 +120,7 @@ class TestFileHelper(unittest.TestCase):
                                                    ignored_regex_objects)
 
         # Don't care about element order, so compare results using set instead of list
-        expected = set(['httpwww.beepscore.comhubcape'])
+        expected = {'httpwww.beepscore.comhubcape'}
 
         self.assertEqual(expected, set(actual))
 
@@ -139,7 +132,7 @@ class TestFileHelper(unittest.TestCase):
                                                    ignored_regex_objects)
 
         # Don't care about element order, so compare results using set instead of list
-        expected = set(['a.txt', 'c.txt alias'])
+        expected = {'a.txt', 'c.txt alias'}
 
         self.assertEqual(expected, set(actual))
 
@@ -152,7 +145,7 @@ class TestFileHelper(unittest.TestCase):
                                                    ignored_regex_objects)
 
         # Don't care about element order, so compare results using set instead of list
-        expected = set(['b.txt', 'c.txt', 'd.txt'])
+        expected = {'b.txt', 'c.txt', 'd.txt'}
 
         self.assertEqual(expected, set(actual))
 
@@ -179,12 +172,11 @@ class TestFileHelper(unittest.TestCase):
                                                    ignored_regex_objects)
 
         # Don't care about element order, so compare results using set instead of list
-        expected_from_reordered_list = set([
-            'httpsen.wikipedia.orgwikiPython_%28programming_language%29',
-            'httpswww.google.com#q=python',
-            'httpwww.beepscore.comhubcape',
-            'httppython.org',
-        ])
+        expected_from_reordered_list = {'httpsen.wikipedia.orgwikiPython_%28programming_language%29',
+                                        'httpswww.google.com#q=python',
+                                        'httpwww.beepscore.comhubcape',
+                                        'httppython.org'
+                                        }
 
         self.assertEqual(expected_from_reordered_list, set(actual))
 
