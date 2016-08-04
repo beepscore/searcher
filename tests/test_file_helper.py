@@ -158,7 +158,7 @@ class TestFileHelper(unittest.TestCase):
                                                    ignored_regex_objects)
 
         # Don't care about element order, so compare results using set instead of list
-        expected = set(['d.txt alias'])
+        expected = {'d.txt alias'}
 
         self.assertEqual(expected, set(actual))
 
