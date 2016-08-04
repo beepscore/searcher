@@ -28,7 +28,7 @@ if __name__ == '__main__':
     search_dir = args.root_dir
     print("Searching root_dir " + search_dir + " for expression " + expression)
 
-    ignored_regex_objects = expression_helper.ExpressionHelper.regex_objects_from_patterns(expression_helper.ExpressionHelper.ignored_filename_patterns)
+    ignored_regex_objects = expression_helper.regex_objects_from_patterns(expression_helper.ignored_filename_patterns)
 
     results = expression_searcher.ExpressionSearcher.directories_number_of_files_containing_expression(search_dir,
                                                                                                        ignored_regex_objects, expression)

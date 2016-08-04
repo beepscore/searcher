@@ -46,7 +46,7 @@ class TestExpressionSearcher(unittest.TestCase):
     def test_directories_number_of_files_containing_expression_ython(self):
         root_dir = './searcher_data/search_dir'
 
-        ignored_regex_objects = expression_helper.ExpressionHelper.regex_objects_from_patterns(expression_helper.ExpressionHelper.ignored_filename_patterns)
+        ignored_regex_objects = expression_helper.regex_objects_from_patterns(expression_helper.ignored_filename_patterns)
 
         expression = "ython"
 
@@ -63,7 +63,7 @@ class TestExpressionSearcher(unittest.TestCase):
     def test_directories_number_of_files_containing_expression_this(self):
         root_dir = './searcher_data/search_dir'
 
-        ignored_regex_objects = expression_helper.ExpressionHelper.regex_objects_from_patterns(expression_helper.ExpressionHelper.ignored_filename_patterns)
+        ignored_regex_objects = expression_helper.regex_objects_from_patterns(expression_helper.ignored_filename_patterns)
 
         # \A == start of a line
         expression = "\AThis"
@@ -82,7 +82,7 @@ class TestExpressionSearcher(unittest.TestCase):
     def test_directories_number_of_files_containing_expression_foo(self):
         root_dir = './searcher_data/search_dir'
 
-        ignored_regex_objects = expression_helper.ExpressionHelper.regex_objects_from_patterns(expression_helper.ExpressionHelper.ignored_filename_patterns)
+        ignored_regex_objects = expression_helper.regex_objects_from_patterns(expression_helper.ignored_filename_patterns)
 
         expression = "foo"
 
@@ -100,7 +100,7 @@ class TestExpressionSearcher(unittest.TestCase):
     def test_directories_number_of_files_containing_expression_test_result(self):
         root_dir = './searcher_data/search_dir'
 
-        ignored_regex_objects = expression_helper.ExpressionHelper.regex_objects_from_patterns(expression_helper.ExpressionHelper.ignored_filename_patterns)
+        ignored_regex_objects = expression_helper.regex_objects_from_patterns(expression_helper.ignored_filename_patterns)
 
         expression = "^[a-zA-Z]+_TESTResult.*"
 
@@ -123,7 +123,7 @@ class TestExpressionSearcher(unittest.TestCase):
     def test_lines_in_files_containing_expression_this(self):
         root_dir = './searcher_data/search_dir'
 
-        ignored_regex_objects = expression_helper.ExpressionHelper.regex_objects_from_patterns(expression_helper.ExpressionHelper.ignored_filename_patterns)
+        ignored_regex_objects = expression_helper.regex_objects_from_patterns(expression_helper.ignored_filename_patterns)
 
         # \A == start of a line
         expression = "\AThis"
@@ -164,7 +164,7 @@ class TestExpressionSearcher(unittest.TestCase):
     def test_lines_in_files_containing_expression_test_result(self):
         root_dir = './searcher_data/search_dir'
 
-        ignored_regex_objects = expression_helper.ExpressionHelper.regex_objects_from_patterns(expression_helper.ExpressionHelper.ignored_filename_patterns)
+        ignored_regex_objects = expression_helper.regex_objects_from_patterns(expression_helper.ignored_filename_patterns)
 
         expression = "^[a-zA-Z]+_TESTResult.*"
 
