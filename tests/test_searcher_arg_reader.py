@@ -38,5 +38,6 @@ class TestSearcherArgReader(unittest.TestCase):
         self.assertEqual("app*", args.expression)
         self.assertEqual("./searcher_data/search_dir", args.root_dir)
 
+
 if __name__ == "__main__":
     unittest.main()

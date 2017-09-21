@@ -180,5 +180,6 @@ class TestFileHelper(unittest.TestCase):
 
         self.assertEqual(expected_from_reordered_list, set(actual))
 
+
 if __name__ == "__main__":
     unittest.main()

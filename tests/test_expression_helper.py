@@ -81,5 +81,6 @@ class TestExpressionHelper(unittest.TestCase):
         self.assertFalse(expression_helper.is_string_matched_in_regular_expression_objects("git", ignored_regex_objects))
         self.assertFalse(expression_helper.is_string_matched_in_regular_expression_objects("a/git/objects", ignored_regex_objects))
 
+
 if __name__ == "__main__":
     unittest.main()
