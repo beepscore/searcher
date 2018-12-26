@@ -5,7 +5,7 @@ import re
 
 """ methods for using regular expressions """
 
-ignored_filename_patterns = ['\A\.$', '\A\.\.$', '\A\.DS_Store$', '\.git', '\.svn', '\.exe$']
+ignored_filename_patterns = [r'\A\.$', r'\A\.\.$', r'\A\.DS_Store$', r'\.git', r'\.svn', r'\.exe$']
 
 
 def regex_objects_from_patterns(patterns):
