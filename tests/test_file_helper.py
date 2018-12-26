@@ -192,19 +192,19 @@ class TestFileHelper(unittest.TestCase):
 
         # Don't care about element order, so compare results using set instead of list
         expected = {
-                    './searcher_data/search_dir/httpwww.beepscore.comhubcape',
-                    './searcher_data/search_dir/level_1/level_2/level_3/level_4/test_result01.txt',
-                    './searcher_data/search_dir/level_1/.git_fake/objects_fake/object_fake',
-                    './searcher_data/search_dir/level_1/c.txt alias',
-                    './searcher_data/search_dir/httpswww.google.com#q=python',
-                    './searcher_data/search_dir/level_1/something.exe',
-                    './searcher_data/search_dir/level_1/a.txt',
-                    './searcher_data/search_dir/level_1/level_2/c.txt',
-                    './searcher_data/search_dir/httpsen.wikipedia.orgwikiPython_%28programming_language%29',
-                    './searcher_data/search_dir/httppython.org',
-                    './searcher_data/search_dir/level_1/level_2/b.txt',
-                    './searcher_data/search_dir/level_1/level_2/d.txt',
-                    './searcher_data/search_dir/level_1/level_2/level_3/d.txt alias'
+                    os.path.join('.', 'searcher_data', 'search_dir', 'httpwww.beepscore.comhubcape'),
+                    os.path.join('.', 'searcher_data', 'search_dir', 'level_1', 'level_2', 'level_3', 'level_4', 'test_result01.txt'),
+                    os.path.join('.', 'searcher_data', 'search_dir', 'level_1', '.git_fake', 'objects_fake', 'object_fake'),
+                    os.path.join('.', 'searcher_data', 'search_dir', 'level_1', 'c.txt alias'),
+                    os.path.join('.', 'searcher_data', 'search_dir', 'httpswww.google.com#q=python'),
+                    os.path.join('.', 'searcher_data', 'search_dir', 'level_1', 'something.exe'),
+                    os.path.join('.', 'searcher_data', 'search_dir', 'level_1', 'a.txt'),
+                    os.path.join('.', 'searcher_data', 'search_dir', 'level_1', 'level_2', 'c.txt'),
+                    os.path.join('.', 'searcher_data', 'search_dir', 'httpsen.wikipedia.orgwikiPython_%28programming_language%29'),
+                    os.path.join('.', 'searcher_data', 'search_dir', 'httppython.org'),
+                    os.path.join('.', 'searcher_data', 'search_dir', 'level_1', 'level_2', 'b.txt'),
+                    os.path.join('.', 'searcher_data', 'search_dir', 'level_1', 'level_2', 'd.txt'),
+                    os.path.join('.', 'searcher_data', 'search_dir', 'level_1', 'level_2', 'level_3', 'd.txt alias')
                     }
 
         self.assertEqual(expected, set(actual))
