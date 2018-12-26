@@ -78,11 +78,16 @@ def directories_number_of_files_containing_expression(root_dir, ignored_regex_ob
 
 def lines_in_file_containing_expression(expression, search_dir, file_name):
     """
-    In directory search file for expression
+    Search directory file for expression. Search is non recursive
 
-    return string with file name, line number, line for lines that contain expression
+    :param expression: regex string pattern to search for e.g. "^[a-zA-Z]+_TESTResult.*"
+    :param search_dir: directory to search
+    :param file_name:
+    :return: list of strings that match. Each string starts with line number and ends with line
+    e.g. ['line 1 a_TESTResult.txt']
     return None for files that don't contain expression
     """
+
     if file_name == ".DS_Store":
         # avoid read error
         return None
@@ -112,11 +117,13 @@ def lines_in_file_containing_expression(expression, search_dir, file_name):
 
 def lines_in_files_containing_expression(expression, root_dir, ignored_regex_objects):
     """
-    Searches root_dir and subdirectories for files containing expression
+    Searches root_dir and subdirectories for files containing expression. Search is recursive
 
-    param ignored_regex_objects contains regular expression objects compiled from patterns
-
-    return string with file name, line number, line for lines that contain expression
+    :param expression: regex string pattern to search for e.g. "^[a-zA-Z]+_TESTResult.*"
+    :param root_dir: directory to start search
+    :param ignored_regex_objects: regular expression objects compiled from patterns
+    :return: list of tuples. Each tuple contains file name and list of lines
+    e.g. ('test_result01.txt', ['line 1 a_TESTResult.txt'])
     """
 
     directories = file_helper.directories_in_dir_recursive(root_dir, ignored_regex_objects)
