@@ -30,9 +30,9 @@ def files_in_dir_recursive(search_dir, ignored_regex_objects):
     """
     Ignores symlinks. Doesn't ignore alias.
     http://apple.stackexchange.com/questions/2991/whats-the-difference-between-alias-and-link
-    :param search_dir:
+    :param search_dir: the directory to search
     :param ignored_regex_objects: contains regular expression objects compiled from patterns
-    :return: list of un-ignored files in search_dir and subdirectories, relative to search_dir
+    :return: list of un-ignored files in search_dir and subdirectories, each path starts with search_dir
     """
 
     directories = directories_in_dir_recursive(search_dir, ignored_regex_objects)
@@ -94,8 +94,9 @@ def files_in_dir(search_dir, ignored_regex_objects):
     Ignores symlinks. Doesn't ignore alias.
     http://apple.stackexchange.com/questions/2991/whats-the-difference-between-alias-and-link
 
-    param ignored_regex_objects contains regular expression objects compiled from patterns
-    return list of un-ignored files in search_dir, relative to search_dir
+    :param search_dir:
+    :param ignored_regex_objects: contains regular expression objects compiled from patterns
+    :return: list of un-ignored files in search_dir, each path relative to search_dir
     """
 
     file_paths = []
@@ -113,8 +114,7 @@ def files_in_dir(search_dir, ignored_regex_objects):
             # http://stackoverflow.com/questions/15718006/check-if-directory-is-symlink
             continue
 
-        if expression_helper.is_string_matched_in_regular_expression_objects(filename,
-                                                                                              ignored_regex_objects):
+        if expression_helper.is_string_matched_in_regular_expression_objects(filename, ignored_regex_objects):
             # ignore this file
             continue
 
