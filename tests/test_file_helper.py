@@ -185,12 +185,16 @@ class TestFileHelper(unittest.TestCase):
     # test files_in_dir_recursive
 
     def test_files_in_dir_recursive(self):
+        ignored_directory_patterns = [r'\A\.$', r'\A\.\.$']
+        ignored_directory_regex_objects = expression_helper.regex_objects_from_patterns(ignored_directory_patterns)
 
-        ignored_filename_patterns = [r'\A\.$', r'\A\.\.$', r'\A\.DS_Store$']
-        ignored_regex_objects = expression_helper.regex_objects_from_patterns(ignored_filename_patterns)
+        ignored_filename_patterns = [r'\A\.DS_Store$']
+        ignored_file_regex_objects = expression_helper.regex_objects_from_patterns(ignored_filename_patterns)
 
         search_dir_full_path = os.path.join('.', 'searcher_data', 'search_dir')
-        actual = file_helper.files_in_dir_recursive(search_dir_full_path, ignored_regex_objects)
+        actual = file_helper.files_in_dir_recursive(search_dir_full_path,
+                                                    ignored_directory_regex_objects,
+                                                    ignored_file_regex_objects)
 
         # Don't care about element order, so compare results using set instead of list
         expected = {
@@ -212,12 +216,16 @@ class TestFileHelper(unittest.TestCase):
         self.assertEqual(expected, set(actual))
 
     def test_files_in_dir_recursive_ignore_ython(self):
+        ignored_directory_patterns = [r'\A\.$', r'\A\.\.$']
+        ignored_directory_regex_objects = expression_helper.regex_objects_from_patterns(ignored_directory_patterns)
 
-        ignored_filename_patterns = [r'\A\.$', r'\A\.\.$', r'\A\.DS_Store$', r'ython']
-        ignored_regex_objects = expression_helper.regex_objects_from_patterns(ignored_filename_patterns)
+        ignored_filename_patterns = [r'\A\.DS_Store$', r'ython']
+        ignored_file_regex_objects = expression_helper.regex_objects_from_patterns(ignored_filename_patterns)
 
         search_dir_full_path = os.path.join('.', 'searcher_data', 'search_dir')
-        actual = file_helper.files_in_dir_recursive(search_dir_full_path, ignored_regex_objects)
+        actual = file_helper.files_in_dir_recursive(search_dir_full_path,
+                                                    ignored_directory_regex_objects,
+                                                    ignored_file_regex_objects)
 
         # Don't care about element order, so compare results using set instead of list
         expected = {
@@ -236,12 +244,16 @@ class TestFileHelper(unittest.TestCase):
         self.assertEqual(expected, set(actual))
 
     def test_files_in_dir_recursive_level_2(self):
+        ignored_directory_patterns = [r'\A\.$', r'\A\.\.$']
+        ignored_directory_regex_objects = expression_helper.regex_objects_from_patterns(ignored_directory_patterns)
 
-        ignored_filename_patterns = [r'\A\.$', r'\A\.\.$', r'\A\.DS_Store$']
-        ignored_regex_objects = expression_helper.regex_objects_from_patterns(ignored_filename_patterns)
+        ignored_filename_patterns = [r'\A\.DS_Store$']
+        ignored_file_regex_objects = expression_helper.regex_objects_from_patterns(ignored_filename_patterns)
 
         search_dir_full_path = os.path.join('.', 'searcher_data', 'search_dir', 'level_1', 'level_2')
-        actual = file_helper.files_in_dir_recursive(search_dir_full_path, ignored_regex_objects)
+        actual = file_helper.files_in_dir_recursive(search_dir_full_path,
+                                                    ignored_directory_regex_objects,
+                                                    ignored_file_regex_objects)
 
         # Don't care about element order, so compare results using set instead of list
         expected = {
@@ -255,12 +267,16 @@ class TestFileHelper(unittest.TestCase):
         self.assertEqual(expected, set(actual))
 
     def test_files_in_dir_recursive_level_3(self):
+        ignored_directory_patterns = [r'\A\.$', r'\A\.\.$']
+        ignored_directory_regex_objects = expression_helper.regex_objects_from_patterns(ignored_directory_patterns)
 
-        ignored_filename_patterns = [r'\A\.$', r'\A\.\.$', r'\A\.DS_Store$']
-        ignored_regex_objects = expression_helper.regex_objects_from_patterns(ignored_filename_patterns)
+        ignored_filename_patterns = [r'\A\.DS_Store$']
+        ignored_file_regex_objects = expression_helper.regex_objects_from_patterns(ignored_filename_patterns)
 
         search_dir_full_path = os.path.join('.', 'searcher_data', 'search_dir', 'level_1', 'level_2', 'level_3')
-        actual = file_helper.files_in_dir_recursive(search_dir_full_path, ignored_regex_objects)
+        actual = file_helper.files_in_dir_recursive(search_dir_full_path,
+                                                    ignored_directory_regex_objects,
+                                                    ignored_file_regex_objects)
 
         # Don't care about element order, so compare results using set instead of list
         expected = {
