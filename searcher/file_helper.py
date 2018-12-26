@@ -32,7 +32,9 @@ def files_in_dir_recursive(search_dir, ignored_regex_objects):
     http://apple.stackexchange.com/questions/2991/whats-the-difference-between-alias-and-link
     :param search_dir: the directory to search
     :param ignored_regex_objects: contains regular expression objects compiled from patterns
-    :return: list of un-ignored files in search_dir and subdirectories, each path starts with search_dir
+    :return: list of un-ignored files in search_dir and subdirectories
+    e.g. ['./searcher_data/search_dir/level_1/level_2/c.txt',
+          './searcher_data/search_dir/level_1/level_2/d.txt']
     """
 
     directories = directories_in_dir_recursive(search_dir, ignored_regex_objects)
