@@ -11,6 +11,7 @@ Reads input commands.
 Searches files for expression.
 """
 
+
 def search_file(expression, search_dir, file_name):
     """
     In directory search file for expression
@@ -98,22 +99,15 @@ def lines_in_file_containing_expression(expression, search_dir, file_name):
         textfile = open(file_path, 'r', encoding='ISO-8859-1')
 
         lines = []
-        num_matches = 0
         line_number = 1
         for line in textfile:
             matches = re.findall(expression, line)
             for match in matches:
-                lines.append(file_name + ' ' + str(line_number) + ' ' + line)
-                num_matches += 1
+                lines.append('line ' + str(line_number) + ' ' + line.rstrip())
             line_number += 1
         textfile.close()
 
-        matches_singular_or_plural = 'matches'
-        if num_matches == 1:
-            matches_singular_or_plural = 'match'
-
-        file_total = file_name + ' ' + str(num_matches) + ' ' + matches_singular_or_plural
-        return file_total + os.linesep + ''.join(lines)
+        return lines
 
 
 def lines_in_files_containing_expression(expression, root_dir, ignored_regex_objects):
@@ -126,7 +120,7 @@ def lines_in_files_containing_expression(expression, root_dir, ignored_regex_obj
     """
 
     directories = file_helper.directories_in_dir_recursive(root_dir, ignored_regex_objects)
-    lines = []
+    file_lines = []
 
     for directory in directories:
 
@@ -138,7 +132,7 @@ def lines_in_files_containing_expression(expression, root_dir, ignored_regex_obj
         for filename in filenames:
             lines_in_file = lines_in_file_containing_expression(expression, directory, filename)
             if lines_in_file is not None:
-                lines.append(lines_in_file)
+                file_lines.append((filename, lines_in_file))
 
-    return ''.join(lines)
+    return file_lines
 

@@ -111,7 +111,7 @@ class TestExpressionSearcher(unittest.TestCase):
         self.assertEqual(expected, actual)
 
     def test_lines_in_file_containing_expression(self):
-        expected = "httpwww.beepscore.comhubcape 1 match" + linesep + "httpwww.beepscore.comhubcape 34     <li><a href=\"#\">Apps</a>" + linesep
+        expected = ["line 34     <li><a href=\"#\">Apps</a>"]
         actual = expression_searcher.lines_in_file_containing_expression("Apps",
                                                                          "./searcher_data/search_dir", "httpwww.beepscore.comhubcape")
         self.assertEqual(expected, actual)
@@ -126,34 +126,18 @@ class TestExpressionSearcher(unittest.TestCase):
 
         actual = expression_searcher.lines_in_files_containing_expression(expression, root_dir, ignored_regex_objects)
 
-        expected = ('httppython.org 0 matches' + linesep
-                    + 'httpsen.wikipedia.orgwikiPython_%28programming_language%29 0 matches'
-                    + linesep
-                    + 'httpswww.google.com#q=python 0 matches'
-                    + linesep
-                    + 'httpwww.beepscore.comhubcape 0 matches'
-                    + linesep
-                    + 'a.txt 1 match'
-                    + linesep
-                    + 'a.txt 1 This file has at least one "a".'
-                    + linesep
-                    + 'c.txt alias 0 matches'
-                    + linesep
-                    + 'b.txt 1 match'
-                    + linesep
-                    + 'b.txt 1 This file has at least one big "b".'
-                    + linesep
-                    + 'c.txt 1 match'
-                    + linesep
-                    + 'c.txt 1 This file has Python Jython pythonic.'
-                    + linesep
-                    + 'd.txt 0 matches'
-                    + linesep
-                    + 'd.txt alias 0 matches'
-                    + linesep
-                    + 'test_result01.txt 0 matches'
-                    + linesep
-                    )
+        expected = [('httpwww.beepscore.comhubcape', []),
+                    ('httpsen.wikipedia.orgwikiPython_%28programming_language%29', []),
+                    ('httppython.org', []),
+                    ('httpswww.google.com#q=python', []),
+                    ('a.txt', ['line 1 This file has at least one "a".']),
+                    ('c.txt alias', []),
+                    ('c.txt', ['line 1 This file has Python Jython pythonic.']),
+                    ('b.txt', ['line 1 This file has at least one big "b".']),
+                    ('d.txt', []),
+                    ('d.txt alias', []),
+                    ('test_result01.txt', [])
+                    ]
 
         self.assertEqual(expected, actual)
 
@@ -166,30 +150,17 @@ class TestExpressionSearcher(unittest.TestCase):
 
         actual = expression_searcher.lines_in_files_containing_expression(expression, root_dir, ignored_regex_objects)
 
-        expected = ('httppython.org 0 matches' + linesep
-                    + 'httpsen.wikipedia.orgwikiPython_%28programming_language%29 0 matches'
-                    + linesep
-                    + 'httpswww.google.com#q=python 0 matches'
-                    + linesep
-                    + 'httpwww.beepscore.comhubcape 0 matches'
-                    + linesep
-                    + 'a.txt 0 matches'
-                    + linesep
-                    + 'c.txt alias 0 matches'
-                    + linesep
-                    + 'b.txt 0 matches'
-                    + linesep
-                    + 'c.txt 0 matches'
-                    + linesep
-                    + 'd.txt 0 matches'
-                    + linesep
-                    + 'd.txt alias 0 matches'
-                    + linesep
-                    + 'test_result01.txt 1 match'
-                    + linesep
-                    + 'test_result01.txt 1 a_TESTResult.txt'
-                    + linesep
-                    )
+        expected = [('httpwww.beepscore.comhubcape', []),
+                    ('httpsen.wikipedia.orgwikiPython_%28programming_language%29', []),
+                    ('httppython.org', []), ('httpswww.google.com#q=python', []),
+                    ('a.txt', []),
+                    ('c.txt alias', []),
+                    ('c.txt', []),
+                    ('b.txt', []),
+                    ('d.txt', []),
+                    ('d.txt alias', []),
+                    ('test_result01.txt', ['line 1 a_TESTResult.txt'])
+                    ]
 
         self.assertEqual(expected, actual)
 
