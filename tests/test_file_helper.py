@@ -3,6 +3,7 @@
 import unittest
 from searcher import file_helper
 from searcher import expression_helper
+import os
 
 
 class TestFileHelper(unittest.TestCase):
@@ -15,8 +16,8 @@ class TestFileHelper(unittest.TestCase):
         ignored_dirname_patterns = []
         ignored_regex_objects = expression_helper.regex_objects_from_patterns(ignored_dirname_patterns)
 
-        actual = file_helper.directories_in_dir_recursive("./searcher_data/search_dir",
-                                                          ignored_regex_objects)
+        search_dir_full_path = os.path.join('.', 'searcher_data', 'search_dir')
+        actual = file_helper.directories_in_dir_recursive(search_dir_full_path, ignored_regex_objects)
 
         # Don't care about element order, so compare results using set instead of list
         expected = {'./searcher_data/search_dir',
