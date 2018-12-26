@@ -26,16 +26,39 @@ def absolute_file_path(dirname, filename):
     return file_path
 
 
+def files_in_dir_recursive(search_dir, ignored_regex_objects):
+    """
+    Ignores symlinks. Doesn't ignore alias.
+    http://apple.stackexchange.com/questions/2991/whats-the-difference-between-alias-and-link
+    :param search_dir:
+    :param ignored_regex_objects: contains regular expression objects compiled from patterns
+    :return: list of un-ignored files in search_dir and subdirectories, relative to search_dir
+    """
+
+    directories = directories_in_dir_recursive(search_dir, ignored_regex_objects)
+
+    file_paths = []
+
+    for directory in directories:
+
+        files = files_in_dir(directory, ignored_regex_objects)
+        files_in_dir_relative = [os.path.join(directory, file) for file in files]
+
+        file_paths = file_paths + files_in_dir_relative
+
+    return file_paths
+
+
 def directories_in_dir_recursive(search_dir, ignored_regex_objects):
     """
-    Searches search_dir and subdirectories for directories
+    Searches search_dir recursively for subdirectories
 
     Ignores symlinks. Doesn't ignore alias.
     http://apple.stackexchange.com/questions/2991/whats-the-difference-between-alias-and-link
 
-    param search_dir is the directory to search
-    param ignored_regex_objects contains regular expression objects compiled from patterns
-    return list of un-ignored directories in search_dir and subdirectories
+    :param search_dir: the directory to search
+    :param ignored_regex_objects: contains regular expression objects compiled from patterns
+    :return: list of un-ignored directories in search_dir and subdirectories
     """
 
     dir_paths = [search_dir]
