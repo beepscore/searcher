@@ -101,8 +101,8 @@ class TestFileHelper(unittest.TestCase):
         ignored_filename_patterns = ['\A\.$', '\A\.\.$', '\A\.DS_Store$']
         ignored_regex_objects = expression_helper.regex_objects_from_patterns(ignored_filename_patterns)
 
-        actual = file_helper.files_in_dir("./searcher_data/search_dir",
-                                          ignored_regex_objects)
+        search_dir_full_path = os.path.join('.', 'searcher_data', 'search_dir')
+        actual = file_helper.files_in_dir(search_dir_full_path, ignored_regex_objects)
 
         # Don't care about element order, so compare results using set instead of list
         expected = {'httppython.org',
