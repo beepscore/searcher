@@ -48,7 +48,7 @@ class TestFileHelper(unittest.TestCase):
         # Note: git version control normally ignores its own database .git
         # So for testing, committed a file search_dir/level_1/.git_fake/objects_fake/object_fake
 
-        ignored_dirname_patterns = ['\.git']
+        ignored_dirname_patterns = [r'\.git']
         ignored_regex_objects = expression_helper.regex_objects_from_patterns(ignored_dirname_patterns)
 
         search_dir_full_path = os.path.join('.', 'searcher_data', 'search_dir')
@@ -98,7 +98,7 @@ class TestFileHelper(unittest.TestCase):
 
     def test_files_in_dir(self):
 
-        ignored_filename_patterns = ['\A\.$', '\A\.\.$', '\A\.DS_Store$']
+        ignored_filename_patterns = [r'\A\.$', r'\A\.\.$', r'\A\.DS_Store$']
         ignored_regex_objects = expression_helper.regex_objects_from_patterns(ignored_filename_patterns)
 
         search_dir_full_path = os.path.join('.', 'searcher_data', 'search_dir')
@@ -115,7 +115,7 @@ class TestFileHelper(unittest.TestCase):
 
     def test_files_in_dir_ignore_ython(self):
 
-        ignored_filename_patterns = ['\A\.$', '\A\.\.$', '\A\.DS_Store$', 'ython']
+        ignored_filename_patterns = [r'\A\.$', r'\A\.\.$', r'\A\.DS_Store$', r'ython']
         ignored_regex_objects = expression_helper.regex_objects_from_patterns(ignored_filename_patterns)
 
         search_dir_full_path = os.path.join('.', 'searcher_data', 'search_dir')
@@ -140,7 +140,7 @@ class TestFileHelper(unittest.TestCase):
 
     def test_files_in_dir_level_2(self):
 
-        ignored_filename_patterns = ['\A\.$', '\A\.\.$', '\A\.DS_Store$']
+        ignored_filename_patterns = [r'\A\.$', r'\A\.\.$', r'\A\.DS_Store$']
         ignored_regex_objects = expression_helper.regex_objects_from_patterns(ignored_filename_patterns)
 
         search_dir_full_path = os.path.join('.', 'searcher_data', 'search_dir', 'level_1', 'level_2')
@@ -153,7 +153,7 @@ class TestFileHelper(unittest.TestCase):
 
     def test_files_in_dir_level_3(self):
 
-        ignored_filename_patterns = ['\A\.$', '\A\.\.$', '\A\.DS_Store$']
+        ignored_filename_patterns = [r'\A\.$', r'\A\.\.$', r'\A\.DS_Store$']
         ignored_regex_objects = expression_helper.regex_objects_from_patterns(ignored_filename_patterns)
 
         search_dir_full_path = os.path.join('.', 'searcher_data', 'search_dir', 'level_1', 'level_2', 'level_3')
@@ -167,7 +167,7 @@ class TestFileHelper(unittest.TestCase):
     def test_files_in_dir_set_from_reordered_list(self):
         """ test we are using set correctly. """
 
-        ignored_filename_patterns = ['\A\.$', '\A\.\.$', '\A\.DS_Store$']
+        ignored_filename_patterns = [r'\A\.$', r'\A\.\.$', r'\A\.DS_Store$']
         ignored_regex_objects = expression_helper.regex_objects_from_patterns(ignored_filename_patterns)
 
         search_dir_full_path = os.path.join('.', 'searcher_data', 'search_dir')
