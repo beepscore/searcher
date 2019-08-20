@@ -33,7 +33,7 @@ class TestSearcherArgReader(unittest.TestCase):
     def test_args_from_argument_file(self):
         reader = searcher_arg_reader.SearcherArgReader()
         # use fromfile_prefix_chars @ to read args from file
-        args = reader.args(["@./searcher_data/inputs/searcher_args.txt"])
+        args = reader.args(["@../searcher_data/inputs/searcher_args.txt"])
 
         self.assertEqual("app*", args.expression)
         self.assertEqual("./searcher_data/search_dir", args.root_dir)

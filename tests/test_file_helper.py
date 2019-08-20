@@ -16,18 +16,18 @@ class TestFileHelper(unittest.TestCase):
         ignored_dirname_patterns = []
         ignored_regex_objects = expression_helper.regex_objects_from_patterns(ignored_dirname_patterns)
 
-        # use os.path.join so macos and linux will use separator '/' and Windows will use separator '\'
-        search_dir_full_path = os.path.join('.', 'searcher_data', 'search_dir')
+        # use os.path.join so macos and linux will use separator '..' and Windows will use separator '\'
+        search_dir_full_path = os.path.join('..', 'searcher_data', 'search_dir')
         actual = file_helper.directories_in_dir_recursive(search_dir_full_path, ignored_regex_objects)
 
         # Don't care about element order, so compare results using set instead of list
-        expected = {os.path.join('.', 'searcher_data', 'search_dir'),
-                    os.path.join('.', 'searcher_data', 'search_dir', 'level_1'),
-                    os.path.join('.', 'searcher_data', 'search_dir', 'level_1', '.git_fake'),
-                    os.path.join('.', 'searcher_data', 'search_dir', 'level_1', '.git_fake', 'objects_fake'),
-                    os.path.join('.', 'searcher_data', 'search_dir', 'level_1', 'level_2'),
-                    os.path.join('.', 'searcher_data', 'search_dir', 'level_1', 'level_2', 'level_3'),
-                    os.path.join('.', 'searcher_data', 'search_dir', 'level_1', 'level_2', 'level_3', 'level_4')
+        expected = {os.path.join('..', 'searcher_data', 'search_dir'),
+                    os.path.join('..', 'searcher_data', 'search_dir', 'level_1'),
+                    os.path.join('..', 'searcher_data', 'search_dir', 'level_1', '.git_fake'),
+                    os.path.join('..', 'searcher_data', 'search_dir', 'level_1', '.git_fake', 'objects_fake'),
+                    os.path.join('..', 'searcher_data', 'search_dir', 'level_1', 'level_2'),
+                    os.path.join('..', 'searcher_data', 'search_dir', 'level_1', 'level_2', 'level_3'),
+                    os.path.join('..', 'searcher_data', 'search_dir', 'level_1', 'level_2', 'level_3', 'level_4')
                     }
         self.assertEqual(expected, set(actual))
 
@@ -36,11 +36,11 @@ class TestFileHelper(unittest.TestCase):
         ignored_dirname_patterns = ['level_1']
         ignored_regex_objects = expression_helper.regex_objects_from_patterns(ignored_dirname_patterns)
 
-        search_dir_full_path = os.path.join('.', 'searcher_data', 'search_dir')
+        search_dir_full_path = os.path.join('..', 'searcher_data', 'search_dir')
         actual = file_helper.directories_in_dir_recursive(search_dir_full_path, ignored_regex_objects)
 
         # Don't care about element order, so compare results using set instead of list
-        expected = {os.path.join('.', 'searcher_data', 'search_dir')}
+        expected = {os.path.join('..', 'searcher_data', 'search_dir')}
         self.assertEqual(expected, set(actual))
 
     def test_directories_in_dir_recursive_ignore_git(self):
@@ -51,15 +51,15 @@ class TestFileHelper(unittest.TestCase):
         ignored_dirname_patterns = [r'\.git']
         ignored_regex_objects = expression_helper.regex_objects_from_patterns(ignored_dirname_patterns)
 
-        search_dir_full_path = os.path.join('.', 'searcher_data', 'search_dir')
+        search_dir_full_path = os.path.join('..', 'searcher_data', 'search_dir')
         actual = file_helper.directories_in_dir_recursive(search_dir_full_path, ignored_regex_objects)
 
         # Don't care about element order, so compare results using set instead of list
-        expected = {os.path.join('.', 'searcher_data', 'search_dir'),
-                    os.path.join('.', 'searcher_data', 'search_dir', 'level_1'),
-                    os.path.join('.', 'searcher_data', 'search_dir', 'level_1', 'level_2'),
-                    os.path.join('.', 'searcher_data', 'search_dir', 'level_1', 'level_2', 'level_3'),
-                    os.path.join('.', 'searcher_data', 'search_dir', 'level_1', 'level_2', 'level_3', 'level_4')
+        expected = {os.path.join('..', 'searcher_data', 'search_dir'),
+                    os.path.join('..', 'searcher_data', 'search_dir', 'level_1'),
+                    os.path.join('..', 'searcher_data', 'search_dir', 'level_1', 'level_2'),
+                    os.path.join('..', 'searcher_data', 'search_dir', 'level_1', 'level_2', 'level_3'),
+                    os.path.join('..', 'searcher_data', 'search_dir', 'level_1', 'level_2', 'level_3', 'level_4')
                     }
         self.assertEqual(expected, set(actual))
 
@@ -68,14 +68,14 @@ class TestFileHelper(unittest.TestCase):
         ignored_dirname_patterns = ['level_2']
         ignored_regex_objects = expression_helper.regex_objects_from_patterns(ignored_dirname_patterns)
 
-        search_dir_full_path = os.path.join('.', 'searcher_data', 'search_dir')
+        search_dir_full_path = os.path.join('..', 'searcher_data', 'search_dir')
         actual = file_helper.directories_in_dir_recursive(search_dir_full_path, ignored_regex_objects)
 
         # Don't care about element order, so compare results using set instead of list
-        expected = {os.path.join('.', 'searcher_data', 'search_dir'),
-                    os.path.join('.', 'searcher_data', 'search_dir', 'level_1'),
-                    os.path.join('.', 'searcher_data', 'search_dir', 'level_1', '.git_fake'),
-                    os.path.join('.', 'searcher_data', 'search_dir', 'level_1', '.git_fake', 'objects_fake')
+        expected = {os.path.join('..', 'searcher_data', 'search_dir'),
+                    os.path.join('..', 'searcher_data', 'search_dir', 'level_1'),
+                    os.path.join('..', 'searcher_data', 'search_dir', 'level_1', '.git_fake'),
+                    os.path.join('..', 'searcher_data', 'search_dir', 'level_1', '.git_fake', 'objects_fake')
                     }
         self.assertEqual(expected, set(actual))
 
@@ -84,15 +84,15 @@ class TestFileHelper(unittest.TestCase):
         ignored_dirname_patterns = ['level_3']
         ignored_regex_objects = expression_helper.regex_objects_from_patterns(ignored_dirname_patterns)
 
-        search_dir_full_path = os.path.join('.', 'searcher_data', 'search_dir')
+        search_dir_full_path = os.path.join('..', 'searcher_data', 'search_dir')
         actual = file_helper.directories_in_dir_recursive(search_dir_full_path, ignored_regex_objects)
 
         # Don't care about element order, so compare results using set instead of list
-        expected = {os.path.join('.', 'searcher_data', 'search_dir'),
-                    os.path.join('.', 'searcher_data', 'search_dir', 'level_1'),
-                    os.path.join('.', 'searcher_data', 'search_dir', 'level_1', '.git_fake'),
-                    os.path.join('.', 'searcher_data', 'search_dir', 'level_1', '.git_fake', 'objects_fake'),
-                    os.path.join('.', 'searcher_data', 'search_dir', 'level_1', 'level_2')
+        expected = {os.path.join('..', 'searcher_data', 'search_dir'),
+                    os.path.join('..', 'searcher_data', 'search_dir', 'level_1'),
+                    os.path.join('..', 'searcher_data', 'search_dir', 'level_1', '.git_fake'),
+                    os.path.join('..', 'searcher_data', 'search_dir', 'level_1', '.git_fake', 'objects_fake'),
+                    os.path.join('..', 'searcher_data', 'search_dir', 'level_1', 'level_2')
                     }
         self.assertEqual(expected, set(actual))
 
@@ -101,7 +101,7 @@ class TestFileHelper(unittest.TestCase):
         ignored_filename_patterns = [r'\A\.$', r'\A\.\.$', r'\A\.DS_Store$']
         ignored_regex_objects = expression_helper.regex_objects_from_patterns(ignored_filename_patterns)
 
-        search_dir_full_path = os.path.join('.', 'searcher_data', 'search_dir')
+        search_dir_full_path = os.path.join('..', 'searcher_data', 'search_dir')
         actual = file_helper.files_in_dir(search_dir_full_path, ignored_regex_objects)
 
         # Don't care about element order, so compare results using set instead of list
@@ -118,7 +118,7 @@ class TestFileHelper(unittest.TestCase):
         ignored_filename_patterns = [r'\A\.$', r'\A\.\.$', r'\A\.DS_Store$', r'ython']
         ignored_regex_objects = expression_helper.regex_objects_from_patterns(ignored_filename_patterns)
 
-        search_dir_full_path = os.path.join('.', 'searcher_data', 'search_dir')
+        search_dir_full_path = os.path.join('..', 'searcher_data', 'search_dir')
         actual = file_helper.files_in_dir(search_dir_full_path, ignored_regex_objects)
 
         # Don't care about element order, so compare results using set instead of list
@@ -130,7 +130,7 @@ class TestFileHelper(unittest.TestCase):
 
         ignored_regex_objects = expression_helper.regex_objects_from_patterns(expression_helper.ignored_filename_patterns)
 
-        search_dir_full_path = os.path.join('.', 'searcher_data', 'search_dir', 'level_1')
+        search_dir_full_path = os.path.join('..', 'searcher_data', 'search_dir', 'level_1')
         actual = file_helper.files_in_dir(search_dir_full_path, ignored_regex_objects)
 
         # Don't care about element order, so compare results using set instead of list
@@ -143,7 +143,7 @@ class TestFileHelper(unittest.TestCase):
         ignored_filename_patterns = [r'\A\.$', r'\A\.\.$', r'\A\.DS_Store$']
         ignored_regex_objects = expression_helper.regex_objects_from_patterns(ignored_filename_patterns)
 
-        search_dir_full_path = os.path.join('.', 'searcher_data', 'search_dir', 'level_1', 'level_2')
+        search_dir_full_path = os.path.join('..', 'searcher_data', 'search_dir', 'level_1', 'level_2')
         actual = file_helper.files_in_dir(search_dir_full_path, ignored_regex_objects)
 
         # Don't care about element order, so compare results using set instead of list
@@ -156,7 +156,7 @@ class TestFileHelper(unittest.TestCase):
         ignored_filename_patterns = [r'\A\.$', r'\A\.\.$', r'\A\.DS_Store$']
         ignored_regex_objects = expression_helper.regex_objects_from_patterns(ignored_filename_patterns)
 
-        search_dir_full_path = os.path.join('.', 'searcher_data', 'search_dir', 'level_1', 'level_2', 'level_3')
+        search_dir_full_path = os.path.join('..', 'searcher_data', 'search_dir', 'level_1', 'level_2', 'level_3')
         actual = file_helper.files_in_dir(search_dir_full_path, ignored_regex_objects)
 
         # Don't care about element order, so compare results using set instead of list
@@ -170,7 +170,7 @@ class TestFileHelper(unittest.TestCase):
         ignored_filename_patterns = [r'\A\.$', r'\A\.\.$', r'\A\.DS_Store$']
         ignored_regex_objects = expression_helper.regex_objects_from_patterns(ignored_filename_patterns)
 
-        search_dir_full_path = os.path.join('.', 'searcher_data', 'search_dir')
+        search_dir_full_path = os.path.join('..', 'searcher_data', 'search_dir')
         actual = file_helper.files_in_dir(search_dir_full_path, ignored_regex_objects)
 
         # Don't care about element order, so compare results using set instead of list
@@ -191,26 +191,26 @@ class TestFileHelper(unittest.TestCase):
         ignored_filename_patterns = [r'\A\.DS_Store$']
         ignored_file_regex_objects = expression_helper.regex_objects_from_patterns(ignored_filename_patterns)
 
-        search_dir_full_path = os.path.join('.', 'searcher_data', 'search_dir')
+        search_dir_full_path = os.path.join('..', 'searcher_data', 'search_dir')
         actual = file_helper.files_in_dir_recursive(search_dir_full_path,
                                                     ignored_directory_regex_objects,
                                                     ignored_file_regex_objects)
 
         # Don't care about element order, so compare results using set instead of list
         expected = {
-                    os.path.join('.', 'searcher_data', 'search_dir', 'httpwww.beepscore.comhubcape'),
-                    os.path.join('.', 'searcher_data', 'search_dir', 'level_1', 'level_2', 'level_3', 'level_4', 'test_result01.txt'),
-                    os.path.join('.', 'searcher_data', 'search_dir', 'level_1', '.git_fake', 'objects_fake', 'object_fake'),
-                    os.path.join('.', 'searcher_data', 'search_dir', 'level_1', 'c.txt alias'),
-                    os.path.join('.', 'searcher_data', 'search_dir', 'httpswww.google.com#q=python'),
-                    os.path.join('.', 'searcher_data', 'search_dir', 'level_1', 'something.exe'),
-                    os.path.join('.', 'searcher_data', 'search_dir', 'level_1', 'a.txt'),
-                    os.path.join('.', 'searcher_data', 'search_dir', 'level_1', 'level_2', 'c.txt'),
-                    os.path.join('.', 'searcher_data', 'search_dir', 'httpsen.wikipedia.orgwikiPython_%28programming_language%29'),
-                    os.path.join('.', 'searcher_data', 'search_dir', 'httppython.org'),
-                    os.path.join('.', 'searcher_data', 'search_dir', 'level_1', 'level_2', 'b.txt'),
-                    os.path.join('.', 'searcher_data', 'search_dir', 'level_1', 'level_2', 'd.txt'),
-                    os.path.join('.', 'searcher_data', 'search_dir', 'level_1', 'level_2', 'level_3', 'd.txt alias')
+                    os.path.join('..', 'searcher_data', 'search_dir', 'httpwww.beepscore.comhubcape'),
+                    os.path.join('..', 'searcher_data', 'search_dir', 'level_1', 'level_2', 'level_3', 'level_4', 'test_result01.txt'),
+                    os.path.join('..', 'searcher_data', 'search_dir', 'level_1', '.git_fake', 'objects_fake', 'object_fake'),
+                    os.path.join('..', 'searcher_data', 'search_dir', 'level_1', 'c.txt alias'),
+                    os.path.join('..', 'searcher_data', 'search_dir', 'httpswww.google.com#q=python'),
+                    os.path.join('..', 'searcher_data', 'search_dir', 'level_1', 'something.exe'),
+                    os.path.join('..', 'searcher_data', 'search_dir', 'level_1', 'a.txt'),
+                    os.path.join('..', 'searcher_data', 'search_dir', 'level_1', 'level_2', 'c.txt'),
+                    os.path.join('..', 'searcher_data', 'search_dir', 'httpsen.wikipedia.orgwikiPython_%28programming_language%29'),
+                    os.path.join('..', 'searcher_data', 'search_dir', 'httppython.org'),
+                    os.path.join('..', 'searcher_data', 'search_dir', 'level_1', 'level_2', 'b.txt'),
+                    os.path.join('..', 'searcher_data', 'search_dir', 'level_1', 'level_2', 'd.txt'),
+                    os.path.join('..', 'searcher_data', 'search_dir', 'level_1', 'level_2', 'level_3', 'd.txt alias')
                     }
 
         self.assertEqual(expected, set(actual))
@@ -222,23 +222,23 @@ class TestFileHelper(unittest.TestCase):
         ignored_filename_patterns = [r'\A\.DS_Store$', r'ython']
         ignored_file_regex_objects = expression_helper.regex_objects_from_patterns(ignored_filename_patterns)
 
-        search_dir_full_path = os.path.join('.', 'searcher_data', 'search_dir')
+        search_dir_full_path = os.path.join('..', 'searcher_data', 'search_dir')
         actual = file_helper.files_in_dir_recursive(search_dir_full_path,
                                                     ignored_directory_regex_objects,
                                                     ignored_file_regex_objects)
 
         # Don't care about element order, so compare results using set instead of list
         expected = {
-            os.path.join('.', 'searcher_data', 'search_dir', 'httpwww.beepscore.comhubcape'),
-            os.path.join('.', 'searcher_data', 'search_dir', 'level_1', 'level_2', 'level_3', 'level_4', 'test_result01.txt'),
-            os.path.join('.', 'searcher_data', 'search_dir', 'level_1', '.git_fake', 'objects_fake', 'object_fake'),
-            os.path.join('.', 'searcher_data', 'search_dir', 'level_1', 'c.txt alias'),
-            os.path.join('.', 'searcher_data', 'search_dir', 'level_1', 'something.exe'),
-            os.path.join('.', 'searcher_data', 'search_dir', 'level_1', 'a.txt'),
-            os.path.join('.', 'searcher_data', 'search_dir', 'level_1', 'level_2', 'c.txt'),
-            os.path.join('.', 'searcher_data', 'search_dir', 'level_1', 'level_2', 'b.txt'),
-            os.path.join('.', 'searcher_data', 'search_dir', 'level_1', 'level_2', 'd.txt'),
-            os.path.join('.', 'searcher_data', 'search_dir', 'level_1', 'level_2', 'level_3', 'd.txt alias')
+            os.path.join('..', 'searcher_data', 'search_dir', 'httpwww.beepscore.comhubcape'),
+            os.path.join('..', 'searcher_data', 'search_dir', 'level_1', 'level_2', 'level_3', 'level_4', 'test_result01.txt'),
+            os.path.join('..', 'searcher_data', 'search_dir', 'level_1', '.git_fake', 'objects_fake', 'object_fake'),
+            os.path.join('..', 'searcher_data', 'search_dir', 'level_1', 'c.txt alias'),
+            os.path.join('..', 'searcher_data', 'search_dir', 'level_1', 'something.exe'),
+            os.path.join('..', 'searcher_data', 'search_dir', 'level_1', 'a.txt'),
+            os.path.join('..', 'searcher_data', 'search_dir', 'level_1', 'level_2', 'c.txt'),
+            os.path.join('..', 'searcher_data', 'search_dir', 'level_1', 'level_2', 'b.txt'),
+            os.path.join('..', 'searcher_data', 'search_dir', 'level_1', 'level_2', 'd.txt'),
+            os.path.join('..', 'searcher_data', 'search_dir', 'level_1', 'level_2', 'level_3', 'd.txt alias')
         }
 
         self.assertEqual(expected, set(actual))
@@ -250,18 +250,18 @@ class TestFileHelper(unittest.TestCase):
         ignored_filename_patterns = [r'\A\.DS_Store$']
         ignored_file_regex_objects = expression_helper.regex_objects_from_patterns(ignored_filename_patterns)
 
-        search_dir_full_path = os.path.join('.', 'searcher_data', 'search_dir', 'level_1', 'level_2')
+        search_dir_full_path = os.path.join('..', 'searcher_data', 'search_dir', 'level_1', 'level_2')
         actual = file_helper.files_in_dir_recursive(search_dir_full_path,
                                                     ignored_directory_regex_objects,
                                                     ignored_file_regex_objects)
 
         # Don't care about element order, so compare results using set instead of list
         expected = {
-            os.path.join('.', 'searcher_data', 'search_dir', 'level_1', 'level_2', 'level_3', 'level_4', 'test_result01.txt'),
-            os.path.join('.', 'searcher_data', 'search_dir', 'level_1', 'level_2', 'c.txt'),
-            os.path.join('.', 'searcher_data', 'search_dir', 'level_1', 'level_2', 'b.txt'),
-            os.path.join('.', 'searcher_data', 'search_dir', 'level_1', 'level_2', 'd.txt'),
-            os.path.join('.', 'searcher_data', 'search_dir', 'level_1', 'level_2', 'level_3', 'd.txt alias')
+            os.path.join('..', 'searcher_data', 'search_dir', 'level_1', 'level_2', 'level_3', 'level_4', 'test_result01.txt'),
+            os.path.join('..', 'searcher_data', 'search_dir', 'level_1', 'level_2', 'c.txt'),
+            os.path.join('..', 'searcher_data', 'search_dir', 'level_1', 'level_2', 'b.txt'),
+            os.path.join('..', 'searcher_data', 'search_dir', 'level_1', 'level_2', 'd.txt'),
+            os.path.join('..', 'searcher_data', 'search_dir', 'level_1', 'level_2', 'level_3', 'd.txt alias')
         }
 
         self.assertEqual(expected, set(actual))
@@ -273,15 +273,15 @@ class TestFileHelper(unittest.TestCase):
         ignored_filename_patterns = [r'\A\.DS_Store$']
         ignored_file_regex_objects = expression_helper.regex_objects_from_patterns(ignored_filename_patterns)
 
-        search_dir_full_path = os.path.join('.', 'searcher_data', 'search_dir', 'level_1', 'level_2', 'level_3')
+        search_dir_full_path = os.path.join('..', 'searcher_data', 'search_dir', 'level_1', 'level_2', 'level_3')
         actual = file_helper.files_in_dir_recursive(search_dir_full_path,
                                                     ignored_directory_regex_objects,
                                                     ignored_file_regex_objects)
 
         # Don't care about element order, so compare results using set instead of list
         expected = {
-            os.path.join('.', 'searcher_data', 'search_dir', 'level_1', 'level_2', 'level_3', 'level_4', 'test_result01.txt'),
-            os.path.join('.', 'searcher_data', 'search_dir', 'level_1', 'level_2', 'level_3', 'd.txt alias')
+            os.path.join('..', 'searcher_data', 'search_dir', 'level_1', 'level_2', 'level_3', 'level_4', 'test_result01.txt'),
+            os.path.join('..', 'searcher_data', 'search_dir', 'level_1', 'level_2', 'level_3', 'd.txt alias')
         }
 
         self.assertEqual(expected, set(actual))
