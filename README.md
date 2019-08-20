@@ -60,10 +60,16 @@ On command line specify one argument @ prefix + args file name
         './searcher_data/search_dir/level_1/level_2/level_3/level_4': 0}
 
 ## Unit tests
-To run tests, open terminal shell.  
-cd to project directory. Run tests via python command or bash script.
 
-### python command
+### from pycharm
+run configuration Unittests in searcher
+
+### from command line
+Open terminal shell.  
+cd to project directory.
+Run tests via python command or bash script.
+
+#### python command
 This command lists and tests all modules except searcher_arg_reader.
 
     python -m unittest tests.test_expression_searcher tests.test_expression_helper tests.test_file_helper
