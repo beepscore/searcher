@@ -61,7 +61,7 @@
       <option name="USE_PATTERN" value="false" />
       <method />
     </configuration>
-    <configuration name="expression_searcher" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="expression_searcher" type="PythonConfigurationType" factoryName="Python">
       <module name="searcher" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -121,7 +121,6 @@
       <list>
         <item itemvalue="Python tests.Unittests for test_file_helper.TestFileHelper.test_directories_in_dir_recursive_dont_ignore" />
         <item itemvalue="Python tests.Unittests for test_file_helper.TestFileHelper.test_files_in_dir_recursive_level_3" />
-        <item itemvalue="Python.expression_searcher" />
       </list>
     </recent_temporary>
   </component>
