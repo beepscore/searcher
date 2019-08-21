@@ -1,11 +1,3 @@
-# Reference
-# https://github.com/github/gitignore
-# http://help.github.com/ignore-files/
-
-.ropeproject
-
-#######################################
-# Python
 # https://github.com/github/gitignore/blob/master/Python.gitignore
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -17,11 +9,10 @@ __pycache__/
 
 # Distribution / packaging
 .Python
-env/
 build/
 develop-eggs/
 dist/
-#downloads/
+downloads/
 eggs/
 .eggs/
 lib/
@@ -29,9 +20,13 @@ lib64/
 parts/
 sdist/
 var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
 *.egg-info/
 .installed.cfg
 *.egg
+MANIFEST
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
@@ -46,12 +41,15 @@ pip-delete-this-directory.txt
 # Unit test / coverage reports
 htmlcov/
 .tox/
+.nox/
 .coverage
 .coverage.*
 .cache
 nosetests.xml
 coverage.xml
-*,cover
+*.cover
+.hypothesis/
+.pytest_cache/
 
 # Translations
 *.mo
@@ -59,6 +57,16 @@ coverage.xml
 
 # Django stuff:
 *.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+
+# Flask stuff:
+instance/
+.webassets-cache
+
+# Scrapy stuff:
+.scrapy
 
 # Sphinx documentation
 docs/_build/
@@ -66,73 +74,52 @@ docs/_build/
 # PyBuilder
 target/
 
-#######################################
-# JetBrains
-# https://github.com/github/gitignore/blob/master/Global/JetBrains.gitignore
-# Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion
+# Jupyter Notebook
+.ipynb_checkpoints
 
-# User-specific stuff
-.idea/**/workspace.xml
-.idea/**/tasks.xml
-.idea/**/usage.statistics.xml
-.idea/**/dictionaries
-.idea/**/shelf
+# IPython
+profile_default/
+ipython_config.py
 
-# Generated files
-.idea/**/contentModel.xml
+# pyenv
+.python-version
 
-# Sensitive or high-churn files
-.idea/**/dataSources/
-.idea/**/dataSources.ids
-.idea/**/dataSources.local.xml
-.idea/**/sqlDataSources.xml
-.idea/**/dynamic.xml
-.idea/**/uiDesigner.xml
-.idea/**/dbnavigator.xml
+# pipenv
+#   According to pypa/pipenv#598, it is recommended to include Pipfile.lock in version control.
+#   However, in case of collaboration, if having platform-specific dependencies or dependencies
+#   having no cross-platform support, pipenv may install dependencies that don't work, or not
+#   install all needed dependencies.
+#Pipfile.lock
 
-# Gradle
-.idea/**/gradle.xml
-.idea/**/libraries
+# celery beat schedule file
+celerybeat-schedule
 
-# Gradle and Maven with auto-import
-# When using Gradle or Maven with auto-import, you should exclude module files,
-# since they will be recreated, and may cause churn.  Uncomment if using
-# auto-import.
-# .idea/modules.xml
-# .idea/*.iml
-# .idea/modules
-# *.iml
-# *.ipr
+# SageMath parsed files
+*.sage.py
 
-# CMake
-cmake-build-*/
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
 
-# Mongo Explorer plugin
-.idea/**/mongoSettings.xml
+# Spyder project settings
+.spyderproject
+.spyproject
 
-# File-based project format
-*.iws
+# Rope project settings
+.ropeproject
 
-# IntelliJ
-out/
+# mkdocs documentation
+/site
 
-# mpeltonen/sbt-idea plugin
-.idea_modules/
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
 
-# JIRA plugin
-atlassian-ide-plugin.xml
-
-# Cursive Clojure plugin
-.idea/replstate.xml
-
-# Crashlytics plugin (for Android Studio and IntelliJ)
-com_crashlytics_export_strings.xml
-crashlytics.properties
-crashlytics-build.properties
-fabric.properties
-
-# Editor-based Rest Client
-.idea/httpRequests
-
-# Android studio 3.1+ serialized cache file
-.idea/caches/build_file_checksums.ser
+# Pyre type checker
+.pyre/
