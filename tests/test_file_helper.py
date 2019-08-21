@@ -104,7 +104,6 @@ class TestFileHelper(unittest.TestCase):
         ignored_filename_patterns = [r'\A\.$', r'\A\.\.$', r'\A\.DS_Store$']
         ignored_regex_objects = expression_helper.regex_objects_from_patterns(ignored_filename_patterns)
 
-        # search_dir_full_path = os.path.join('.', 'searcher_data', 'search_dir')
         search_dir_full_path = Path('.').joinpath('searcher_data', 'search_dir')
 
         actual = file_helper.files_in_dir(search_dir_full_path, ignored_regex_objects)
@@ -123,7 +122,6 @@ class TestFileHelper(unittest.TestCase):
         ignored_filename_patterns = [r'\A\.$', r'\A\.\.$', r'\A\.DS_Store$', r'ython']
         ignored_regex_objects = expression_helper.regex_objects_from_patterns(ignored_filename_patterns)
 
-        # search_dir_full_path = os.path.join('.', 'searcher_data', 'search_dir')
         search_dir_full_path = Path('.').joinpath('searcher_data', 'search_dir')
 
         actual = file_helper.files_in_dir(search_dir_full_path, ignored_regex_objects)
@@ -137,7 +135,6 @@ class TestFileHelper(unittest.TestCase):
 
         ignored_regex_objects = expression_helper.regex_objects_from_patterns(expression_helper.ignored_filename_patterns)
 
-        # search_dir_full_path = os.path.join('.', 'searcher_data', 'search_dir', 'level_1')
         search_dir_full_path = Path('.').joinpath('searcher_data', 'search_dir', 'level_1')
 
         actual = file_helper.files_in_dir(search_dir_full_path, ignored_regex_objects)
@@ -152,7 +149,6 @@ class TestFileHelper(unittest.TestCase):
         ignored_filename_patterns = [r'\A\.$', r'\A\.\.$', r'\A\.DS_Store$']
         ignored_regex_objects = expression_helper.regex_objects_from_patterns(ignored_filename_patterns)
 
-        # search_dir_full_path = os.path.join('.', 'searcher_data', 'search_dir', 'level_1', 'level_2')
         search_dir_full_path = Path('.').joinpath('searcher_data', 'search_dir', 'level_1', 'level_2')
 
         actual = file_helper.files_in_dir(search_dir_full_path, ignored_regex_objects)
@@ -167,7 +163,8 @@ class TestFileHelper(unittest.TestCase):
         ignored_filename_patterns = [r'\A\.$', r'\A\.\.$', r'\A\.DS_Store$']
         ignored_regex_objects = expression_helper.regex_objects_from_patterns(ignored_filename_patterns)
 
-        search_dir_full_path = os.path.join('.', 'searcher_data', 'search_dir', 'level_1', 'level_2', 'level_3')
+        search_dir_full_path = Path('.').joinpath('searcher_data', 'search_dir', 'level_1', 'level_2', 'level_3')
+
         actual = file_helper.files_in_dir(search_dir_full_path, ignored_regex_objects)
 
         # Don't care about element order, so compare results using set instead of list
@@ -181,7 +178,8 @@ class TestFileHelper(unittest.TestCase):
         ignored_filename_patterns = [r'\A\.$', r'\A\.\.$', r'\A\.DS_Store$']
         ignored_regex_objects = expression_helper.regex_objects_from_patterns(ignored_filename_patterns)
 
-        search_dir_full_path = os.path.join('.', 'searcher_data', 'search_dir')
+        search_dir_full_path = Path('.').joinpath('searcher_data', 'search_dir')
+
         actual = file_helper.files_in_dir(search_dir_full_path, ignored_regex_objects)
 
         # Don't care about element order, so compare results using set instead of list
@@ -203,6 +201,9 @@ class TestFileHelper(unittest.TestCase):
         ignored_file_regex_objects = expression_helper.regex_objects_from_patterns(ignored_filename_patterns)
 
         search_dir_full_path = os.path.join('.', 'searcher_data', 'search_dir')
+        # TODO: fix recursive to work with Path
+        # search_dir_full_path = Path('.').joinpath('searcher_data', 'search_dir')
+
         actual = file_helper.files_in_dir_recursive(search_dir_full_path,
                                                     ignored_directory_regex_objects,
                                                     ignored_file_regex_objects)
