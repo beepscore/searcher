@@ -134,7 +134,42 @@ def files_in_dir(search_dir, ignored_regex_objects):
 # pathlib functions
 
 
-def paths_in_dir(search_path, ignored_regex_objects):
+def directory_paths_in_dir_recursive(search_dir_path, ignored_regex_objects):
+    """
+    Walks search_dir recursively for subdirectories
+
+    Ignores symlinks. Doesn't ignore alias.
+    http://apple.stackexchange.com/questions/2991/whats-the-difference-between-alias-and-link
+
+    :param search_dir_path: the directory path to search
+    :param ignored_regex_objects: contains regular expression objects compiled from patterns
+    :return: list of un-ignored directory paths in search_dir and subdirectories
+    """
+
+    dir_paths = [search_dir_path]
+
+    # https://stackoverflow.com/questions/50714469/recursively-iterate-through-all-subdirectories-using-pathlib
+    for file_path in search_dir_path.rglob("*"):
+
+        if not file_path.is_dir():
+            # ignore non-directory
+            continue
+
+        if file_path.is_symlink():
+            # ignore symlink
+            # http://stackoverflow.com/questions/15718006/check-if-directory-is-symlink
+            continue
+
+        if expression_helper.is_string_matched_in_regular_expression_objects(file_path.name, ignored_regex_objects):
+            # ignore this file_path
+            continue
+
+        dir_paths.append(file_path)
+
+    return dir_paths
+
+
+def paths_in_dir(search_dir_path, ignored_regex_objects):
     """
     returns file paths in search_dir using pathlib
 
@@ -143,19 +178,19 @@ def paths_in_dir(search_path, ignored_regex_objects):
     Ignores symlinks. Doesn't ignore alias.
     http://apple.stackexchange.com/questions/2991/whats-the-difference-between-alias-and-link
 
-    :param search_path: path to search, generally a directory
+    :param search_dir_path: path to search, generally a directory
     :param ignored_regex_objects: contains regular expression objects compiled from patterns
     :return: list of un-ignored file paths in search_dir, each path relative to search_dir
     e.g. [Path('./c.txt'), Path('./d.txt')]
     """
 
-    if not search_path.is_dir():
+    if not search_dir_path.is_dir():
         return []
 
     # glob("*") matches all paths
     # glob results may include broken symlinks
     # https://docs.python.org/3.7/library/glob.html
-    file_paths = search_path.glob("*")
+    file_paths = search_dir_path.glob("*")
 
     file_paths_not_ignored = []
 
