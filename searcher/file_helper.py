@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import os
+import pathlib
 from searcher import expression_helper
 
 
@@ -130,3 +131,49 @@ def files_in_dir(search_dir, ignored_regex_objects):
 
     return file_paths
 
+# pathlib functions
+
+
+def paths_in_dir(search_path, ignored_regex_objects):
+    """
+    returns file paths in search_dir using pathlib
+
+    https://stackoverflow.com/questions/3207219/how-do-i-list-all-files-of-a-directory
+    Ignores directories.
+    Ignores symlinks. Doesn't ignore alias.
+    http://apple.stackexchange.com/questions/2991/whats-the-difference-between-alias-and-link
+
+    :param search_path: path to search, generally a directory
+    :param ignored_regex_objects: contains regular expression objects compiled from patterns
+    :return: list of un-ignored file paths in search_dir, each path relative to search_dir
+    e.g. [Path('./c.txt'), Path('./d.txt')]
+    """
+
+    if not search_path.is_dir():
+        return []
+
+    # glob("*") matches all paths
+    # glob results may include broken symlinks
+    # https://docs.python.org/3.7/library/glob.html
+    file_paths = search_path.glob("*")
+
+    file_paths_not_ignored = []
+
+    for file_path in file_paths:
+
+        if file_path.is_dir():
+            # ignore directory
+            continue
+
+        if file_path.is_symlink():
+            # ignore symlink
+            # http://stackoverflow.com/questions/15718006/check-if-directory-is-symlink
+            continue
+
+        if expression_helper.is_string_matched_in_regular_expression_objects(file_path.name, ignored_regex_objects):
+            # ignore this file
+            continue
+
+        file_paths_not_ignored.append(file_path)
+
+    return file_paths_not_ignored
