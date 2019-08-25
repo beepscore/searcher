@@ -309,7 +309,7 @@ class TestFileHelper(unittest.TestCase):
 
         self.assertEqual(search_dir_posix, 'searcher_data/search_dir')
 
-    def test_directory_paths_in_dir_recursive(self):
+    def test_directory_paths_in_dir_recursive_dont_ignore(self):
         ignored_dirname_patterns = []
         ignored_regex_objects = expression_helper.regex_objects_from_patterns(ignored_dirname_patterns)
 
