@@ -134,14 +134,6 @@ def files_in_dir(search_dir, ignored_regex_objects):
 # pathlib functions
 
 
-def dir_path(dir_name):
-    """
-    :param dir_name: string e.g. './foo/bar/
-    :return: pathlib path
-    """
-    return pathlib.Path(dir_name)
-
-
 def paths_in_dir(search_path, ignored_regex_objects):
     """
     returns file paths in search_dir using pathlib
