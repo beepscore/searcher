@@ -148,23 +148,27 @@ def directory_paths_in_dir_recursive(search_dir_path, ignored_regex_objects):
 
     dir_paths = [search_dir_path]
 
-    # https://stackoverflow.com/questions/50714469/recursively-iterate-through-all-subdirectories-using-pathlib
-    for file_path in search_dir_path.rglob("*"):
+    for dirpath, dirnames, filenames in os.walk(search_dir_path):
 
-        if not file_path.is_dir():
-            # ignore non-directory
-            continue
+        for dirname in dirnames:
 
-        if file_path.is_symlink():
-            # ignore symlink
-            # http://stackoverflow.com/questions/15718006/check-if-directory-is-symlink
-            continue
+            dirpath_pathlib_path = pathlib.Path(dirpath)
 
-        if expression_helper.is_string_matched_in_regular_expression_objects(file_path.name, ignored_regex_objects):
-            # ignore this file_path
-            continue
+            if expression_helper.is_string_matched_in_regular_expression_objects(dirpath, ignored_regex_objects):
+                # ignore subdirectories of ignored directory
+                continue
 
-        dir_paths.append(file_path)
+            if dirpath_pathlib_path.is_symlink():
+                # ignore symlink
+                # http://stackoverflow.com/questions/15718006/check-if-directory-is-symlink
+                continue
+
+            if expression_helper.is_string_matched_in_regular_expression_objects(dirname, ignored_regex_objects):
+                # ignore this directory
+                continue
+
+            dirname_pathlib_path = pathlib.Path('.').joinpath(dirpath, dirname)
+            dir_paths.append(dirname_pathlib_path)
 
     return dir_paths
 

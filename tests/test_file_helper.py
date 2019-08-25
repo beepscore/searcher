@@ -285,8 +285,8 @@ class TestFileHelper(unittest.TestCase):
         ignored_filename_patterns = [r'\A\.DS_Store$']
         ignored_file_regex_objects = expression_helper.regex_objects_from_patterns(ignored_filename_patterns)
 
-        search_dir_full_path = os.path.join('.', 'searcher_data', 'search_dir', 'level_1', 'level_2', 'level_3')
-        actual = file_helper.files_in_dir_recursive(search_dir_full_path,
+        search_dir_path = os.path.join('.', 'searcher_data', 'search_dir', 'level_1', 'level_2', 'level_3')
+        actual = file_helper.files_in_dir_recursive(search_dir_path,
                                                     ignored_directory_regex_objects,
                                                     ignored_file_regex_objects)
 
@@ -326,6 +326,20 @@ class TestFileHelper(unittest.TestCase):
             pathlib.Path('.').joinpath('searcher_data', 'search_dir', 'level_1', 'level_2'),
             pathlib.Path('.').joinpath('searcher_data', 'search_dir', 'level_1', 'level_2', 'level_3'),
             pathlib.Path('.').joinpath('searcher_data', 'search_dir', 'level_1', 'level_2', 'level_3', 'level_4')
+        }
+        self.assertEqual(expected, set(actual))
+
+    def test_directory_paths_in_dir_recursive_ignore1(self):
+        ignored_dirname_patterns = ['level_1']
+        ignored_regex_objects = expression_helper.regex_objects_from_patterns(ignored_dirname_patterns)
+
+        search_dir_path = pathlib.Path('.').joinpath('searcher_data', 'search_dir')
+
+        actual = file_helper.directory_paths_in_dir_recursive(search_dir_path, ignored_regex_objects)
+
+        # Don't care about element order, so compare results using set instead of list
+        expected = {
+            pathlib.Path('.').joinpath('searcher_data', 'search_dir'),
         }
         self.assertEqual(expected, set(actual))
 
