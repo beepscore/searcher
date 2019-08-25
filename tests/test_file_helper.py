@@ -462,6 +462,20 @@ class TestFileHelper(unittest.TestCase):
         }
         self.assertEqual(expected, set(actual))
 
+    def test_paths_in_dir_level_3(self):
+        ignored_filename_patterns = [r'\A\.$', r'\A\.\.$', r'\A\.DS_Store$']
+        ignored_regex_objects = expression_helper.regex_objects_from_patterns(ignored_filename_patterns)
+
+        search_dir_full_path =pathlib.Path('.').joinpath('searcher_data', 'search_dir', 'level_1', 'level_2', 'level_3')
+
+        actual = file_helper.paths_in_dir(search_dir_full_path, ignored_regex_objects)
+
+        # Don't care about element order, so compare results using set instead of list
+        expected = {
+            search_dir_full_path.joinpath('d.txt alias')
+        }
+        self.assertEqual(expected, set(actual))
+
 
 if __name__ == "__main__":
     unittest.main()
