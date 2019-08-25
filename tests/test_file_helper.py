@@ -300,6 +300,14 @@ class TestFileHelper(unittest.TestCase):
 
 # test pathlib functions
 
+    def test_dir_path(self):
+        search_dir_path = Path('.').joinpath('searcher_data', 'search_dir')
+        search_dir_string = search_dir_path.as_posix()
+
+        actual = file_helper.dir_path(search_dir_string)
+
+        self.assertEqual(search_dir_path, actual)
+
     def test_paths_in_dir(self):
 
         ignored_filename_patterns = [r'\A\.$', r'\A\.\.$', r'\A\.DS_Store$']
