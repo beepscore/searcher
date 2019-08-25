@@ -133,6 +133,9 @@ def files_in_dir(search_dir, ignored_regex_objects):
 
 # pathlib functions
 
+# TODO:
+# def file_paths_in_dir_recursive(search_dir_path, ignored_regex_objects):
+
 
 def directory_paths_in_dir_recursive(search_dir_path, ignored_regex_objects):
     """

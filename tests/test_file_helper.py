@@ -12,6 +12,8 @@ class TestFileHelper(unittest.TestCase):
     def setUp(self):
         pass
 
+    # test directories_in_dir_recursive
+
     def test_directories_in_dir_recursive_dont_ignore(self):
 
         ignored_dirname_patterns = []
@@ -98,6 +100,8 @@ class TestFileHelper(unittest.TestCase):
                     os.path.join('.', 'searcher_data', 'search_dir', 'level_1', 'level_2')
                     }
         self.assertEqual(expected, set(actual))
+
+    # test files_in_dir
 
     def test_files_in_dir(self):
 
@@ -298,7 +302,7 @@ class TestFileHelper(unittest.TestCase):
 
         self.assertEqual(expected, set(actual))
 
-# test pathlib functions
+    # test pathlib functions
 
     def test_pathlib_path(self):
         """
@@ -308,6 +312,8 @@ class TestFileHelper(unittest.TestCase):
         search_dir_posix = search_dir_path.as_posix()
 
         self.assertEqual(search_dir_posix, 'searcher_data/search_dir')
+
+    # test directory_paths_in_dir_recursive
 
     def test_directory_paths_in_dir_recursive_dont_ignore(self):
         ignored_dirname_patterns = []
@@ -398,6 +404,8 @@ class TestFileHelper(unittest.TestCase):
             pathlib.Path('.').joinpath('searcher_data', 'search_dir', 'level_1', 'level_2'),
         }
         self.assertEqual(expected, set(actual))
+
+    # test paths_in_dir
 
     def test_paths_in_dir(self):
 
@@ -494,6 +502,8 @@ class TestFileHelper(unittest.TestCase):
             search_dir_full_path.joinpath('httppython.org')
         }
         self.assertEqual(expected, set(actual))
+
+    # TODO: write and test file_paths_in_dir_recursive
 
 
 if __name__ == "__main__":
