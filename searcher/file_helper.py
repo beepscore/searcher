@@ -237,7 +237,6 @@ def paths_in_dir_recursive(search_dir, ignored_directory_regex_objects, ignored_
           './searcher_data/search_dir/level_1/level_2/d.txt']
     """
 
-    # FIXME: actual path is redundant searcher_data/search_dir/searcher_data/search_dir/...
     directory_paths = directory_paths_in_dir_recursive(search_dir, ignored_directory_regex_objects)
 
     file_paths = []
@@ -245,9 +244,8 @@ def paths_in_dir_recursive(search_dir, ignored_directory_regex_objects, ignored_
     for directory_path in directory_paths:
 
         files = paths_in_dir(directory_path, ignored_file_regex_objects)
-        files_in_dir_relative = [pathlib.Path.joinpath(directory_path, file) for file in files]
 
-        file_paths = file_paths + files_in_dir_relative
+        file_paths = file_paths + files
 
     return file_paths
 
