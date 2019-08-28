@@ -539,6 +539,29 @@ class TestFileHelper(unittest.TestCase):
 
         self.assertEqual(expected, set(actual))
 
+    def test_paths_in_dir_recursive_level_2(self):
+        ignored_directory_patterns = [r'\A\.$', r'\A\.\.$']
+        ignored_directory_regex_objects = expression_helper.regex_objects_from_patterns(ignored_directory_patterns)
+
+        ignored_filename_patterns = [r'\A\.DS_Store$']
+        ignored_file_regex_objects = expression_helper.regex_objects_from_patterns(ignored_filename_patterns)
+
+        search_dir_full_path = pathlib.Path('.').joinpath('searcher_data', 'search_dir', 'level_1', 'level_2')
+
+        actual = file_helper.paths_in_dir_recursive(search_dir_full_path,
+                                                    ignored_directory_regex_objects,
+                                                    ignored_file_regex_objects)
+
+        # Don't care about element order, so compare results using set instead of list
+        expected = {
+            search_dir_full_path.joinpath('level_3', 'level_4', 'test_result01.txt'),
+            search_dir_full_path.joinpath('c.txt'),
+            search_dir_full_path.joinpath('b.txt'),
+            search_dir_full_path.joinpath('d.txt'),
+            search_dir_full_path.joinpath('level_3', 'd.txt alias')
+        }
+        self.assertEqual(expected, set(actual))
+
 
 if __name__ == "__main__":
     unittest.main()
