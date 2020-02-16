@@ -31,7 +31,7 @@ cd to project root directory "searcher"
 ### supply arguments on command line
 Result prints to terminal.
 
-    python search_expression.py -expression 'ython' -root_dir './searcher_data/search_dir'
+    python3 search_expression.py -expression 'ython' -root_dir './searcher_data/search_dir'
 
 ### supply arguments in a file
 Create args file with desired values, e.g. searcher_args_test_result.txt.  
